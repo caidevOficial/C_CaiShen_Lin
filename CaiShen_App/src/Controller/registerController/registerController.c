@@ -82,6 +82,7 @@ void controllerAlta(){
 	upgradeID(id); //actualizo con la nueva id que obtuve
 }*/
 
+
 // Searchers
 int Entity_Customer_SearchForId(LinkedList *this, int id) {
     int retorno = -1;
@@ -178,7 +179,7 @@ int controller_addCliente(LinkedList *this, LinkedList *thisAccount){
 	char nombreDuenho[128];
 	char localidad[128];
 	char calle[128];
-	char telefono[128];
+	char telefono[12];
 
 	int numeroDireccion;
 
@@ -199,7 +200,7 @@ int controller_addCliente(LinkedList *this, LinkedList *thisAccount){
 		uppercaselInitial(calle);
 
 		getNumberInt(&numeroDireccion, " Ingrese altura: ", " Incorrecto, excede el limite de 15k.\n", 0, 15000, 7);
-		getPhoneNumber(telefono, 128, " Ingrese telefono de contacto [solo numeros]: ", " Telefono incorrecto.\n", 7);
+		getPhoneNumber(telefono, 12, " Ingrese telefono de contacto [solo numeros]: ", " Telefono incorrecto.\n", 7);
 
 		if (pCliente != NULL && pAccount != NULL) {
 			Entity_Customer_setID(pCliente, &ultimoIdCliente);
@@ -219,10 +220,13 @@ int controller_addCliente(LinkedList *this, LinkedList *thisAccount){
 			Entity_Account_setDeudaActual(pAccount, 0);
 
 			ll_add(thisAccount, pAccount);
-			ll_add(this, pCliente);
-			upgradeID(ultimoIdCliente, "Cuentas_LastID.txt");
-			upgradeID(ultimoIdCliente,"Clientes_LastID.txt"); // guarda en el archivo ultimoIdCliente+1 en "ultimoIdCliente.txt"
-			sucess = 1;
+			if(!ll_add(this, pCliente)){
+				printf("   [SUCCESS] Cliente agregado con exito!\n");
+				upgradeID(ultimoIdCliente, "Cuentas_LastID.txt");
+				upgradeID(ultimoIdCliente,"Clientes_LastID.txt"); // guarda en el archivo ultimoIdCliente+1 en "ultimoIdCliente.txt"
+				sucess = 1;
+			}
+
 		}
 	}
 	return sucess;

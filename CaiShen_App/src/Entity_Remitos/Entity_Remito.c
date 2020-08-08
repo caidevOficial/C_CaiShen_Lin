@@ -24,6 +24,7 @@
 
 #include "Entity_Remito.h"
 #include "Setters/Setters.h"
+#include "Getters/Getters.h"
 
 // Constructors
 Remitos* Entity_newRemito() {
@@ -58,6 +59,37 @@ Remitos* Entity_newParamRemito(char *id, char *idCliente, char *cliente, char *m
 	}
 	return newObject;
 }
+
+//***************************************
+// funcion para ll_count
+//***************************************
+int sumaHaber(void* pElement){
+	float haber = -1;
+	Remitos* an_Object;
+	if(pElement!=NULL){
+		an_Object = (Remitos*)pElement;
+		if(an_Object!=NULL){
+			Entity_Remitos_getMontoRemito(an_Object, &haber);
+		}
+	}
+	return haber;
+}
+
+//***************************************
+// funcion para ll_count
+//***************************************
+int sumaDebe(void* pElement){
+	float debe = -1;
+	Remitos* an_Object;
+	if(pElement!=NULL){
+		an_Object = (Remitos*)pElement;
+		if(an_Object!=NULL){
+			Entity_Remitos_getMontoRemito(an_Object, &debe);
+		}
+	}
+	return debe;
+}
+
 
 /*
 Remitos* Entity_newParamRemito(char *id, char *idCliente, char *cliente, char *monto, char *dia, char *mes, char *anho) {

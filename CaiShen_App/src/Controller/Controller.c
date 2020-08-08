@@ -193,6 +193,10 @@ int controller_ListObjectCuentas(LinkedList *this) {
 	int id;
 	int idCliente;
 	char cliente[128];
+	//float sumaDebe;
+	//float sumaHaber;
+	//float sumaDeuda;
+
 	float debe;
 	float haber;
 	float deuda;

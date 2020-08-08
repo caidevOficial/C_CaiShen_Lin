@@ -26,19 +26,19 @@
 int menu() {
 	int option;
 	printf("    \n"
-					"    [Message]: Bienvenido \n"
+					"    [Message]: Bienvenido a CaiShen_App [Gestor de clientes]\n"
 			"    _______________________________________________________________\n"
 			"    [Menu]\n"
-					"    [0] Mostrar directorio.\n"
-					"    [1] Cargar Cliente.\n"
-					"    [2] Listar Clientes.\n"
-					"    [3] Baja Cliente.\n"
-					"    [4] Cargar Remito.\n"
-					"    [5] Listar remito por cliente.\n"
-					"    [6] Baja Remito.\n"
-					"    [7] Listar Estado de Cuentas.\n"
-					"    [8] .\n"
-					"    [9] .\n"
+					"    [0] Mostrar directorio. [FUNCIONA]\n"
+					"    [1] Cargar Cliente. [FUNCIONA]\n"
+					"    [2] Listar Clientes. [FUNCIONA]\n"
+					"    [3] Baja Cliente. [SIN CODEAR]\n"
+					"    [4] Cargar Remito. [FUNCIONA]\n"
+					"    [5] Listar remitos. [FUNCIONA a medias :v ]\n"
+					"    [6] Baja Remito. [SIN CODEAR]\n"
+					"    [7] Listar Estado de Cuentas. [FUNCIONA]\n"
+					"    [8] Guardar Cambios. [SIN CODEAR]\n"
+					"    [9] . [SIN CODEAR]\n"
 					"    [10] Salir.\n");
 	getNumberInt(&option, "    [Message]: Escoje una opcion [0-8]:  ",
 			"    [Message]: Opcion incorrecta.\n", 0, 10, 5);

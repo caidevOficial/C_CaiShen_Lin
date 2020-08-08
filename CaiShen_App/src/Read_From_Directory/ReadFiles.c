@@ -18,7 +18,7 @@
  * ============================================================================
  */
 
-#include "../Read_From_Directory/ReadFiles.h"
+#include "ReadFiles.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -80,12 +80,13 @@ int Read_Directory(){
 		"    [Message] Archivos actuales en el directorio ROOT:\n"
 		"    __________________________________________________\n");
 		while ((ent = readdir (dir)) != NULL){
-		  /* Simulo comando ls para listar directorio actual y anterior */
+		  /* Simulo comando ls para listar directorio actual y anterior
+		   * Ni pinta usar getters aca!*/
 		  if((strcmp(ent->d_name, ".")) &&
 			 (strcmp(ent->d_name, "..")) &&
 			 (strcmp(ent->d_name, "src")) &&
 			 (strcmp(ent->d_name,"Debug"))){
-			 //Proceso archivos sin contar la carpeta src ni Debug.
+			 //Proceso archivos sin contar la carpeta src ni Debug. (opcional, podes borrar los ultimos cmp)
 			 processFile(ent->d_name); // Obtengo el nombre del archivo y lo proceso.
 		  }
 	  }

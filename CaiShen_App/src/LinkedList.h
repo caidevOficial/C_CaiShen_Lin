@@ -55,3 +55,4 @@ LinkedList* ll_clone(LinkedList* this);
 int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order);
 LinkedList* ll_filter(LinkedList* this, int(*pFunc)(void*));
 LinkedList* ll_map(LinkedList* this, void* (*pFunc)(void*));
+int ll_count(LinkedList* this, int (*pFunc)(void*));

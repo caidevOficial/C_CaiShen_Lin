@@ -114,9 +114,15 @@ int Control_De_Cuentas() {
 	LinkedList* Remitos= ll_newLinkedList();
 	LinkedList* Clientes = ll_newLinkedList();
 	LinkedList* Cuenta_Clientes = ll_newLinkedList();
+	if(ll_isEmpty(Remitos)){ //chequeo que la lista no este vacia.
+		printf("    [Message]: Lista Remitos inicializada con exito!\n");
+	}
+	if(ll_isEmpty(Clientes)){ //chequeo que la lista no este vacia.
+		printf("    [Message]: Lista Clientes inicializada con exito!\n");
+	}
 	if(ll_isEmpty(Cuenta_Clientes)){ //chequeo que la lista no este vacia.
-		printf("    __________________________________________________________\n"
-				"    [Message]: Lista Cuenta_Clientes inicializada con exito!\n");
+		printf("    [Message]: Lista Cuenta_Clientes inicializada con exito!\n"
+				"    __________________________________________________________\n");
 	}
 
 	controller_loadFromTextClientes(pathClientes, Clientes);
@@ -177,6 +183,9 @@ int Control_De_Cuentas() {
 			}else{
 				controller_ListObjectCuentas(Cuenta_Clientes);
 			}
+			break;
+			//***************************************************************************
+		case 8: /* GUARDAR CAMBIOS */
 			break;
 			//***************************************************************************
 		case 10: /* Salir */

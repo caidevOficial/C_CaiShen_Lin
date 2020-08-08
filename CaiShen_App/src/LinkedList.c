@@ -589,4 +589,28 @@ LinkedList* ll_map(LinkedList* this, void* (*pFunc)(void*)){
 return mappedList;
 }
 //******************************************
+/**
+ * @brief  Recorre los elementos y acumula un valor.
+ * @param  this
+ * @param  pFunc
+ * @return Retorna el numero acumulado.
+ */
+int ll_count(LinkedList* this, int (*pFunc)(void*)){
+	double acumulated = 0;
+	float actualNumber; //valor actual de la iteracion
+	int lenght; // largo de la lista
+	void* pElement; //elemento actual para iterar.
+
+	if(this!=NULL && *pFunc!=NULL){
+		lenght = ll_len(this);
+		for (int i = 0; i < lenght; i++) {
+			pElement = ll_get(this, i); //recorro la lista original.
+			actualNumber = pFunc(pElement);
+			if (actualNumber!=-1) { // si la variable es distinto de -1, me copio el valor.
+				acumulated = acumulated + actualNumber; //sumo el numero a mi acumulador
+			}
+		}
+	}
+return acumulated;
+}
 

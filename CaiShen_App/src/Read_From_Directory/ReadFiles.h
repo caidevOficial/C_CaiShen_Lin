@@ -32,18 +32,21 @@
 /**
  * @brief Prints a message with the error.
  * @param s String error to print.
+ * @author  FacuFalcone.
  */
 void error(const char *s);
 
 /**
  * @brief Process the actual file in the directory.
  * @param pFile The file to be processed.
+ * @author  FacuFalcone.
  */
 void processFile(char *pFile);
 
 /**
  * @brief   Tries to read and list all the files in the actual directory
- * @return return 1 if the files was listed, else return 0.
+ * @return  return 1 if the files was listed, else return 0.
+ * @author  FacuFalcone.
  */
 int Read_Directory();
 

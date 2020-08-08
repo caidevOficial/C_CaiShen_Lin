@@ -23,6 +23,7 @@
 #include <string.h>
 
 #include "../Entity_Accounts.h"
+#include "Getters.h"
 
 int Entity_Account_getID(Accounts *this, int *id) {
 	int success = 0;
