@@ -29,14 +29,10 @@ int parser_ObjectFromTextRemito(FILE *pFile, LinkedList *this) {
 
 	Remitos* pObject;
 	char id[128];
-	char idCliente[128];
-	char cliente[128];
-	char montoRemito[128];
-	char dia[20];
-	char mes[20];
-	char anho[20];
-
 	char date[128];
+	char cliente[128];
+	char idCliente[128];
+	char montoRemito[128];
 
 	int success = 0;
 	int firstElement = 1;
@@ -44,15 +40,11 @@ int parser_ObjectFromTextRemito(FILE *pFile, LinkedList *this) {
 	if (pFile != NULL) {
 		while (!feof(pFile)) {
 			if (firstElement) {
-				fscanf(pFile, "%[^/]/%[^/]/%[^,],%[^,],%[^,],%[^,],%[^\n]\n", dia, mes, anho, id, idCliente, cliente, montoRemito);
+				fscanf(pFile, "%[^,],%[^,],%[^,],%[^,],%[^\n]\n", date, id, cliente, idCliente, montoRemito);
 				firstElement = 0;
 			}
-			fscanf(pFile, "%[^/]/%[^/]/%[^,],%[^,],%[^,],%[^,],%[^\n]\n", dia, mes, anho, id, idCliente, cliente, montoRemito);
-			strcpy(date,dia);
-			strcat(date,"/");
-			strcat(date,mes);
-			strcat(date,"/");
-			strcat(date,anho);
+			fscanf(pFile, "%[^,],%[^,],%[^,],%[^,],%[^\n]\n", date, id, cliente, idCliente, montoRemito);
+
 			pObject = Entity_newParamRemito(id, idCliente, cliente, montoRemito, date);
 
 			if (pObject != NULL) {
@@ -61,39 +53,6 @@ int parser_ObjectFromTextRemito(FILE *pFile, LinkedList *this) {
 			}
 		}
 	}
+
 	return success;
 }
-
-/*
-int parser_ObjectFromTextRemito(FILE *pFile, LinkedList *this) {
-	//Remitos *pObject;
-	Remitos* pObject;
-	char id[128];
-	char idCliente[128];
-	char cliente[128];
-	char montoRemito[128];
-	char dia[128];
-	char mes[128];
-	char anho[128];
-
-	int success = 0;
-	int firstElement = 1;
-
-	if (pFile != NULL) {
-		while (!feof(pFile)) {
-			if (firstElement) {
-				fscanf(pFile, "%[^/]/%[^/]%[^,],%[^,],%[^,],%[^,],%[^\n]\n", dia, mes, anho, id, idCliente, cliente, montoRemito);
-				firstElement = 0;
-			}
-			fscanf(pFile, "%[^/]/%[^/]%[^,],%[^,],%[^,],%[^,],%[^\n]\n", dia, mes, anho, id, idCliente, cliente, montoRemito);
-			pObject = Entity_newParamRemito(id, idCliente, cliente, montoRemito, dia, mes, anho);
-
-			if (pObject != NULL) {
-				ll_add(this, pObject);
-				success = 1;
-			}
-		}
-	}
-	return success;
-}
-*/

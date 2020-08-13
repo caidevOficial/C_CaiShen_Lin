@@ -40,9 +40,6 @@ Remitos* Entity_newParamRemito(char *id, char *idCliente, char *cliente, char *m
 
 	int auxId;
 	int auxIdCliente;
-	//int auxDia;
-	//int auxMes;
-	//int auxAnho;
 	float auxprecio;
 
 	if (newObject != NULL && id != NULL && idCliente != NULL && cliente != NULL &&

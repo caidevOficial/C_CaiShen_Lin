@@ -116,8 +116,9 @@ int controller_loadFromTextCuentas(char *path, LinkedList *this) {
 	return sucess;
 }
 
-int controller_ListObjectRemitos(LinkedList *this) {
+int controller_ListObjectRemitos(LinkedList *this,LinkedList *thisCustomer) {
 	Remitos *pObject;
+	//eCliente *pCustomer;
 	int sucess = 0;
 	int id;
 	int idCliente;

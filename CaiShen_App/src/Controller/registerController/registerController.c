@@ -137,7 +137,6 @@ int controller_addRemito(LinkedList *this, LinkedList *thisCustomer) {
 		//customerIndex = ll_indexOf(thisCustomer, &customerId);
 		customerIndex = Entity_Customer_SearchForId(thisCustomer, customerId);
 		pCliente = ll_get(thisCustomer,customerIndex);
-
 		Entity_Customer_getRazonSocial(pCliente, customerName);
 
 		printf("   [Mesage] Se agregara un remito para: %s\n",customerName);

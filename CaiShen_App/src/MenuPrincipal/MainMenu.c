@@ -34,7 +34,7 @@ int menu() {
 					"    [2] Listar Clientes. [FUNCIONA]\n"
 					"    [3] Baja Cliente. [SIN CODEAR]\n"
 					"    [4] Cargar Remito. [FUNCIONA]\n"
-					"    [5] Listar remitos. [FUNCIONA a medias :v ]\n"
+					"    [5] Listar remitos. [FUNCIONA]\n"
 					"    [6] Baja Remito. [SIN CODEAR]\n"
 					"    [7] Listar Estado de Cuentas. [FUNCIONA]\n"
 					"    [8] Guardar Cambios. [SIN CODEAR]\n"
