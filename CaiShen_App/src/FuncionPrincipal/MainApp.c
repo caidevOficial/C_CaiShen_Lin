@@ -110,6 +110,10 @@ int Control_De_Cuentas() {
 	char pathClientes[128] = "registro_Clientes.csv";
 	char pathCuentas[128] = "registro_Cuentas.csv";
 	char pathRemitos[128] = "registro_Remitos.csv";
+	char pathMaxIDRemitos[128] = "Remitos_LastID.txt";
+	char pathMaxIDClientes[128] = "Clientes_LastID.txt";
+	char pathMaxIDCuentas_Clientes[128] = "Cuentas_LastID.txt";
+
 	int valorSalida;
 
 	LinkedList* Remitos= ll_newLinkedList();
@@ -217,6 +221,9 @@ int Control_De_Cuentas() {
 				ll_deleteLinkedList(Clientes); // Limpio la lista de filtrados.
 				ll_deleteLinkedList(Remitos); // Limpio la lista original.
 				ll_deleteLinkedList(Cuenta_Clientes); // Limpio la lista de paises mas castigados.
+				remove(pathMaxIDRemitos); // Borra archivo auxiliar de ids
+				remove(pathMaxIDClientes); // Borra archivo auxiliar de ids
+				remove(pathMaxIDCuentas_Clientes); // Borra archivo auxiliar de ids
 				//loadOrWrite = 0;
 			}else if(!valorSalida){
 				__fpurge(stdin);
