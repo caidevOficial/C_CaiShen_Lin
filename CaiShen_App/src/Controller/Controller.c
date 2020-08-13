@@ -119,7 +119,6 @@ int controller_loadFromTextCuentas(char *path, LinkedList *this) {
 
 int controller_ListObjectRemitos(LinkedList *this) {
 	Remitos *pObject;
-	//eCliente *pCustomer;
 	int sucess = 0;
 	int id;
 	int idCliente;
@@ -131,8 +130,8 @@ int controller_ListObjectRemitos(LinkedList *this) {
 		printf("\n    No se puede listar objetos ya que la lista es NULL.\n");
 	} else {
 		printf("   ______________________________________________________________\n"
-				"      Fecha   ID_Remito      Cliente     ID_Cliente  Monto_Remito\n"
-				"   ______________________________________________________________\n");
+		"      Fecha   ID_Remito      Cliente     ID_Cliente  Monto_Remito\n"
+		"   ______________________________________________________________\n");
 		sucess = 1;
 
 		for (int i = 0; i < ll_len(this); i++) {
@@ -181,8 +180,8 @@ int controller_ListObjectClientes(LinkedList *this) {
 			Entity_Customer_getTelefono(pObject, telefono);
 			Entity_Customer_getNumeroDireccion(pObject, &numeroDireccion);
 			Entity_Customer_getIdCuenta(pObject, &idCuenta);
-			printf("   [%02d] [%-8s]  [%-8s] [%-10s] [%-8s] [%-8s] [%04d]  [%02d]\n",
-					id, razonSocial, nombreDuenho, telefono, localidad, calle, numeroDireccion, idCuenta);
+			printf("   [%2d] [%8s]  [%8s] [%10s] [%8s] [%8s] [%4d]  [%2d]\n",
+			id, razonSocial, nombreDuenho, telefono, localidad, calle, numeroDireccion, idCuenta);
 		}
 	}
 	return sucess;
@@ -215,6 +214,7 @@ int controller_ListObjectCuentas(LinkedList *this, LinkedList *thisCustomer, Lin
 				"   ___________________________________________________________________\n");
 		sucess = 1;
 
+		// ARREGLAR ERROR LOOP INFINITO
 		// Recorro las cuentas
 		for (int i = 0; i < ll_len(this); i++) {
 			pObject = ll_get(this, i);

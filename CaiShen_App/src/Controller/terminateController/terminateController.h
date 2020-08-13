@@ -23,7 +23,7 @@
 #include <string.h>
 #include <ctype.h>
 
-#include "../../../LinkedList.h"
+#include "../../LinkedList.h"
 
 #ifndef LIBRARY_CONTROLLER_TERMINATECONTROLLER_TERMINATECONTROLLER_H_
 #define LIBRARY_CONTROLLER_TERMINATECONTROLLER_TERMINATECONTROLLER_H_
@@ -34,5 +34,7 @@
  * @return Return 1 if can, else 0.
  */
 int controller_removeRemito(LinkedList *this);
+
+int controller_removeCliente(LinkedList *this);
 
 #endif /* LIBRARY_CONTROLLER_TERMINATECONTROLLER_TERMINATECONTROLLER_H_ */

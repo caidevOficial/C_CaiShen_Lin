@@ -26,24 +26,26 @@
 int menu() {
 	int option;
 	printf("    \n"
-					"    [Message]: Bienvenido a CaiShen_App [Gestor de clientes]\n"
-			"    _______________________________________________________________\n"
-			"    [Menu]\n"
-					"    [0] Mostrar directorio. [FUNCIONA]\n"
-					"    [1] Cargar Cliente. [FUNCIONA]\n"
-					"    [2] Listar Clientes. [FUNCIONA]\n"
-					"    [3] Baja Cliente. [SIN CODEAR]\n"
-					"    ----------------------------------\n"
-					"    [4] Cargar Remito. [FUNCIONA]\n"
-					"    [5] Listar remitos. [FUNCIONA]\n"
-					"    [6] Baja Remito. [FUNCIONA]\n"
-					"    ----------------------------------\n"
-					"    [7] Listar Estado de Cuentas. [ARREGLAR]\n"
-					"    [8] Guardar Cambios. [SIN CODEAR]\n"
-					"    [9] . [SIN CODEAR]\n"
-					"    [10] Salir.\n");
-	getNumberInt(&option, "    [Message]: Escoje una opcion [0-8]:  ",
-			"    [Message]: Opcion incorrecta.\n", 0, 10, 5);
+	"    [Message]: Bienvenido a CaiShen_App [Gestor de clientes]\n"
+	"    _______________________________________________________________\n"
+	"    [Menu]\n"
+	"    [0] Mostrar directorio. [OK]\n"
+	"    [1] Cargar Cliente. [OK]\n"
+	"    [2] Listar Clientes. [OK]\n"
+	"    [3] Modificar Cliente. [SIN CODEAR]\n"
+	"    [4] Baja Cliente. [OK]\n"
+	"    ----------------------------------\n"
+	"    [5] Cargar Remito. [OK]\n"
+	"    [6] Listar Remitos. [OK]\n"
+	"    [7] Modificar Remito. [SIN CODEAR]\n"
+	"    [8] Baja Remito. [OK]\n"
+	"    ----------------------------------\n"
+	"    [9] Listar Estado de Cuentas. [ARREGLAR]\n"
+	"    [10] Guardar Cambios. [SIN CODEAR]\n"
+	"    [11] . [SIN CODEAR]\n"
+	"    [12] Salir. [OK]\n");
+	getNumberInt(&option, "    [Message]: Escoje una opcion [0-12]:  ",
+	"    [Message]: Opcion incorrecta.\n", 0, 12, 5);
 
 	return option;
 }

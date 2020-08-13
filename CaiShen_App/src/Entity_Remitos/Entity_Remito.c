@@ -137,6 +137,10 @@ void Entity_Remito_delete(Remitos *this) {
 	}
 }
 
+
+
+
+
 /* Function/SortBy: [Infectados] */
 /*
 int Entity_sortInfectados(void *infect1, void *infect2) {

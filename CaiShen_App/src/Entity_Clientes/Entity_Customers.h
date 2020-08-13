@@ -17,6 +17,7 @@
  * Version     : Beta 1.1.2 [Beta v1.1.2] - FacuFalcone_ABM_Pandemia_[Linux]
  * ============================================================================
  */
+#include "../LinkedList.h"
 
 #ifndef Entity_H_INCLUDED
 #define Entity_H_INCLUDED
@@ -39,7 +40,10 @@ eCliente* Entity_newClientes();
 eCliente* Entity_newParamClientes(char *id, char *razonSocial, char *nombreDuenho,char *localidad,
 		char *calle, char *telefono, char *numeroDireccion, char *idCuenta);
 
+int Entity_Customer_Show(eCliente *this);
 
-//int Entity_sortInfectados(void *infected1, void *infected2);
+int Entity_Customer_SearchForId(LinkedList *this, int id);
+
+void Entity_Customer_delete(eCliente *this);
 
 #endif // Entity_H_INCLUDED

@@ -29,7 +29,9 @@
 #include "../../Entity_Remitos/Entity_Remito.h"
 #include "../../Entity_Remitos/Getters/Getters.h"
 
-//#include "../../Parser/parser.h"
+#include "../../Entity_Clientes/Entity_Customers.h"
+#include "../../Entity_Clientes/Getters_Customer/Getters.h"
+
 #include "../../Validate/caidevValidate.h"
 #include "../registerController/registerController.h"
 
@@ -75,6 +77,54 @@ int controller_removeRemito(LinkedList *this) {
 				sucess = 1;
 				break;
 			case 2:
+				sucess = 0;
+				break;
+			default:
+				break;
+			}
+		}
+	}
+	return sucess;
+}
+
+int controller_removeCliente(LinkedList *this) {
+	eCliente *pCliente;
+
+	int sucess = 0;
+	int index;
+	int idCliente;
+	int obtainedID;
+	int confirmOption;
+	int maxID;
+
+	obtainID(&maxID, "Clientes_LastID.txt");
+	if (this != NULL) {
+		controller_ListObjectClientes(this);
+		getNumberInt(&idCliente,
+		"    [Message]: Ingrese ID a dar de baja\n    [De la Lista]: ", //pido el ID a borrar
+		"    [Message]: ID incorrecto, reingrese. ", 1,(maxID - 1), 5);
+
+		index = Entity_Customer_SearchForId(this, idCliente);// busco el indice de la ID
+
+		pCliente = ll_get(this, index); // obtengo el elemento del indice
+		Entity_Customer_getID(pCliente, &obtainedID);// obtengo la id del indice
+
+		if (obtainedID == idCliente) {
+			Entity_Customer_Show(pCliente);
+			getNumberInt(&confirmOption,
+			"\n\n    [Message]: Dar de baja el cliente? [no se podra recuperar]"
+			"\n    [1] Dar de baja Remito."
+			"\n    [2] Cancelar."
+			"\n    [Message]: Ingrese opcion: ",
+			"    [Message]: Error, escoja opciones [1-2]: ", 1, 2, 3);
+
+			switch (confirmOption) {
+			case 1: /* Confirma baja */
+				ll_remove(this, index); // borro el empleado
+				Entity_Customer_delete(pCliente);// borro el auxiliar de la funcion
+				sucess = 1;
+				break;
+			case 2: /* Cancela baja */
 				sucess = 0;
 				break;
 			default:

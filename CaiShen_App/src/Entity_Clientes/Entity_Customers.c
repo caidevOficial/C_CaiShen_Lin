@@ -25,6 +25,8 @@
 #include "Entity_Customers.h"
 
 #include "Setters_Customer/Setters.h"
+#include "Getters_Customer/Getters.h"
+
 
 
 // Constructors
@@ -60,6 +62,62 @@ eCliente* Entity_newParamClientes(char *id, char *razonSocial, char *nombreDuenh
 		Entity_Customer_setIdCuenta(newObject, auxIdCuenta);
 	}
 	return newObject;
+}
+
+int Entity_Customer_Show(eCliente *this) {
+	int sucess = 0;
+	int idCustomer;
+	int numberAdress;
+	int idAccount;
+	char razonSocial[128];
+	char contacto[128];
+	char city[128];
+	char phone[128];
+	char street[128];
+
+	if (this != NULL) {
+		Entity_Customer_getID(this, &idCustomer);
+		Entity_Customer_getRazonSocial(this, razonSocial);
+		Entity_Customer_getDuenho(this, contacto);
+		Entity_Customer_getLocalidad(this, city);
+		Entity_Customer_getCalle(this, street);
+		Entity_Customer_getNumeroDireccion(this, &numberAdress);
+		Entity_Customer_getTelefono(this, phone);
+		Entity_Customer_getIdCuenta(this, &idAccount);
+
+		printf("   _________________________________________________________________________________\n"
+		"    ID  RazonSocia   Contacto   Telefono      Localidad     Calle    Altura Cuenta\n"
+		"   _________________________________________________________________________________\n");
+		printf("   [%02d] [%-8s]  [%-8s] [%-10s] [%-8s] [%-8s] [%04d]  [%02d]\n",
+				idCustomer, razonSocial, contacto,phone, city, street, numberAdress, idAccount);
+		printf(	"   _________________________________________________________________________________\n");
+		sucess = 1;
+	}
+
+	return sucess;
+}
+
+int Entity_Customer_SearchForId(LinkedList *this, int id) {
+    int retorno = -1;
+    int idAux;
+	eCliente *pCliente;
+
+	for (int index = 0; index < ll_len(this); index++) {
+		pCliente = ll_get(this, index);
+		if (Entity_Customer_getID(pCliente, &idAux) == 1 && idAux == id){
+            retorno = index;
+        }
+    }
+
+    return retorno;
+}
+
+//Destructors
+void Entity_Customer_delete(eCliente *this) {
+	if (this != NULL) {
+		free(this);
+		this = NULL;
+	}
 }
 
 /* Function/SortBy: [Infectados] */

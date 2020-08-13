@@ -33,6 +33,7 @@
 #include "../MenuPrincipal/MainMenu.h"
 #include "../Read_From_Directory/ReadFiles.h"
 #include "../Controller/registerController/registerController.h"
+#include "../Controller/terminateController/terminateController.h"
 #include "../Controller/Controller.h"
 
 
@@ -155,15 +156,20 @@ int Control_De_Cuentas() {
 			}
 			break;
 			//***************************************************************************
-		case 3: /* BAJA CLIENTES */
+		case 3: /* MODIFICAR CLIENTE */
+			break;
+			//***************************************************************************
+		case 4: /* BAJA CLIENTES */
 			if(ll_isEmpty(Clientes)!=0){
 				printf(" [ERROR] No hay Clientes cargados!\n");
 			}else{
-
+				if(controller_removeCliente(Clientes)){
+					printf("    [SUCCESS] Cliente dado de baja con exito!\n");
+				}
 			}
 			break;
 			//***************************************************************************
-		case 4: /* CARGAR REMITOS */
+		case 5: /* CARGAR REMITOS */
 			if(ll_isEmpty(Clientes)!=0){
 				printf(" [ERROR] No hay Clientes cargados!\n");
 			}else{
@@ -171,7 +177,7 @@ int Control_De_Cuentas() {
 			}
 			break;
 			//***************************************************************************
-		case 5: /* LISTAR REMITOS */
+		case 6: /* LISTAR REMITOS */
 			if(ll_isEmpty(Remitos)!=0){
 				printf(" [ERROR] No hay Remitos cargados!\n");
 			}else{
@@ -179,15 +185,19 @@ int Control_De_Cuentas() {
 			}
 			break;
 			//***************************************************************************
-		case 6: /* BAJA REMITOS */
+		case 7: /* MODIFICAR REMITO */
+			break;
+		case 8: /* BAJA REMITOS */
 			if(ll_isEmpty(Remitos)!=0){
 				printf(" [ERROR] No hay Remitos cargados!\n");
 			}else{
-				controller_removeRemito(Remitos);
+				if(controller_removeRemito(Remitos)){
+					printf("    [SUCCESS] Ramito dado de baja con exito!\n");
+				}
 			}
 			break;
 			//***************************************************************************
-		case 7: /* Listar remitos ordenados por id */
+		case 9: /* LISTAR CUENTAS */
 			if(ll_isEmpty(Cuenta_Clientes)!=0){
 				printf(" [ERROR] No hay Cuantas ni Clientes cargados!\n");
 			}else{
@@ -195,10 +205,13 @@ int Control_De_Cuentas() {
 			}
 			break;
 			//***************************************************************************
-		case 8: /* GUARDAR CAMBIOS */
+		case 10: /* GUARDAR CAMBIOS */
 			break;
 			//***************************************************************************
-		case 10: /* Salir */
+		case 11: /* VACIO */
+			break;
+			//***************************************************************************
+		case 12: /* Salir */
 			valorSalida = log_Out(&confirm, &answer);
 			if(valorSalida==1){ //pregunto para salir y guardo en csv y bin.
 				ll_deleteLinkedList(Clientes); // Limpio la lista de filtrados.
@@ -212,13 +225,12 @@ int Control_De_Cuentas() {
 			//***************************************************************************
 		default:
 			printf(	"    __________________________________________________________\n"
-					"    [Message]: [ERROR 1101]: Opcion incorrecta, use [1-8].\n");
+					"    [Message]: [ERROR 1101]: Opcion incorrecta, use [0-12].\n");
 			break;
 			//***************************************************************************
 		}
 		simulatePause();
 		system("clear"); // linux
-
 	} while (answer == 'y');
 
 	return 0;
