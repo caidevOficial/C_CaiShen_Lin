@@ -18,6 +18,7 @@
  * ============================================================================
  */
 
+#include "../LinkedList.h"
 
 #ifndef Entity_H_INCLUDED_
 #define Entity_H_INCLUDED_
@@ -51,5 +52,13 @@ Remitos* Entity_newRemito();
 //Remitos* Entity_newParamRemito(char *id, char *idCliente, char *cliente,char *monto, char *dia, char *mes, char *anho);
 
 Remitos* Entity_newParamRemito(char *id, char *idCliente, char *cliente,char *monto, char *date);
+
+int sumaDebe(void* pElement);
+
+int Entity_Remito_SearchForId(LinkedList *this, int id);
+
+void Entity_Remito_delete(Remitos *this);
+
+int Entity_Remito_Show(Remitos *this);
 
 #endif // Entity_H_INCLUDED_

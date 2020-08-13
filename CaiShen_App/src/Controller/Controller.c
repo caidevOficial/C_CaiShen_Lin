@@ -36,6 +36,7 @@
 
 #include "../Entity_Clientes/Entity_Customers.h"
 #include "../Entity_Clientes/Getters_Customer/Getters.h"
+
 #include "../Entity_Cuentas/Entity_Accounts.h"
 #include "../Entity_Cuentas/Getters_Account/Getters.h"
 #include "saveMaxID_toText/saveToText_maxID.h"
@@ -116,7 +117,7 @@ int controller_loadFromTextCuentas(char *path, LinkedList *this) {
 	return sucess;
 }
 
-int controller_ListObjectRemitos(LinkedList *this,LinkedList *thisCustomer) {
+int controller_ListObjectRemitos(LinkedList *this) {
 	Remitos *pObject;
 	//eCliente *pCustomer;
 	int sucess = 0;
@@ -187,20 +188,24 @@ int controller_ListObjectClientes(LinkedList *this) {
 	return sucess;
 }
 
-int controller_ListObjectCuentas(LinkedList *this) {
+int controller_ListObjectCuentas(LinkedList *this, LinkedList *thisCustomer, LinkedList *thisRemitos) {
 	Accounts *pObject;
+	Remitos * pRemito;
+
 	int sucess = 0;
 
+	// Seccion Cuentas
 	int id;
 	int idCliente;
+	int idClienteCuenta;
 	char cliente[128];
-	//float sumaDebe;
-	//float sumaHaber;
-	//float sumaDeuda;
-
 	float debe;
 	float haber;
 	float deuda;
+
+	// Seccion Remitos
+	int idClienteRemito;
+	float montoRemito;
 
 	if (this == NULL) {
 		printf("\n    No se puede listar objetos ya que la lista es NULL.\n");
@@ -210,16 +215,41 @@ int controller_ListObjectCuentas(LinkedList *this) {
 				"   ___________________________________________________________________\n");
 		sucess = 1;
 
+		// Recorro las cuentas
 		for (int i = 0; i < ll_len(this); i++) {
 			pObject = ll_get(this, i);
 
-			Entity_Account_getID(pObject, &id);
-			Entity_Account_getIdCliente(pObject, &idCliente);
-			Entity_Account_getCliente(pObject, cliente);
-			Entity_Account_getDebe(pObject, &debe);
-			Entity_Account_getHaber(pObject, &haber);
-			Entity_Account_getDeuda(pObject, &deuda);
-			printf("   [%02d]   [%02d]    [%-10s] [$%8.2f] [$%8.2f] [$%8.2f]\n", id, idCliente, cliente, debe, haber, deuda);
+			if (pObject!=NULL){
+				Entity_Account_getIdCliente(pObject, &idClienteCuenta);
+				// Recorro los remitos comparando iDCliente
+
+				for(int r = 0;i<ll_len(thisRemitos);r++){
+					pRemito = ll_get(thisRemitos, r);
+
+					if(pRemito!=NULL){
+						Entity_Remitos_getIdCliente(pRemito, &idClienteRemito);
+
+						// Si son iguales, Sumo el Debe.
+						if(idClienteRemito==idClienteCuenta){
+							Entity_Remitos_getMontoRemito(pRemito, &debe);
+							montoRemito += ll_count(thisRemitos, sumaDebe);
+						}
+					}else{
+						printf("    [ERROR] Objeto de Remito es NULL.\n");
+					}
+				}
+
+				Entity_Account_getID(pObject, &id);
+				Entity_Account_getIdCliente(pObject, &idCliente);
+				Entity_Account_getCliente(pObject, cliente);
+				//Entity_Account_getDebe(pObject, &montoRemito);
+				Entity_Account_getHaber(pObject, &haber);
+				Entity_Account_getDeuda(pObject, &deuda);
+				printf("   [%02d]   [%02d]    [%-10s] [$%8.2f] [$%8.2f] [$%8.2f]\n", id, idCliente, cliente, montoRemito, haber, deuda);
+
+			}else{
+				printf("    [ERROR] Objeto de cuentas es NULL.\n");
+			}
 		}
 	}
 	return sucess;

@@ -18,6 +18,7 @@
  * ============================================================================
  */
 
+#include "../LinkedList.h"
 
 int controller_loadFromTextRemitos(char *path, LinkedList *this);
 
@@ -30,7 +31,7 @@ int controller_ListObjectRemitos(LinkedList *this);
 
 int controller_ListObjectClientes(LinkedList *this);
 
-int controller_ListObjectCuentas(LinkedList *this);
+int controller_ListObjectCuentas(LinkedList *this, LinkedList *thisCustomer, LinkedList *thisRemitos);
 /**
  * @brief 	Sort all the knights by name, id, constellation, armor Type and cosmos.
  * @param 	this

@@ -84,39 +84,58 @@ int sumaDebe(void* pElement){
 			Entity_Remitos_getMontoRemito(an_Object, &debe);
 		}
 	}
+
 	return debe;
 }
 
+int Entity_Remito_SearchForId(LinkedList *this, int id) {
+    int retorno = -1;
+    int idAux;
+	Remitos *pRemito;
 
-/*
-Remitos* Entity_newParamRemito(char *id, char *idCliente, char *cliente, char *monto, char *dia, char *mes, char *anho) {
-	Remitos *newObject;
-	newObject = Entity_newRemito();
+	for (int index = 0; index < ll_len(this); index++) {
+		pRemito = ll_get(this, index);
+		if (Entity_Remitos_getID(pRemito, &idAux) == 1 &&
+           idAux == id){
+            retorno = index;
+        }
+    }
 
-	int auxId;
-	int auxIdCliente;
-	int auxDia;
-	int auxMes;
-	int auxAnho;
-	float auxprecio;
+    return retorno;
+}
 
-	if (newObject != NULL && id != NULL && idCliente != NULL && cliente != NULL &&
-			monto != NULL && dia != NULL && mes != NULL && anho != NULL) {
-		auxId = atoi(id);
-		auxIdCliente = atoi(idCliente);
-		auxDia = atoi(dia);
-		auxMes = atoi(mes);
-		auxAnho = atoi(anho);
-		auxprecio = atof(monto);
+int Entity_Remito_Show(Remitos *this) {
+	int sucess = 0;
+	int id;
+	int idCustomer;
+	char date[128];
+	char customer[128];
+	float amount;
 
-		Entity_Remitos_setFecha(newObject, auxDia, auxMes, auxAnho);
-		Entity_Remitos_setID(newObject, &auxId);
-		Entity_Remitos_setIdCliente(newObject, auxIdCliente);
-		Entity_Remitos_setCliente(newObject, cliente);
-		Entity_Remitos_setMontoRemito(newObject, auxprecio);
+	if (this != NULL) {
+		Entity_Remitos_getDate(this, date);
+		Entity_Remitos_getID(this, &id);
+		Entity_Remitos_getCliente(this, customer);
+		Entity_Remitos_getIdCliente(this, &idCustomer);
+		Entity_Remitos_getMontoRemito(this, &amount);
+
+		printf("    __________________________________________________________\n"
+		"       Fecha     ID    Cliente   ID_Clien  Monto\n");
+		printf("    [%10s] [%02d] [%-10s] [%02d] [%-8.2f]\n", date, id, customer,idCustomer, amount);
+		printf(	"    __________________________________________________________\n");
+		sucess = 1;
 	}
-	return newObject;
-}*/
+
+	return sucess;
+}
+
+//Destructors
+void Entity_Remito_delete(Remitos *this) {
+	if (this != NULL) {
+		free(this);
+		this = NULL;
+	}
+}
 
 /* Function/SortBy: [Infectados] */
 /*
