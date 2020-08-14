@@ -18,19 +18,41 @@
  * ============================================================================
  */
 
-#ifndef MENU_MAINMENU_H_
-#define MENU_MAINMENU_H_
+#include <stdio_ext.h>//linux
+#include <stdlib.h>
+#include <string.h>
 
-/**
- * @brief  Prints on the screen all the menu options.
- * @return Return the selected option.
- */
-int menu();
+#include "../LinkedList.h"
+#include "../Entity_Pagos/Entity_Pago.h"
 
-int menuClientes();
+int parser_ObjectFromTextPago(FILE *pFile, LinkedList *this) {
 
-int menuRemitos();
+	Pagos* pObject;
+	char id[128];
+	char date[128];
+	char cliente[128];
+	char idCliente[128];
+	char montoPago[128];
 
-int menuPagos();
+	int success = 0;
+	int firstElement = 1;
 
-#endif /* MENU_MAINMENU_H_ */
+	if (pFile != NULL) {
+		while (!feof(pFile)) {
+			if (firstElement) {
+				fscanf(pFile, "%[^,],%[^,],%[^,],%[^,],%[^\n]\n", date, id, cliente, idCliente, montoPago);
+				firstElement = 0;
+			}
+			fscanf(pFile, "%[^,],%[^,],%[^,],%[^,],%[^\n]\n", date, id, cliente, idCliente, montoPago);
+
+			pObject = Entity_newParamPago(id, idCliente, cliente, montoPago, date);
+
+			if (pObject != NULL) {
+				ll_add(this, pObject);
+				success = 1;
+			}
+		}
+	}
+
+	return success;
+}

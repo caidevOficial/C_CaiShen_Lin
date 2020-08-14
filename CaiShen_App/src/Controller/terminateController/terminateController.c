@@ -32,6 +32,9 @@
 #include "../../Entity_Clientes/Entity_Customers.h"
 #include "../../Entity_Clientes/Getters_Customer/Getters.h"
 
+#include "../../Entity_Pagos/Entity_Pago.h"
+#include "../../Entity_Pagos/Getters/Getters.h"
+
 #include "../../Validate/caidevValidate.h"
 #include "../registerController/registerController.h"
 
@@ -74,6 +77,59 @@ int controller_removeRemito(LinkedList *this) {
 			case 1:
 				ll_remove(this, index); // borro el empleado
 				Entity_Remito_delete(pRemito);// borro el auxiliar de la funcion
+				sucess = 1;
+				break;
+			case 2:
+				sucess = 0;
+				break;
+			default:
+				break;
+			}
+		}
+	}
+	return sucess;
+}
+
+
+int controller_removePago(LinkedList *this) {
+	Pagos *pPago;
+
+	int sucess = 0;
+	int index;
+	int idPago;
+	int obtainedID;
+	int confirmOption;
+	int maxID;
+
+	obtainID(&maxID, "Pagos_LastID.txt");
+	if (this != NULL) {
+		//controller_ListKnightZodiac(this); // imprimo lista
+		controller_ListObjectPagos(this);
+		getNumberInt(&idPago,
+		"    [Message]: Ingrese ID a dar de baja\n    [De la Lista]: ", //pido el ID a borrar
+		"    [Message]: ID incorrecto, reingrese. ", 1,(maxID - 1), 5);
+
+		index = Entity_Pago_SearchForId(this, idPago);// busco el indice de la ID
+
+		pPago = ll_get(this, index); // obtengo el elemento del indice
+		Entity_Pagos_getID(pPago, &obtainedID);// obtengo la id del indice
+		//KnightZodiac_getID(pPago, &obtainedID);
+
+		if (obtainedID == idPago) {
+			//showKnightZodiac(pPago); // muestro al Pago seleccionado
+			Entity_Pago_Show(pPago);
+			//controller_ListObjectPagos(pPago);
+			getNumberInt(&confirmOption,
+			"\n\n    [Message]: Dar de baja el Pago [no se podra recuperar]?"
+			"\n    [1] Dar de baja Pago."
+			"\n    [2] Cancelar."
+			"\n    [Message]: Ingrese opcion: ",
+			"    [Message]: Error, escoja opciones [1-2]: ", 1, 2, 3);
+
+			switch (confirmOption) {
+			case 1:
+				ll_remove(this, index); // borro el empleado
+				Entity_Pago_delete(pPago);// borro el auxiliar de la funcion
 				sucess = 1;
 				break;
 			case 2:

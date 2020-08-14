@@ -22,12 +22,16 @@
 
 int controller_loadFromTextRemitos(char *path, LinkedList *this);
 
+int controller_loadFromTextPagos(char *path, LinkedList *this);
+
 int controller_loadFromTextClientes(char *path, LinkedList *this);
 
 int controller_loadFromTextCuentas(char *path, LinkedList *this);
 
 
 int controller_ListObjectRemitos(LinkedList *this);
+
+int controller_ListObjectPagos(LinkedList *this);
 
 int controller_ListObjectClientes(LinkedList *this);
 

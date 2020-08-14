@@ -13,33 +13,35 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  * ============================================================================
- *
- * Version     : Beta 3.3.0 [Beta v3.3.0] - FacuFalcone_LinkedList_SaintSeiya_[Linux]
+ * Type: Recuperatorio segundo parcial - Laboratorio 1.
+ * Version     : Beta 1.1.2 [Beta v1.1.2] - FacuFalcone_ABM_Pandemia_[Linux]
  * ============================================================================
  */
 
+#include "../LinkedList.h"
 
-#ifndef LIBRARY_KnightZodiac_REGISTERKnightZodiac_REGISTERKnightZodiac_H_
-#define LIBRARY_KnightZodiac_REGISTERKnightZodiac_REGISTERKnightZodiac_H_
+#ifndef ENTITY_PAGOS_H_INCLUDED_
+#define ENTITY_PAGOS_H_INCLUDED_
 
-int controller_addRemito(LinkedList *this, LinkedList *thisCustomer);
+typedef struct {
+	char date[128];
+	int idPago;
+	char cliente[128]; //
+	int idCliente;
+	float monto;
+	//Producto productos;
+}Pagos;
 
-int controller_addPago(LinkedList *this, LinkedList *thisCustomer);
+Pagos* Entity_newPago();
 
-int controller_addCliente(LinkedList *this, LinkedList *thisAccount);
+Pagos* Entity_newParamPago(char *id, char *idCliente, char *cliente,char *monto, char *date);
 
-/**
- * @brief	Read an ID from a text file.
- * @param 	*id
- * @return	Return 1 if can, else return 0.
- */
-int obtainID(int* id,char* path);
+int sumaDebe(void* pElement);
 
-/**
- * @brief	Write a text file with id+1.
- * @param 	id
- * @return	Return 1 if can, else return 0.
- */
-int upgradeID(int id,char* path);
+int Entity_Pago_SearchForId(LinkedList *this, int id);
 
-#endif /* LIBRARY_KnightZodiac_REGISTERKnightZodiac_REGISTERKnightZodiac_H_ */
+void Entity_Pago_delete(Pagos *this);
+
+int Entity_Pago_Show(Pagos *this);
+
+#endif // ENTITY_PAGOS_H_INCLUDED_

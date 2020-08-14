@@ -13,33 +13,24 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  * ============================================================================
- *
- * Version     : Beta 3.3.0 [Beta v3.3.0] - FacuFalcone_LinkedList_SaintSeiya_[Linux]
+ * Type: Recuperatorio segundo parcial - Laboratorio 1.
+ * Version     : Beta 1.1.2 [Beta v1.1.2] - FacuFalcone_ABM_Pandemia_[Linux]
  * ============================================================================
  */
 
+#include "../Entity_Pago.h"
 
-#ifndef LIBRARY_KnightZodiac_REGISTERKnightZodiac_REGISTERKnightZodiac_H_
-#define LIBRARY_KnightZodiac_REGISTERKnightZodiac_REGISTERKnightZodiac_H_
+#ifndef ENTITY_PAGOS_GETTERS_GETTERS_H_
+#define ENTITY_PAGOS_GETTERS_GETTERS_H_
 
-int controller_addRemito(LinkedList *this, LinkedList *thisCustomer);
+int Entity_Pagos_getID(Pagos *this, int *id);
 
-int controller_addPago(LinkedList *this, LinkedList *thisCustomer);
+int Entity_Pagos_getCliente(Pagos *this, char *customerName);
 
-int controller_addCliente(LinkedList *this, LinkedList *thisAccount);
+int Entity_Pagos_getIdCliente(Pagos *this, int *customerId);
 
-/**
- * @brief	Read an ID from a text file.
- * @param 	*id
- * @return	Return 1 if can, else return 0.
- */
-int obtainID(int* id,char* path);
+int Entity_Pagos_getMontoPago(Pagos *this, float *monto);
 
-/**
- * @brief	Write a text file with id+1.
- * @param 	id
- * @return	Return 1 if can, else return 0.
- */
-int upgradeID(int id,char* path);
+int Entity_Pagos_getDate(Pagos *this, char *date);
 
-#endif /* LIBRARY_KnightZodiac_REGISTERKnightZodiac_REGISTERKnightZodiac_H_ */
+#endif /* ENTITY_PAGOS_GETTERS_GETTERS_H_ */

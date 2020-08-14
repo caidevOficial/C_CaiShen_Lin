@@ -35,6 +35,8 @@
  */
 int controller_removeRemito(LinkedList *this);
 
+int controller_removePago(LinkedList *this);
+
 int controller_removeCliente(LinkedList *this);
 
 #endif /* LIBRARY_CONTROLLER_TERMINATECONTROLLER_TERMINATECONTROLLER_H_ */

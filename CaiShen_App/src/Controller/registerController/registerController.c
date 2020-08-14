@@ -31,10 +31,12 @@
 #include "../../Entity_Clientes/Getters_Customer/Getters.h"
 #include "../../Entity_Clientes/Setters_Customer/Setters.h"
 #include "../../Entity_Cuentas/Entity_Accounts.h"
+#include "../../Entity_Pagos/Entity_Pago.h"
 
 #include "../../Entity_Remitos/Setters/Setters.h"
 #include "../../Entity_Remitos/Getters/Getters.h"
 #include "../../Entity_Cuentas/Setters_Account/Setters.h"
+#include "../../Entity_Pagos/Setters/Setters.h"
 
 #include "../Controller.h"
 
@@ -161,6 +163,70 @@ int controller_addRemito(LinkedList *this, LinkedList *thisCustomer) {
 	}
 	return sucess;
 }
+
+
+int controller_addPago(LinkedList *this, LinkedList *thisCustomer) {
+	Pagos *pPago;
+	eCliente *pCliente;
+	pPago = Entity_newPago();
+	pCliente =Entity_newClientes();
+
+	//--------- Setea Fecha Actual---------------
+	char date[128];
+	time_t fecha = time(0);
+	struct tm *tlocal = localtime(&fecha);
+	strftime(date,128,"%d/%m/%y",tlocal);
+	//--------------------------------------------
+	int sucess = 0;
+	int ultimoIdCliente;
+	int ultimoIdPago;
+
+	//----- Para hacer el Pago
+	int customerId;
+	int customerIndex;
+	char customerName[128];
+	float PagoAmount;
+
+	if (this != NULL && thisCustomer != NULL) {
+
+		obtainID(&ultimoIdCliente,"Clientes_LastID.txt"); // Obtengo el ID al leerlo desde el archivo "ultimoIdCliente.txt" .
+		obtainID(&ultimoIdPago,"Pagos_LastID.txt"); // Obtengo el ID al leerlo desde el archivo "ultimoIdPago.txt" .
+		printf("    [Message]: El alta se asignara con el ID: %d\n",ultimoIdPago);
+		printf("    [FECHA]  %s \n",date);
+
+		//------------------- Pido Id de cliente para asociar al Pago
+		controller_ListObjectClientes(thisCustomer);
+
+		getNumberInt(&customerId, "    [Message] Seleccione un cliente: ", "    [ERROR] Cliente incorrecto.\n", 1, (ultimoIdCliente-1), 5);
+
+		//customerIndex = ll_indexOf(thisCustomer, &customerId);
+		customerIndex = Entity_Customer_SearchForId(thisCustomer, customerId);
+		pCliente = ll_get(thisCustomer,customerIndex);
+		Entity_Customer_getRazonSocial(pCliente, customerName);
+
+		printf("   [Message] Se agregara un Pago para: %s\n",customerName);
+
+		//------------------- Pido Monto del Pago
+		getNumberFloat(&PagoAmount, "    [Message] Ingrese el monto del Pago: ", "    [ERROR] Monto incorrecto, no puede superar los 20k\n", 0, 20000, 5);
+
+		if (pPago != NULL) {
+
+			Entity_Pagos_setDate(pPago, date);
+			Entity_Pagos_setID(pPago, &ultimoIdPago);
+			Entity_Pagos_setCliente(pPago, customerName);
+			Entity_Pagos_setIdCliente(pPago, customerId);
+			Entity_Pagos_setMontoPago(pPago, PagoAmount);
+			ll_add(this, pPago);
+			upgradeID(ultimoIdPago,"Pagos_LastID.txt"); // guarda en el archivo ultimoIdPago+1 en "ultimoIdPago.txt"
+			sucess = 1;
+			printf("    [SUCCESS] Pago agregado con exito!\n");
+		}else{
+			printf("    [ERROR] Problemas al crear el Pago!\n");
+		}
+	}
+	return sucess;
+}
+
 
 int controller_addCliente(LinkedList *this, LinkedList *thisAccount){
 	eCliente *pCliente;

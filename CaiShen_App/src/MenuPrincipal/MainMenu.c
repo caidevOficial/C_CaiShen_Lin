@@ -29,23 +29,66 @@ int menu() {
 	"    [Message]: Bienvenido a CaiShen_App [Gestor de clientes]\n"
 	"    _______________________________________________________________\n"
 	"    [Menu]\n"
-	"    [0] Mostrar directorio. [OK]\n"
+	"    [0] Mostrar Directorio. [OK]\n"
+	"    [1] Seccion Clientes. [OK]\n"
+	"    [2] Seccion Remitos. [OK]\n"
+	"    [3] Seccion Pagos. [OK]\n"
+	"    [4] Seccion Cuentas. [OK]\n"
+	"    [5] Salir. [OK]\n");
+	getNumberInt(&option, "    [Message]: Escoje una opcion [0-5]:  ",
+	"    [Message]: Opcion incorrecta.\n", 0, 5, 5);
+
+	return option;
+}
+
+
+int menuClientes() {
+	int option;
+	printf("    \n"
+	"    [Message]: Bienvenido a CaiShen_App [Gestor de clientes]\n"
+	"    _______________________________________________________________\n"
+	"    [Menu]\n"
 	"    [1] Cargar Cliente. [OK]\n"
 	"    [2] Listar Clientes. [OK]\n"
 	"    [3] Modificar Cliente. [SIN CODEAR]\n"
 	"    [4] Baja Cliente. [OK]\n"
-	"    ----------------------------------\n"
-	"    [5] Cargar Remito. [OK]\n"
-	"    [6] Listar Remitos. [OK]\n"
-	"    [7] Modificar Remito. [SIN CODEAR]\n"
-	"    [8] Baja Remito. [OK]\n"
-	"    ----------------------------------\n"
-	"    [9] Listar Estado de Cuentas. [ARREGLAR]\n"
-	"    [10] Guardar Cambios. [SIN CODEAR]\n"
-	"    [11] . [SIN CODEAR]\n"
-	"    [12] Salir. [OK]\n");
-	getNumberInt(&option, "    [Message]: Escoje una opcion [0-12]:  ",
-	"    [Message]: Opcion incorrecta.\n", 0, 12, 5);
+	"    [5] Volver. [OK]\n");
+	getNumberInt(&option, "    [Message]: Escoje una opcion [1-5]:  ",
+	"    [Message]: Opcion incorrecta.\n", 1, 5, 5);
+
+	return option;
+}
+
+int menuRemitos() {
+	int option;
+	printf("    \n"
+	"    [Message]: Bienvenido a CaiShen_App [Gestor de clientes]\n"
+	"    _______________________________________________________________\n"
+	"    [Menu]\n"
+	"    [1] Cargar Remito. [OK]\n"
+	"    [2] Listar Remitos. [OK]\n"
+	"    [3] Modificar Remito. [SIN CODEAR]\n"
+	"    [4] Baja Remito. [OK]\n"
+	"    [5] Volver. [OK]\n");
+	getNumberInt(&option, "    [Message]: Escoje una opcion [1-5]:  ",
+	"    [Message]: Opcion incorrecta.\n", 1, 5, 5);
+
+	return option;
+}
+
+int menuPagos() {
+	int option;
+	printf("    \n"
+	"    [Message]: Bienvenido a CaiShen_App [Gestor de clientes]\n"
+	"    _______________________________________________________________\n"
+	"    [Menu]\n"
+	"    [1] Cargar Pago.\n"
+	"    [2] Listar Pagos.\n"
+	"    [3] Modificar Pago.\n"
+	"    [4] Baja Pago.\n"
+	"    [5] Volver. [OK]\n");
+	getNumberInt(&option, "    [Message]: Escoje una opcion [1-5]:  ",
+	"    [Message]: Opcion incorrecta.\n", 1, 5, 5);
 
 	return option;
 }

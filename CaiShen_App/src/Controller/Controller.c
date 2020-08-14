@@ -20,6 +20,7 @@
 
 #define CUSTOMER 0
 #define REMITO 1
+#define PAGO 2
 
 #include <stdio_ext.h> // linux
 #include <stdlib.h>
@@ -30,6 +31,7 @@
 #include "../Parser/parserRemito.h"
 #include "../Parser/parserCustomer.h"
 #include "../Parser/parserAccount.h"
+#include "../Parser/parserPagos.h"
 
 #include "../Entity_Remitos/Entity_Remito.h"
 #include "../Entity_Remitos/Getters/Getters.h"
@@ -39,6 +41,10 @@
 
 #include "../Entity_Cuentas/Entity_Accounts.h"
 #include "../Entity_Cuentas/Getters_Account/Getters.h"
+
+#include "../Entity_Pagos/Entity_Pago.h"
+#include "../Entity_Pagos/Getters/Getters.h"
+
 #include "saveMaxID_toText/saveToText_maxID.h"
 
 
@@ -63,6 +69,34 @@ int controller_loadFromTextRemitos(char *path, LinkedList *this) {
 	}
 
 	if (controller_saveAsTextMaxID(pFile2, "Remitos_LastID.txt", this,REMITO)) {
+		fclose(pFile2);
+	}
+
+	return sucess;
+}
+
+
+int controller_loadFromTextPagos(char *path, LinkedList *this) {
+	FILE *pFile; // para leer los objetos
+	FILE *pFile2;
+
+	int sucess = 0;
+	pFile = fopen(path, "r");
+	pFile2 = fopen("Pagos_LastID.txt", "w");
+	if (pFile != NULL) {
+		if(parser_ObjectFromTextPago(pFile, this)){
+			fclose(pFile);
+			sucess = 1;
+		}
+		else{
+			printf("    ERROR: No se pudo parsear Texto.");
+		}
+
+	}else{
+		printf("    ERROR: El archivo es NULL");
+	}
+
+	if (controller_saveAsTextMaxID(pFile2, "Pagos_LastID.txt", this,PAGO)) {
 		fclose(pFile2);
 	}
 
@@ -141,6 +175,37 @@ int controller_ListObjectRemitos(LinkedList *this) {
 			Entity_Remitos_getCliente(pObject, cliente);
 			Entity_Remitos_getIdCliente(pObject, &idCliente);
 			Entity_Remitos_getMontoRemito(pObject, &monto);
+			printf("   [%10s] [%3d]      [%10s]     [%02d]     [$%8.2f]\n", date, id, cliente, idCliente, monto);
+		}
+	}
+	return sucess;
+}
+
+
+int controller_ListObjectPagos(LinkedList *this) {
+	Pagos *pObject;
+	int sucess = 0;
+	int id;
+	int idCliente;
+	float monto;
+	char cliente[128];
+	char date[128];
+
+	if (this == NULL) {
+		printf("\n    No se puede listar objetos ya que la lista es NULL.\n");
+	} else {
+		printf("   ______________________________________________________________\n"
+		"      Fecha    ID_Pago        Cliente    ID_Cliente   Monto_Pago\n"
+		"   ______________________________________________________________\n");
+		sucess = 1;
+
+		for (int i = 0; i < ll_len(this); i++) {
+			pObject = ll_get(this, i);
+			Entity_Pagos_getDate(pObject, date);
+			Entity_Pagos_getID(pObject, &id);
+			Entity_Pagos_getCliente(pObject, cliente);
+			Entity_Pagos_getIdCliente(pObject, &idCliente);
+			Entity_Pagos_getMontoPago(pObject, &monto);
 			printf("   [%10s] [%3d]      [%10s]     [%02d]     [$%8.2f]\n", date, id, cliente, idCliente, monto);
 		}
 	}

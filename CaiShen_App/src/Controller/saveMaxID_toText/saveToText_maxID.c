@@ -28,23 +28,17 @@
 #include "../../Entity_Clientes/Getters_Customer/Getters.h"
 #include "../../Entity_Remitos/Entity_Remito.h"
 #include "../../Entity_Remitos/Getters/Getters.h"
+#include "../../Entity_Pagos/Entity_Pago.h"
+#include "../../Entity_Pagos/Getters/Getters.h"
+
 
 #include "../../Parser/parserCustomer.h"
 #include "../../Validate/caidevValidate.h"
-/*
-int KnightZodiac_getHigherID(eCliente *this, int *id) {
-    int sucess = -1;
-
-    if(this != NULL){ // si el array no es null, obtengo los datos
-		KnightZodiac_getID(this, id);
-        sucess = 0;
-    }
-    return sucess;
-}*/
 
 static int saveAsText_maxIDCustomers(FILE *pFile, LinkedList *this, int *maxID, int tipo) {
 	eCliente *pCustomer;
 	Remitos *pRemito;
+	Pagos *pPago;
 
     int ID;
     int len_LL;
@@ -64,6 +58,10 @@ static int saveAsText_maxIDCustomers(FILE *pFile, LinkedList *this, int *maxID, 
         		case 1:
         			pRemito = ll_get(this, i);// copio la estructura del cliente del indice.
         			Entity_Remitos_getID(pRemito, &ID);
+        			break;
+        		case 2:
+        			pPago = ll_get(this, i);// copio la estructura del cliente del indice.
+					Entity_Pagos_getID(pPago, &ID);
         			break;
         	}
         	//pCustomer = ll_get(this, i);// copio la estructura del cliente del indice.
