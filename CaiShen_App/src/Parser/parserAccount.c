@@ -43,7 +43,7 @@ int parser_ObjectFromTextCuenta(FILE *pFile, LinkedList *this) {
 				firstElement = 0;
 			}
 			fscanf(pFile, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n", id, idCliente, cliente, debe, haber, deuda);
-			pObject = Entity_newParamAccounts(id, cliente, debe, haber, deuda);
+			pObject = Entity_newParamAccounts(id, idCliente, cliente, debe, haber, deuda);
 
 			if (pObject != NULL) {
 				ll_add(this, pObject);

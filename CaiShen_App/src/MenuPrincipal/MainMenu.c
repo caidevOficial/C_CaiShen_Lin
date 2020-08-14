@@ -33,14 +33,13 @@ int menu() {
 	"    [1] Seccion Clientes. [OK]\n"
 	"    [2] Seccion Remitos. [OK]\n"
 	"    [3] Seccion Pagos. [OK]\n"
-	"    [4] Seccion Cuentas. [OK]\n"
+	"    [4] Estado de Cuentas. [OK]\n"
 	"    [5] Salir. [OK]\n");
 	getNumberInt(&option, "    [Message]: Escoje una opcion [0-5]:  ",
-	"    [Message]: Opcion incorrecta.\n", 0, 5, 5);
+	"    [ERROR]: Opcion incorrecta.\n", 0, 5, 5);
 
 	return option;
 }
-
 
 int menuClientes() {
 	int option;
@@ -54,7 +53,7 @@ int menuClientes() {
 	"    [4] Baja Cliente. [OK]\n"
 	"    [5] Volver. [OK]\n");
 	getNumberInt(&option, "    [Message]: Escoje una opcion [1-5]:  ",
-	"    [Message]: Opcion incorrecta.\n", 1, 5, 5);
+	"    [ERROR]: Opcion incorrecta.\n", 1, 5, 5);
 
 	return option;
 }
@@ -71,7 +70,7 @@ int menuRemitos() {
 	"    [4] Baja Remito. [OK]\n"
 	"    [5] Volver. [OK]\n");
 	getNumberInt(&option, "    [Message]: Escoje una opcion [1-5]:  ",
-	"    [Message]: Opcion incorrecta.\n", 1, 5, 5);
+	"    [ERROR]: Opcion incorrecta.\n", 1, 5, 5);
 
 	return option;
 }
@@ -88,7 +87,7 @@ int menuPagos() {
 	"    [4] Baja Pago.\n"
 	"    [5] Volver. [OK]\n");
 	getNumberInt(&option, "    [Message]: Escoje una opcion [1-5]:  ",
-	"    [Message]: Opcion incorrecta.\n", 1, 5, 5);
+	"    [ERROR]: Opcion incorrecta.\n", 1, 5, 5);
 
 	return option;
 }

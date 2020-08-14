@@ -37,22 +37,25 @@ Accounts* Entity_newAccount() {
 	return newObject;
 }
 
-Accounts* Entity_newParamAccounts(char *id, char *cliente, char *debe,char *haber, char *deuda_Actual) {
+Accounts* Entity_newParamAccounts(char *id, char *idCliente, char *cliente, char *debe,char *haber, char *deuda_Actual) {
 	Accounts *newObject;
 	newObject = Entity_newAccount();
 
 	int auxId;
+	int auxIdCLiente;
 	float auxDebe;
 	float auxHaber;
 	float auxDeudaActual;
 
-	if (newObject != NULL && id != NULL && cliente != NULL && debe != NULL && haber != NULL && deuda_Actual != NULL ) {
+	if (newObject != NULL && id != NULL && idCliente!=NULL && cliente != NULL && debe != NULL && haber != NULL && deuda_Actual != NULL ) {
 		auxId = atoi(id);
+		auxIdCLiente = atoi(idCliente);
 		auxDebe = atof(debe);
 		auxHaber = atof(haber);
 		auxDeudaActual = atof(deuda_Actual);
 
 		Entity_Account_setID(newObject, &auxId);
+		Entity_Account_setIDCliente(newObject, &auxIdCLiente);
 		Entity_Account_setCliente(newObject, cliente);
 		Entity_Account_setDebe(newObject, auxDebe);
 		Entity_Account_setHaber(newObject, auxHaber);

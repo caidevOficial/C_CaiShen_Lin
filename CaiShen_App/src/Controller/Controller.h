@@ -35,7 +35,7 @@ int controller_ListObjectPagos(LinkedList *this);
 
 int controller_ListObjectClientes(LinkedList *this);
 
-int controller_ListObjectCuentas(LinkedList *this, LinkedList *thisCustomer, LinkedList *thisRemitos);
+int controller_ListObjectCuentas(LinkedList *this, LinkedList *thisCustomer, LinkedList *thisRemitos, LinkedList *thisPagos);
 /**
  * @brief 	Sort all the knights by name, id, constellation, armor Type and cosmos.
  * @param 	this

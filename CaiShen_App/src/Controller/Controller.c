@@ -41,6 +41,7 @@
 
 #include "../Entity_Cuentas/Entity_Accounts.h"
 #include "../Entity_Cuentas/Getters_Account/Getters.h"
+#include "../Entity_Cuentas/Setters_Account/Setters.h"
 
 #include "../Entity_Pagos/Entity_Pago.h"
 #include "../Entity_Pagos/Getters/Getters.h"
@@ -252,68 +253,97 @@ int controller_ListObjectClientes(LinkedList *this) {
 	return sucess;
 }
 
-int controller_ListObjectCuentas(LinkedList *this, LinkedList *thisCustomer, LinkedList *thisRemitos) {
+int obtainIDRemito(void* pElement){
+	int monto = -1;
+	Remitos* an_Object;
+	if(pElement!=NULL){
+		an_Object = (Remitos*)pElement;
+		if(an_Object!=NULL){
+			Entity_Remitos_getIdCliente(an_Object, &monto);
+		}
+	}
+	return monto;
+}
+
+int obtainIDPago(void* pElement){
+	int monto = -1;
+	Pagos *an_Object;
+	if(pElement!=NULL){
+		an_Object = (Pagos*)pElement;
+		if(an_Object!=NULL){
+			Entity_Pagos_getIdCliente(an_Object, &monto);
+		}
+	}
+	return monto;
+}
+
+int controller_UpgradeAccountsStatus(LinkedList *this, LinkedList *thisRemitos, LinkedList *thisPagos){
+	Accounts *pAccount;
+	int success = 0;
+	int accountLenght;
+	int idAccount;
+	float sumaDebe = 0;
+	float sumaHaber = 0;
+	float deudaTotal = 0;
+
+	if(this != NULL && thisRemitos != NULL && thisPagos != NULL){
+		accountLenght = ll_len(this);
+		for (int a = 0; a<accountLenght;a++){
+			pAccount = ll_get(this, a);
+			if(pAccount != NULL){
+				Entity_Account_getIdCliente(pAccount, &idAccount); //Agarro el id de cliente
+				sumaDebe = ll_compareAndcount(REMITO, thisRemitos, idAccount, obtainIDRemito);
+				sumaHaber = ll_compareAndcount(PAGO, thisPagos, idAccount, obtainIDPago);
+				deudaTotal = (sumaDebe - sumaHaber);
+				Entity_Account_setDebe(pAccount, sumaDebe);
+				Entity_Account_setHaber(pAccount, sumaHaber);
+				Entity_Account_setDeudaActual(pAccount, (deudaTotal));
+				success = 1;
+			}
+		}
+	}
+
+	return success;
+}
+
+int controller_ListObjectCuentas(LinkedList *this, LinkedList *thisCustomer, LinkedList *thisRemitos, LinkedList *thisPagos) {
 	Accounts *pObject;
-	Remitos * pRemito;
 
 	int sucess = 0;
-
 	// Seccion Cuentas
 	int id;
 	int idCliente;
-	int idClienteCuenta;
 	char cliente[128];
 	float debe;
 	float haber;
 	float deuda;
 
-	// Seccion Remitos
-	int idClienteRemito;
-	float montoRemito;
-
 	if (this == NULL) {
 		printf("\n    No se puede listar objetos ya que la lista es NULL.\n");
 	} else {
+
 		printf("   __________________________________________________________________\n"
 				"    ID ID_Cliente    Cliente       Debe       Haber      Adeudado \n"
 				"   ___________________________________________________________________\n");
 		sucess = 1;
-
-		// ARREGLAR ERROR LOOP INFINITO
+		if(controller_UpgradeAccountsStatus(this, thisRemitos, thisPagos)){
 		// Recorro las cuentas
-		for (int i = 0; i < ll_len(this); i++) {
-			pObject = ll_get(this, i);
+			for (int i = 0; i < ll_len(this); i++) {
+				pObject = ll_get(this, i);
 
-			if (pObject!=NULL){
-				Entity_Account_getIdCliente(pObject, &idClienteCuenta);
-				// Recorro los remitos comparando iDCliente
+				if (pObject!=NULL){
 
-				for(int r = 0;i<ll_len(thisRemitos);r++){
-					pRemito = ll_get(thisRemitos, r);
+					Entity_Account_getID(pObject, &id);
+					Entity_Account_getIdCliente(pObject, &idCliente);
+					Entity_Account_getCliente(pObject, cliente);
+					Entity_Account_getDebe(pObject, &debe);
+					Entity_Account_getHaber(pObject, &haber);
+					Entity_Account_getDeuda(pObject, &deuda);
+					printf("   [%02d]   [%02d]    [%-10s] [$%8.2f] [$%8.2f] [$%8.2f]\n", id, idCliente, cliente, debe, haber, deuda);
 
-					if(pRemito!=NULL){
-						Entity_Remitos_getIdCliente(pRemito, &idClienteRemito);
-
-						// Si son iguales, Sumo el Debe.
-						if(idClienteRemito==idClienteCuenta){
-							Entity_Remitos_getMontoRemito(pRemito, &debe);
-							montoRemito += ll_count(thisRemitos, sumaDebe);
-						}
-					}else{
-						printf("    [ERROR] Objeto de Remito es NULL.\n");
-					}
+				}else{
+					printf("    [ERROR] Objeto de cuentas es NULL.\n");
 				}
-
-				Entity_Account_getID(pObject, &id);
-				Entity_Account_getIdCliente(pObject, &idCliente);
-				Entity_Account_getCliente(pObject, cliente);
-				//Entity_Account_getDebe(pObject, &montoRemito);
-				Entity_Account_getHaber(pObject, &haber);
-				Entity_Account_getDeuda(pObject, &deuda);
-				printf("   [%02d]   [%02d]    [%-10s] [$%8.2f] [$%8.2f] [$%8.2f]\n", id, idCliente, cliente, montoRemito, haber, deuda);
-
-			}else{
-				printf("    [ERROR] Objeto de cuentas es NULL.\n");
 			}
 		}
 	}

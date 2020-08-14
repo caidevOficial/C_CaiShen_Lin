@@ -23,6 +23,8 @@
 #include <string.h>
 
 #include "LinkedList.h"
+#include "Entity_Pagos/Getters/Getters.h"
+#include "Entity_Remitos/Getters/Getters.h"
 
 static Node* getNode(LinkedList *this, int nodeIndex);
 static int addNode(LinkedList *this, int nodeIndex, void *pElement);
@@ -611,6 +613,35 @@ int ll_count(LinkedList* this, int (*pFunc)(void*)){
 			}
 		}
 	}
+return acumulated;
+}
+
+int ll_compareAndcount(int type, LinkedList* this,int idCompare, int (*pFunc)(void*)){
+	double acumulated = 0;
+	float monto;
+	float elementID; //valor actual de la iteracion
+	int lenght; // largo de la lista
+	void* pElement = NULL; //elemento actual para iterar.
+
+	if(this!=NULL && *pFunc!=NULL){
+		lenght = ll_len(this);
+		for (int i = 0; i < lenght; i++) {
+			pElement = ll_get(this, i); //recorro la lista original.
+			elementID = pFunc(pElement);
+
+			if (elementID==idCompare) { // si la variable es distinto de -1, me copio el valor.
+				if(type==1){
+					Entity_Remitos_getMontoRemito(pElement, &monto);
+				}else if (type==2){
+					Entity_Pagos_getMontoPago(pElement, &monto);
+				}
+
+				acumulated += monto; //sumo el numero a mi acumulador
+			}
+		}
+		//free(pElement);
+	}
+
 return acumulated;
 }
 

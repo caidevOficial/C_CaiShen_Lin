@@ -300,7 +300,7 @@ int Control_De_Cuentas() {
 			if(ll_isEmpty(Cuenta_Clientes)!=0){
 				printf(" [ERROR] No hay Cuantas ni Clientes cargados!\n");
 			}else{
-				controller_ListObjectCuentas(Cuenta_Clientes,Clientes,Remitos);
+				controller_ListObjectCuentas(Cuenta_Clientes,Clientes,Remitos,Pagos);
 			}
 			break;
 			//***************************************************************************

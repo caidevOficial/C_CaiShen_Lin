@@ -18,9 +18,10 @@
  * ============================================================================
  */
 
+#include "../Entity_Remito.h"
 
-#ifndef LIBRARY_Entity_GETTERS_GETTERS_H_
-#define LIBRARY_Entity_GETTERS_GETTERS_H_
+#ifndef ENTITY_REMITOS_GETTERS_GETTERS_H_
+#define ENTITY_REMITOS_GETTERS_GETTERS_H_
 
 int Entity_Remitos_getID(Remitos *this, int *id);
 
@@ -34,4 +35,4 @@ int Entity_Remitos_getMontoRemito(Remitos *this, float *monto);
 
 int Entity_Remitos_getDate(Remitos *this, char *date);
 
-#endif /* LIBRARY_Entity_GETTERS_GETTERS_H_ */
+#endif /* ENTITY_REMITOS_GETTERS_GETTERS_H_ */

@@ -20,8 +20,8 @@
 
 #include "../LinkedList.h"
 
-#ifndef Entity_H_INCLUDED_
-#define Entity_H_INCLUDED_
+#ifndef ENTITY_REMITO_H_INCLUDED_
+#define ENTITY_REMITO_H_INCLUDED_
 
 typedef struct{
 	int idProducto;
@@ -61,4 +61,4 @@ void Entity_Remito_delete(Remitos *this);
 
 int Entity_Remito_Show(Remitos *this);
 
-#endif // Entity_H_INCLUDED_
+#endif // ENTITY_REMITO_H_INCLUDED_

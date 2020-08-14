@@ -95,7 +95,7 @@ int Entity_Account_setDeudaActual(Accounts *this, float deudaActual) {
 	int success = 0;
 
 	if (this != NULL) {
-		if (deudaActual >= 0) {
+		if (deudaActual > (-10000)) {
 			this->deuda_Actual = deudaActual;
 			success = 1;
 		}

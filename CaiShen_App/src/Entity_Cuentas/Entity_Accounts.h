@@ -36,7 +36,7 @@ typedef struct {
 Accounts* Entity_newAccount();
 
 
-Accounts* Entity_newParamAccounts(char *id, char *cliente, char *debe,char *haber, char *deuda_Actual);
+Accounts* Entity_newParamAccounts(char *id, char *idCliente, char *cliente, char *debe,char *haber, char *deuda_Actual);
 
 
 int Entity_sortDeudaActual(void *deudor1, void *deudor2);
