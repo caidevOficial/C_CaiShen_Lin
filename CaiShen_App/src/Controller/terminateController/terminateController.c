@@ -23,8 +23,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+
 #include "../Controller.h"
-#include "../../LinkedList.h"
+#include "../registerController/registerController.h"
 
 #include "../../Entity_Remitos/Entity_Remito.h"
 #include "../../Entity_Remitos/Getters/Getters.h"
@@ -35,8 +36,8 @@
 #include "../../Entity_Pagos/Entity_Pago.h"
 #include "../../Entity_Pagos/Getters/Getters.h"
 
+#include "../../LinkedList.h"
 #include "../../Validate/caidevValidate.h"
-#include "../registerController/registerController.h"
 
 int controller_removeRemito(LinkedList *this) {
 	Remitos *pRemito;

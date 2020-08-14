@@ -23,11 +23,9 @@
 #include <string.h>
 
 #include "Entity_Accounts.h"
-//#include "../Entity_Remitos/Entity_Remito.h"
 
 #include "Getters_Account/Getters.h"
 #include "Setters_Account/Setters.h"
-
 
 // Constructors
 Accounts* Entity_newAccount() {

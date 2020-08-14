@@ -33,4 +33,11 @@ int menuRemitos();
 
 int menuPagos();
 
+// Menus modificaciones.
+
+int modifyCustomers();
+
+int modifyRemitosOrPagos();
+
+
 #endif /* MENU_MAINMENU_H_ */

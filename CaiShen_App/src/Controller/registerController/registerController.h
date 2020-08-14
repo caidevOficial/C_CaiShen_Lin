@@ -18,6 +18,7 @@
  * ============================================================================
  */
 
+#include "../../LinkedList.h"
 
 #ifndef LIBRARY_KnightZodiac_REGISTERKnightZodiac_REGISTERKnightZodiac_H_
 #define LIBRARY_KnightZodiac_REGISTERKnightZodiac_REGISTERKnightZodiac_H_

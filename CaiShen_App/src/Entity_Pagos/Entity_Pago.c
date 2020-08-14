@@ -18,14 +18,13 @@
  * ============================================================================
  */
 
-#include "Entity_Pago.h"
-
 #include <stdio_ext.h> // linux
 #include <stdlib.h>
 #include <string.h>
 
-#include "Setters/Setters.h"
+#include "Entity_Pago.h"
 #include "Getters/Getters.h"
+#include "Setters/Setters.h"
 
 // Constructors
 Pagos* Entity_newPago() {

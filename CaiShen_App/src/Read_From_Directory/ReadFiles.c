@@ -36,31 +36,31 @@ void error(const char *s){
 
 void processFile(char *archivo){
   /* Al procesar el archivo imprimo tamano en Bytes, KiloBytes, MegaBytes o Gigabytes */
-  FILE *fich;
-  double ftam;
+  FILE *pFile;
+  double fileSize;
   char peso[20];
 
-  fich=fopen(archivo, "r");
-  if (fich){
-      fseek(fich, 0L, SEEK_END);
-      ftam=ftell(fich);
-      if(ftam<1024){
+  pFile=fopen(archivo, "r");
+  if (pFile){
+      fseek(pFile, 0L, SEEK_END);
+      fileSize=ftell(pFile);
+      if(fileSize<1025){
     	  strcpy(peso,"Bytes");
       }else{
-    	  ftam/=1024;
+    	  fileSize/=1024;
     	  strcpy(peso,"KiloBytes");
-    	  if(ftam>1024){
-    		  ftam/=1024;
+    	  if(fileSize>1024){
+    		  fileSize/=1024;
     		  strcpy(peso,"MegaBytes");
-    		  if(ftam>1024){
-    	    	 ftam/=1024;
+    		  if(fileSize>1024){
+    	    	 fileSize/=1024;
     	    	 strcpy(peso,"GigaBytes");
     		  }
     	  }
       }
-      fclose(fich);
+      fclose(pFile);
       /* Si va bien, imprime el Nombre, tamanho y tipo de peso. */
-      printf ("    [%-23s] [%06.2f] [%-10s]\n", archivo, ftam,peso);
+      printf ("    [%-23s] [%06.2f] [%-10s]\n", archivo, fileSize,peso);
   }else{
     /* Si falla, solo imprime el nombre. */
     printf ("    [%-23s] (No info.)\n", archivo);

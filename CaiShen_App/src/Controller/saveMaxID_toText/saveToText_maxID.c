@@ -23,15 +23,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "../../LinkedList.h"
+
 #include "../../Entity_Clientes/Entity_Customers.h"
 #include "../../Entity_Clientes/Getters_Customer/Getters.h"
-#include "../../Entity_Remitos/Entity_Remito.h"
-#include "../../Entity_Remitos/Getters/Getters.h"
+
 #include "../../Entity_Pagos/Entity_Pago.h"
 #include "../../Entity_Pagos/Getters/Getters.h"
 
+#include "../../Entity_Remitos/Entity_Remito.h"
+#include "../../Entity_Remitos/Getters/Getters.h"
 
+#include "../../LinkedList.h"
 #include "../../Parser/parserCustomer.h"
 #include "../../Validate/caidevValidate.h"
 

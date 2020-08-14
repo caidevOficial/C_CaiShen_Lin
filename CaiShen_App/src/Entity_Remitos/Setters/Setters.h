@@ -18,8 +18,8 @@
  * ============================================================================
  */
 
-#ifndef LIBRARY_Entity_SETTERS_SETTERS_H_
-#define LIBRARY_Entity_SETTERS_SETTERS_H_
+#ifndef ENTITY_REMITOS_SETTERS_REMITOS_SETTERS_H_
+#define ENTITY_REMITOS_SETTERS_REMITOS_SETTERS_H_
 
 int Entity_Remitos_setID(Remitos *this, int *id);
 
@@ -32,4 +32,4 @@ int Entity_Remitos_setMontoRemito(Remitos *this, float price);
 //int Entity_Remitos_setFecha(Remitos *this, int dia, int mes, int anho);
 int Entity_Remitos_setDate(Remitos *this, char *date);
 
-#endif /* LIBRARY_Entity_SETTERS_SETTERS_H_ */
+#endif /* ENTITY_REMITOS_SETTERS_REMITOS_SETTERS_H_ */

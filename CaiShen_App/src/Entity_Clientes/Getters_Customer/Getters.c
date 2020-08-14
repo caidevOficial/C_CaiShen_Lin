@@ -24,7 +24,6 @@
 
 #include "../Entity_Customers.h"
 
-
 int Entity_Customer_getID(eCliente *this, int *id) {
 	int success = 0;
 

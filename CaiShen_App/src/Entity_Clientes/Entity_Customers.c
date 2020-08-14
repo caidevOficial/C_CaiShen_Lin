@@ -24,10 +24,8 @@
 
 #include "Entity_Customers.h"
 
-#include "Setters_Customer/Setters.h"
 #include "Getters_Customer/Getters.h"
-
-
+#include "Setters_Customer/Setters.h"
 
 // Constructors
 eCliente* Entity_newClientes() {

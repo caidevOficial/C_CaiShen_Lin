@@ -18,6 +18,10 @@
  * ============================================================================
  */
 
+#include "../../Entity_Cuentas/Entity_Accounts.h"
+
+#ifndef ENTITY_CUENTAS_SETTERS_ACCOUNT_SETTERS_H_
+#define ENTITY_CUENTAS_SETTERS_ACCOUNT_SETTERS_H_
 int Entity_Account_setID(Accounts *this, int *id);
 
 int Entity_Account_setCliente(Accounts *this, char *customer);
@@ -30,3 +34,4 @@ int Entity_Account_setHaber(Accounts *this, float haber);
 
 int Entity_Account_setDeudaActual(Accounts *this, float deudaActual);
 
+#endif /* ENTITY_CUENTAS_SETTERS_ACCOUNT_SETTERS_H_ */

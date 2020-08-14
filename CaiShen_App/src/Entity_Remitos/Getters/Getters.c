@@ -18,8 +18,9 @@
  * ============================================================================
  */
 #include <string.h>
-#include "../Entity_Remito.h"
+
 #include "Getters.h"
+#include "../Entity_Remito.h"
 
 /* Getter: [ID REMITO] */
 int Entity_Remitos_getID(Remitos *this, int *id) {

@@ -13,26 +13,19 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  * ============================================================================
- * Type: Recuperatorio segundo parcial - Laboratorio 1.
- * Version     : Beta 1.1.2 [Beta v1.1.2] - FacuFalcone_ABM_Pandemia_[Linux]
+ *
+ * Version     : Beta 3.3.0 [Beta v3.3.0] - FacuFalcone_LinkedList_SaintSeiya_[Linux]
  * ============================================================================
  */
 
-#include "../../Entity_Cuentas/Entity_Accounts.h"
+#include "../../../LinkedList.h"
 
-#ifndef ENTITY_CUENTAS_GETTERS_ACCOUNT_GETTERS_H_
-#define ENTITY_CUENTAS_GETTERS_ACCOUNT_GETTERS_H_
+#ifndef CONTROLLER_MODIFYCONTROLLER_MODIFYCONTROLLER_H_
+#define CONTROLLER_MODIFYCONTROLLER_MODIFYCONTROLLER_H_
 
-int Entity_Account_getID(Accounts *this, int *id);
+int controller_editPagos(LinkedList *this);
 
-int Entity_Account_getIdCliente(Accounts *this, int *idCliente);
+int controller_editRemitos(LinkedList *this);
 
-int Entity_Account_getCliente(Accounts *this, char *customer);
 
-int Entity_Account_getDebe(Accounts *this, float *debe);
-
-int Entity_Account_getHaber(Accounts *this, float *haber);
-
-int Entity_Account_getDeuda(Accounts *this, float *deuda);
-
-#endif /* ENTITY_CUENTAS_GETTERS_ACCOUNT_GETTERS_H_ */
+#endif /* CONTROLLER_MODIFYCONTROLLER_MODIFYCONTROLLER_H_ */

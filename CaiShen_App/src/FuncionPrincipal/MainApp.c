@@ -28,13 +28,13 @@
 #include <dirent.h>
 #include <errno.h>
 
-#include "../LinkedList.h"
-#include "../Validate/caidevValidate.h"
-#include "../MenuPrincipal/MainMenu.h"
-#include "../Read_From_Directory/ReadFiles.h"
+#include "../Controller/Controller.h"
 #include "../Controller/registerController/registerController.h"
 #include "../Controller/terminateController/terminateController.h"
-#include "../Controller/Controller.h"
+#include "../LinkedList.h"
+#include "../MenuPrincipal/MainMenu.h"
+#include "../Read_From_Directory/ReadFiles.h"
+#include "../Validate/caidevValidate.h"
 
 
 #define OPEN 1 // Para definir archivo abierto.
@@ -95,7 +95,7 @@ int log_Out(char *confirm, char *answer) {
 		*answer = 'n';
 		success = 1;
 	}else if(*confirm == 'n'){
-		success = -1; // usado para vovler al menu y no borrar nada.
+		success = -1; // usado para volver al menu y no borrar nada.
 	}else{
 		printf("    [ERROR] Respuesta invalida, reintentelo.\n");
 		__fpurge(stdin); //linux
@@ -139,6 +139,8 @@ int gestionClientes(LinkedList *this, LinkedList *thisAccount){
 			default:
 				break;
 		}
+		simulatePause();
+		system("clear"); // linux
 	}while(respuesta == 's');
 	return success;
 }
@@ -165,6 +167,7 @@ int gestionRemitos(LinkedList *this, LinkedList *thisCustomer){
 			break;
 			//***************************************************************************
 		case 3: /* MODIFICAR REMITO */
+			controller_editRemitos(this);
 			break;
 		case 4: /* BAJA REMITOS */
 			if(ll_isEmpty(this)!=0){
@@ -182,6 +185,8 @@ int gestionRemitos(LinkedList *this, LinkedList *thisCustomer){
 			default:
 				break;
 		}
+		simulatePause();
+		system("clear"); // linux
 	}while(respuesta == 's');
 	return success;
 }
@@ -208,6 +213,7 @@ int gestionPagos(LinkedList *this, LinkedList *thisCustomer){
 			break;
 			//***************************************************************************
 		case 3: /* MODIFICAR PAGOS */
+			controller_editPagos(this);
 			break;
 		case 4: /* BAJA PAGOS */
 			if(ll_isEmpty(this)!=0){
@@ -225,6 +231,8 @@ int gestionPagos(LinkedList *this, LinkedList *thisCustomer){
 			default:
 				break;
 		}
+		simulatePause();
+		system("clear"); // linux
 	}while(respuesta == 's');
 	return success;
 }
@@ -249,6 +257,7 @@ int Control_De_Cuentas() {
 	LinkedList* Cuenta_Clientes = ll_newLinkedList();
 	LinkedList* Pagos = ll_newLinkedList();
 
+	//---------- Control de inicializaciones.
 	if(ll_isEmpty(Remitos)){ //chequeo que la lista no este vacia.
 		printf("    [Message]: Lista Remitos inicializada con exito!\n");
 		if(controller_loadFromTextRemitos(pathRemitos, Remitos)){
@@ -278,11 +287,11 @@ int Control_De_Cuentas() {
 		}
 	}
 
-
 	do {
 		switch (menu()) {
 		case 0: /* Mostrar Archivos en directorio root */
 			Read_Directory();
+			//***************************************************************************
 			break;
 		case 1: /* CLIENTES */
 			gestionClientes(Clientes, Cuenta_Clientes);
@@ -330,5 +339,5 @@ int Control_De_Cuentas() {
 		system("clear"); // linux
 	} while (answer == 'y');
 
-	return 0;
+	return 1;
 }

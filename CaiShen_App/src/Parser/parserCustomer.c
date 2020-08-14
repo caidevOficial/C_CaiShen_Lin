@@ -21,19 +21,19 @@
 #include <stdio_ext.h>//linux
 #include <stdlib.h>
 
-#include "../LinkedList.h"
 #include "../Entity_Clientes/Entity_Customers.h"
+#include "../LinkedList.h"
 
 int parser_ObjectFromTextCliente(FILE *pFile, LinkedList *this) {
 	eCliente *pObject;
 	char id[128];
-	char razonSocial[128];
-	char nombreDuenho[128];
-	char localidad[128];
 	char calle[128];
 	char telefono[128];
-	char numeroDireccion[128];
 	char idCuenta[128];
+	char localidad[128];
+	char razonSocial[128];
+	char nombreDuenho[128];
+	char numeroDireccion[128];
 
 	int success = 0;
 	int firstElement = 1;

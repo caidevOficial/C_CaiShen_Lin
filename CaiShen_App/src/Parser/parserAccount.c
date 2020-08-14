@@ -21,8 +21,8 @@
 #include <stdio_ext.h>//linux
 #include <stdlib.h>
 
-#include "../LinkedList.h"
 #include "../Entity_Cuentas/Entity_Accounts.h"
+#include "../LinkedList.h"
 
 int parser_ObjectFromTextCuenta(FILE *pFile, LinkedList *this) {
 	Accounts *pObject;

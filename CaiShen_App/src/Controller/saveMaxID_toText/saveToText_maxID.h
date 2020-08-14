@@ -18,10 +18,12 @@
  * ============================================================================
  */
 
-#ifndef LIBRARY_CONTROLLER_SAVEMAXID_TOTEXT_SAVETOTEXT_MAXID_H_
-#define LIBRARY_CONTROLLER_SAVEMAXID_TOTEXT_SAVETOTEXT_MAXID_H_
+#include "../../LinkedList.h"
+
+#ifndef CONTROLLER_SAVEMAXID_TOTEXT_SAVETOTEXT_MAXID_H_
+#define CONTROLLER_SAVEMAXID_TOTEXT_SAVETOTEXT_MAXID_H_
 
 
 int controller_saveAsTextMaxID(FILE *pFile, char *path,	LinkedList *this, int tipo);
 
-#endif /* LIBRARY_CONTROLLER_SAVEMAXID_TOTEXT_SAVETOTEXT_MAXID_H_ */
+#endif /* CONTROLLER_SAVEMAXID_TOTEXT_SAVETOTEXT_MAXID_H_ */

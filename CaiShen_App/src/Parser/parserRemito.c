@@ -22,8 +22,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../LinkedList.h"
 #include "../Entity_Remitos/Entity_Remito.h"
+#include "../LinkedList.h"
 
 int parser_ObjectFromTextRemito(FILE *pFile, LinkedList *this) {
 

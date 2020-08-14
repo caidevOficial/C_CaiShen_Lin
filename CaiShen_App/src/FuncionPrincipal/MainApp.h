@@ -43,6 +43,8 @@
 void pFunctionLoadBinCsv(char* messageError1,char* messageError2,char* messageSuccess,int* flag,int flagValue,
 		int NewflagValue,char*path,LinkedList* array,int(*pFunction)(char*,LinkedList*));
 
+void simulatePause();
+
 /**
  * @brief 	Executes all the functions of the ABM.
  */
