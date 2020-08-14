@@ -18,7 +18,7 @@
  * ============================================================================
  */
 
-#include "../../../LinkedList.h"
+#include "../../LinkedList.h"
 
 #ifndef CONTROLLER_MODIFYCONTROLLER_MODIFYCONTROLLER_H_
 #define CONTROLLER_MODIFYCONTROLLER_MODIFYCONTROLLER_H_
@@ -27,5 +27,6 @@ int controller_editPagos(LinkedList *this);
 
 int controller_editRemitos(LinkedList *this);
 
+int controller_editCustomer(LinkedList *this);
 
 #endif /* CONTROLLER_MODIFYCONTROLLER_MODIFYCONTROLLER_H_ */

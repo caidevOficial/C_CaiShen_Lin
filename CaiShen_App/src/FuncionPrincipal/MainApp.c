@@ -30,6 +30,7 @@
 
 #include "../Controller/Controller.h"
 #include "../Controller/registerController/registerController.h"
+#include "../Controller/modifyController/modifyController.h"
 #include "../Controller/terminateController/terminateController.h"
 #include "../LinkedList.h"
 #include "../MenuPrincipal/MainMenu.h"
@@ -121,6 +122,7 @@ int gestionClientes(LinkedList *this, LinkedList *thisAccount){
 				break;
 				//***************************************************************************
 			case 3: /* MODIFICAR CLIENTE */
+				controller_editCustomer(this);
 				break;
 				//***************************************************************************
 			case 4: /* BAJA CLIENTES */
@@ -241,10 +243,10 @@ int Control_De_Cuentas() {
 
 	char confirm;
 	char answer = 'y';
-	char pathClientes[128] = "registro_Clientes.csv";
-	char pathCuentas[128] = "registro_Cuentas.csv";
-	char pathRemitos[128] = "registro_Remitos.csv";
-	char pathPagos[128] = "registro_Pagos.csv";
+	char pathClientes[128] = "Docs/registro_Clientes.csv";
+	char pathCuentas[128] = "Docs/registro_Cuentas.csv";
+	char pathRemitos[128] = "Docs/registro_Remitos.csv";
+	char pathPagos[128] = "Docs/registro_Pagos.csv";
 	char pathMaxIDRemitos[128] = "Remitos_LastID.txt";
 	char pathMaxIDClientes[128] = "Clientes_LastID.txt";
 	char pathMaxIDCuentas_Clientes[128] = "Cuentas_LastID.txt";

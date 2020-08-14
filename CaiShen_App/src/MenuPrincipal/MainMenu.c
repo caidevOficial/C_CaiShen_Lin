@@ -49,7 +49,7 @@ int menuClientes() {
 	"    [Menu]\n"
 	"    [1] Cargar Cliente. [OK]\n"
 	"    [2] Listar Clientes. [OK]\n"
-	"    [3] Modificar Cliente. [SIN CODEAR]\n"
+	"    [3] Modificar Cliente. [OK]\n"
 	"    [4] Baja Cliente. [OK]\n"
 	"    [5] Volver. [OK]\n");
 	getNumberInt(&option, "    [Message]: Escoje una opcion [1-5]:  ",
@@ -95,17 +95,17 @@ int menuPagos() {
 int modifyCustomers() {
 	int optionChoosen;
 	printf("\n\n    [Message] OPCIONES:"
-			"\n    [1] Modificar Razon Social."
-			"\n    [2] Modificar Contacto."
-			"\n    [3] Modificar Ciudad."
-			"\n    [4] Modificar Telefono."
-			"\n    [4] Modificar Calle."
-			"\n    [4] Modificar Altura."
-			"\n    [4] Modificar"
-			"\n    [5] Cancelar."
+			"\n    [1] Modificar Razon Social. [OK]"
+			"\n    [2] Modificar Contacto. [OK]"
+			"\n    [3] Modificar Ciudad. [OK]"
+			"\n    [4] Modificar Telefono. [OK]"
+			"\n    [5] Modificar Calle."
+			"\n    [6] Modificar Altura."
+			"\n    [7] Modificar"
+			"\n    [8] Cancelar y volver. [OK]"
 			"\n    Opcion:");
-	getNumberInt(&optionChoosen, " Opcion elegida [1-5]: ",
-	"Error, opcion incorrecta.", 1, 5, 5);
+	getNumberInt(&optionChoosen, " Opcion elegida [1-8]: ",
+	"Error, opcion incorrecta.", 1, 8, 5);
 	return optionChoosen;
 }
 

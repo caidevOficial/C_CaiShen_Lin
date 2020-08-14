@@ -174,3 +174,121 @@ int controller_editRemitos(LinkedList *this) {
 	}
 	return sucess;
 }
+
+
+int controller_editCustomer(LinkedList *this) {
+	eCliente *pCustomer;
+	int sucess = 0;
+	int idCustomer;
+	int maxID;
+	int index;
+
+	char razonSocial[128];
+	char contacto[128];
+	char ciudad[128];
+	char calle[128];
+	char telefono[128];
+
+	char selectedOption = 'y';
+	char pathIDClientes[128] = "Clientes_LastID.txt";
+
+	//system("cls"); // windows
+	system("clear"); // linux
+	if (this != NULL) {
+		obtainID(&maxID,pathIDClientes);
+		/* Muestro Clientes y pido el ID */
+		controller_ListObjectClientes(this);
+		getNumberInt(&idCustomer,
+		"    [Message]: Ingresa el ID a modificar: ",
+		"    [ERROR]: ID incorrecto, por favor reingresalo.\n", 1, (maxID - 1), 5);
+
+		/* Busco que exista el ID */
+		index = Entity_Customer_SearchForId(this, idCustomer);
+
+		if (index == -1) {
+			printf(
+					"\n    [Message]: El Cliente ID: %d  aun no existe.\n",
+					idCustomer);
+		} else {
+			pCustomer = ll_get(this, index);
+			//system("cls"); // windows
+			system("clear"); // linux
+
+			do {
+				Entity_Customer_Show(pCustomer);
+				switch (modifyCustomers()) {
+					case 1: /* Razon Social */
+						//system("cls"); // windows
+						system("clear"); // linux
+						Entity_Customer_Show(pCustomer);
+						if (getName(razonSocial, 128,
+								"    [Message]: Ingresa una nueva Constelacion: ",
+								"    [ERROR]: Constelacion incorrecta, reingresala.\n",	5)) {
+							uppercaselInitial(razonSocial);
+							Entity_Customer_setRazonSocial(pCustomer, razonSocial);
+							printf("    [SUCCESS]: Razon Social actualizada con exito!\n");
+							Entity_Customer_Show(pCustomer);
+							sucess = 1;
+						}
+						break;
+					case 2: /* NOMBRE */
+						//system("cls"); // windows
+						system("clear"); // linux
+						Entity_Customer_Show(pCustomer);
+						if (getName(contacto, 128,
+							"    [Message]: Ingrese nuevo nombre: ",
+							"    [ERROR]: Nombre incorrecto, reingresalo.\n",5)) {
+							uppercaselInitial(contacto);
+							Entity_Customer_setDuenho(pCustomer, contacto);
+							Entity_Customer_Show(pCustomer);
+							printf(
+									"    [SUCCESS]: Nombre actualizado con exito!\n");
+							sucess = 1;
+						}
+						break;
+					case 3: /* Ciudad */
+						//system("cls"); // windows
+						system("clear"); // linux
+						Entity_Customer_Show(pCustomer);
+						if (getName(ciudad, 128,
+							"    [Message]: Ingresa una nueva Ciudad: ",
+							"    [ERROR]: Ciudad incorrecta, reingresala.\n",	5)) {
+							uppercaselInitial(ciudad);
+							Entity_Customer_setLocalidad(pCustomer, ciudad);
+							printf("    [SUCCESS]: Ciudad actualizada con exito!\n");
+							Entity_Customer_Show(pCustomer); // muestro los datos actualizados
+							sucess = 1;
+						}
+						break;
+					case 4: /* Telefono */
+						//system("cls"); // windows
+						system("clear"); // linux
+						Entity_Customer_Show(pCustomer);
+						if (getName(ciudad, 128,
+							"    [Message]: Ingresa una nuevo telefono: ",
+							"    [ERROR]: telefono incorrecto, reingresalo.\n",	5)) {
+							uppercaselInitial(ciudad);
+							Entity_Customer_setTelefono(pCustomer, telefono);
+							printf("    [SUCCESS]: Telefono actualizado con exito!\n");
+							Entity_Customer_Show(pCustomer); // muestro los datos actualizados
+							sucess = 1;
+						}
+						break;
+					case 8: /* SALIR */
+						printf("\n    [Warning!]: Cancelando operacion.\n");
+						selectedOption = 'n';
+						sucess = 0;
+						break;
+					default:
+						printf("    [ERROR]: Opcion invalida, escoja [1-5]\n");
+						break;
+					}
+				//system("pause"); // windows
+				//system("cls"); // windows
+				simulatePause(); // linux
+				system("clear"); // linux
+			} while (selectedOption == 'y');
+		}
+	}
+	return sucess;
+}
