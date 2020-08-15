@@ -469,48 +469,6 @@ int controller_saveAsTextAccount(char *path, LinkedList *this) {
 
 
 //-----------------------------------------------------------------------------
-/*
-int saveAsTextRemito(FILE *pFile, LinkedList *this) {
-	Remitos *pObject; //entidad para guardar como texto
-
-	char cliente[128];
-
-	int idRemito;
-	int idCliente;
-	int dia;
-	int mes;
-	int anho;
-	float monto;
-
-	int len_LL;
-	int sucess = 0;
-	int flagHeader = 1;
-
-	if (pFile != NULL && this != NULL) { //si el archivo y el array no son null..
-		len_LL = ll_len(this); // obtengo el tamanho del array.
-
-		for (int i = 0; i < len_LL; i++) {	// recorro el array.
-			pObject = ll_get(this, i);
-			//getters aca
-			Entity_Remitos_getFecha(pObject, &dia, &mes, &anho);
-			Entity_Remitos_getID(pObject, &idRemito);
-			Entity_Remitos_getCliente(pObject, cliente);
-			Entity_Remitos_getIdCliente(pObject, &idCliente);
-			Entity_Remitos_getMontoRemito(pObject, &monto);
-			if (flagHeader) {
-				fprintf(pFile, "%s,%s,%s,%s,%s\n","Fecha", "ID_Remito", "RazonSocial", "ID_Cliente", "Monto");
-				flagHeader = 0;
-			}
-			fprintf(pFile, "%d/%d/%d,%d,%s,%d,%f\n", dia,mes,anho,idRemito, cliente,idCliente, monto); //escribo los datos de cada caballero en el archivo.
-			sucess = 1;
-		}
-	}
-	else{
-		printf("    ERROR: El archivo o el array son NULL.\n");
-	}
-	return sucess;
-}
-*/
 
 int saveAsTextRemito(FILE *pFile, LinkedList *this) {
 	Remitos *pObject; //entidad para guardar como texto

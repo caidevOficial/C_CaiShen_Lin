@@ -141,7 +141,7 @@ int gestionClientes(LinkedList *this, LinkedList *thisAccount){
 			default:
 				break;
 		}
-		simulatePause();
+		//simulatePause();
 		system("clear"); // linux
 	}while(respuesta == 's');
 	return success;
@@ -187,7 +187,7 @@ int gestionRemitos(LinkedList *this, LinkedList *thisCustomer){
 			default:
 				break;
 		}
-		simulatePause();
+		//simulatePause();
 		system("clear"); // linux
 	}while(respuesta == 's');
 	return success;
@@ -233,7 +233,7 @@ int gestionPagos(LinkedList *this, LinkedList *thisCustomer){
 			default:
 				break;
 		}
-		simulatePause();
+		//simulatePause();
 		system("clear"); // linux
 	}while(respuesta == 's');
 	return success;
@@ -243,6 +243,7 @@ int Control_De_Cuentas() {
 
 	char confirm;
 	char answer = 'y';
+	char guardarAntesDeSalir = 's';
 	char pathClientes[128] = "Docs/registro_Clientes.csv";
 	char pathCuentas[128] = "Docs/registro_Cuentas.csv";
 	char pathRemitos[128] = "Docs/registro_Remitos.csv";
@@ -316,18 +317,27 @@ int Control_De_Cuentas() {
 			break;
 			//***************************************************************************
 		case 5: /* Salir */
-			valorSalida = log_Out(&confirm, &answer);
-			if(valorSalida==1){ //pregunto para salir y guardo en csv y bin.
-				ll_deleteLinkedList(Clientes); // Limpio la lista de filtrados.
-				ll_deleteLinkedList(Remitos); // Limpio la lista original.
-				ll_deleteLinkedList(Cuenta_Clientes); // Limpio la lista Cuentas.
-				ll_deleteLinkedList(Pagos); // Limpio la lista Pagos
-				remove(pathMaxIDRemitos); // Borra archivo auxiliar de ids
-				remove(pathMaxIDClientes); // Borra archivo auxiliar de ids
-				remove(pathMaxIDCuentas_Clientes); // Borra archivo auxiliar de ids
-				remove(pathMaxIdPagos); // Borra archivo auxiliar de ids
-			}else if(!valorSalida){
-				__fpurge(stdin);
+			printf("    [WARNING] Desea Guardar cambios antes de salir [s/n]?: ");
+			getString(&guardarAntesDeSalir, sizeof(guardarAntesDeSalir));
+			if(guardarAntesDeSalir=='s'){
+				if(controller_saveAsTextAccount(pathCuentas, Cuenta_Clientes) &&
+				controller_saveAsTextCustomer(pathClientes, Clientes) &&
+				controller_saveAsTextRemito(pathRemitos, Remitos)){
+					printf("    [SUCESS] Cambios guardados con exito!.\n\n");
+					valorSalida = log_Out(&confirm, &answer);
+					if(valorSalida==1){ //pregunto para salir y guardo en csv y bin.
+						ll_deleteLinkedList(Clientes); // Limpio la lista de filtrados.
+						ll_deleteLinkedList(Remitos); // Limpio la lista original.
+						ll_deleteLinkedList(Cuenta_Clientes); // Limpio la lista Cuentas.
+						ll_deleteLinkedList(Pagos); // Limpio la lista Pagos
+						remove(pathMaxIDRemitos); // Borra archivo auxiliar de ids
+						remove(pathMaxIDClientes); // Borra archivo auxiliar de ids
+						remove(pathMaxIDCuentas_Clientes); // Borra archivo auxiliar de ids
+						remove(pathMaxIdPagos); // Borra archivo auxiliar de ids
+					}else if(!valorSalida){
+						__fpurge(stdin);
+					}
+				}
 			}
 			break;
 			//***************************************************************************

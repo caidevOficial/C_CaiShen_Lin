@@ -50,3 +50,9 @@ int controller_sortObject(LinkedList *this);
  * @return	Return 1 if can, else 0.
  */
 int controller_saveAsText(char *path, LinkedList *this);
+
+int controller_saveAsTextAccount(char *path, LinkedList *this);
+
+int controller_saveAsTextCustomer(char *path, LinkedList *this);
+
+int controller_saveAsTextRemito(char *path, LinkedList *this);
