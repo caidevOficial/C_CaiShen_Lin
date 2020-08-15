@@ -141,7 +141,7 @@ int gestionClientes(LinkedList *this, LinkedList *thisAccount){
 			default:
 				break;
 		}
-		//simulatePause();
+		simulatePause();
 		system("clear"); // linux
 	}while(respuesta == 's');
 	return success;
@@ -187,7 +187,7 @@ int gestionRemitos(LinkedList *this, LinkedList *thisCustomer){
 			default:
 				break;
 		}
-		//simulatePause();
+		simulatePause();
 		system("clear"); // linux
 	}while(respuesta == 's');
 	return success;
@@ -233,7 +233,7 @@ int gestionPagos(LinkedList *this, LinkedList *thisCustomer){
 			default:
 				break;
 		}
-		//simulatePause();
+		simulatePause();
 		system("clear"); // linux
 	}while(respuesta == 's');
 	return success;
@@ -285,7 +285,7 @@ int Control_De_Cuentas() {
 	if(ll_isEmpty(Cuenta_Clientes)){ //chequeo que la lista no este vacia.
 		printf("    [Message]: Lista Cuenta_Clientes inicializada con exito!\n");
 		if(controller_loadFromTextCuentas(pathCuentas, Cuenta_Clientes)){
-			printf("    [Message]: Lista Cuenta_Clientes inicializada con exito!\n"
+			printf("    [Message]: Datos Cuentas Cargados con exito!\n"
 			"    __________________________________________________________\n");
 		}
 	}
@@ -310,7 +310,7 @@ int Control_De_Cuentas() {
 			//***************************************************************************
 		case 4: /* CUENTAS */
 			if(ll_isEmpty(Cuenta_Clientes)!=0){
-				printf(" [ERROR] No hay Cuantas ni Clientes cargados!\n");
+				printf(" [ERROR] No hay Cuentas ni Clientes cargados!\n");
 			}else{
 				controller_ListObjectCuentas(Cuenta_Clientes,Clientes,Remitos,Pagos);
 			}

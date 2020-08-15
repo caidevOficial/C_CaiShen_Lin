@@ -20,6 +20,9 @@
 
 #include "../LinkedList.h"
 
+#ifndef CONTROLLER_CONTROLLER_H_
+#define CONTROLLER_CONTROLLER_H_
+
 int controller_loadFromTextRemitos(char *path, LinkedList *this);
 
 int controller_loadFromTextPagos(char *path, LinkedList *this);
@@ -56,3 +59,7 @@ int controller_saveAsTextAccount(char *path, LinkedList *this);
 int controller_saveAsTextCustomer(char *path, LinkedList *this);
 
 int controller_saveAsTextRemito(char *path, LinkedList *this);
+
+int controller_saveAsTextPago(char *path, LinkedList *this);
+
+#endif /* CONTROLLER_CONTROLLER_H_ */

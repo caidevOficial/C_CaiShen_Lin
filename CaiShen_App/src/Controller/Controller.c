@@ -246,7 +246,7 @@ int controller_ListObjectClientes(LinkedList *this) {
 			Entity_Customer_getTelefono(pObject, telefono);
 			Entity_Customer_getNumeroDireccion(pObject, &numeroDireccion);
 			Entity_Customer_getIdCuenta(pObject, &idCuenta);
-			printf("   [%2d] [%8s]  [%8s] [%10s] [%8s] [%8s] [%4d]  [%2d]\n",
+			printf("   [%2d] [%8s]  [%8s] [%11s] [%10s] [%10s] [%4d]  [%2d]\n",
 			id, razonSocial, nombreDuenho, telefono, localidad, calle, numeroDireccion, idCuenta);
 		}
 	}
@@ -441,11 +441,11 @@ int saveAsTextAccount(FILE *pFile, LinkedList *this) {
 			Entity_Account_getDeuda(pObject, &deudaTotal);
 
 			if (flagHeader) {
-				fprintf(pFile, "%s,%s,%s,%s,%s,%s\n", "ID_Cuenta", "RazonSocial", "ID_Cliente", "DEBE", "HABER", "DEUDA");
+				fprintf(pFile, "%s,%s,%s,%s,%s,%s\n", "ID_Cuenta", "ID_Cliente", "RazonSocial", "DEBE", "HABER", "DEUDA");
 				flagHeader = 0;
 			}
-			fprintf(pFile, "%d,%s,%d,%f,%f,%f\n",
-			idCuenta, razonSocial, idCliente, debe, haber, deudaTotal); //escribo los datos de cada caballero en el archivo.
+			fprintf(pFile, "%d,%d,%s,%8.2f,%8.2f,%8.2f\n",
+			idCuenta, idCliente, razonSocial, debe, haber, deudaTotal); //escribo los datos de cada caballero en el archivo.
 			sucess = 1;
 		}
 	}
@@ -499,7 +499,7 @@ int saveAsTextRemito(FILE *pFile, LinkedList *this) {
 				fprintf(pFile, "%s,%s,%s,%s,%s\n","Fecha", "ID_Remito", "RazonSocial", "ID_Cliente", "Monto");
 				flagHeader = 0;
 			}
-			fprintf(pFile, "%s,%d,%s,%d,%f\n", date,idRemito, cliente,idCliente, monto); //escribo los datos de cada caballero en el archivo.
+			fprintf(pFile, "%s,%d,%s,%d,%8.2f\n", date,idRemito, cliente,idCliente, monto); //escribo los datos de cada caballero en el archivo.
 			sucess = 1;
 		}
 	}
@@ -514,6 +514,60 @@ int controller_saveAsTextRemito(char *path, LinkedList *this) {
 	FILE *pFile = fopen(path, "w"); // abro el archivo
 
 	if (pFile != NULL && saveAsTextRemito(pFile, this)) { //si el archivo no es null y pude escribir, retorno 1
+		sucess = 1;
+	}
+	fclose(pFile); // cierro el archivo.
+	ll_clear(this); //vacio el array
+	return sucess;
+}
+
+//-----------------------------------------------------------------------------
+
+int saveAsTextPago(FILE *pFile, LinkedList *this) {
+	Pagos *pObject; //entidad para guardar como texto
+
+	char cliente[128];
+	char date[128];
+
+	int idPago;
+	int idCliente;
+	float monto;
+
+	int len_LL;
+	int sucess = 0;
+	int flagHeader = 1;
+
+	if (pFile != NULL && this != NULL) { //si el archivo y el array no son null..
+		len_LL = ll_len(this); // obtengo el tamanho del array.
+
+		for (int i = 0; i < len_LL; i++) {	// recorro el array.
+			pObject = ll_get(this, i);
+			//getters aca
+
+			Entity_Pagos_getDate(pObject, date);
+			Entity_Pagos_getID(pObject, &idPago);
+			Entity_Pagos_getCliente(pObject, cliente);
+			Entity_Pagos_getIdCliente(pObject, &idCliente);
+			Entity_Pagos_getMontoPago(pObject, &monto);
+			if (flagHeader) {
+				fprintf(pFile, "%s,%s,%s,%s,%s\n","Fecha", "ID_Remito", "RazonSocial", "ID_Cliente", "Monto");
+				flagHeader = 0;
+			}
+			fprintf(pFile, "%s,%d,%s,%d,%8.2f\n", date,idPago, cliente,idCliente, monto); //escribo los datos de cada caballero en el archivo.
+			sucess = 1;
+		}
+	}
+	else{
+		printf("    ERROR: El archivo o el array son NULL.\n");
+	}
+	return sucess;
+}
+
+int controller_saveAsTextPago(char *path, LinkedList *this) {
+	int sucess = 0;
+	FILE *pFile = fopen(path, "w"); // abro el archivo
+
+	if (pFile != NULL && saveAsTextPago(pFile, this)) { //si el archivo no es null y pude escribir, retorno 1
 		sucess = 1;
 	}
 	fclose(pFile); // cierro el archivo.
