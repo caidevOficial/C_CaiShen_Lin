@@ -44,7 +44,8 @@ int menu() {
 int menuClientes() {
 	int option;
 	printf("    \n"
-	"    [Message]: Bienvenido a CaiShen_App [Gestor de clientes]\n"
+	"    [Message]: CaiShen_App [Gestor de clientes]\n"
+	"    [SUB_MENU]: CLIENTES.\n"
 	"    _______________________________________________________________\n"
 	"    [Menu]\n"
 	"    [1] Cargar Cliente. [OK]\n"
@@ -61,7 +62,8 @@ int menuClientes() {
 int menuRemitos() {
 	int option;
 	printf("    \n"
-	"    [Message]: Bienvenido a CaiShen_App [Gestor de clientes]\n"
+	"    [Message]: CaiShen_App [Gestor de clientes]\n"
+	"    [SUB_MENU]: REMITOS.\n"
 	"    _______________________________________________________________\n"
 	"    [Menu]\n"
 	"    [1] Cargar Remito. [OK]\n"
@@ -78,7 +80,8 @@ int menuRemitos() {
 int menuPagos() {
 	int option;
 	printf("    \n"
-	"    [Message]: Bienvenido a CaiShen_App [Gestor de clientes]\n"
+	"    [Message]: CaiShen_App [Gestor de clientes]\n"
+	"    [SUB_MENU]: PAGOS.\n"
 	"    _______________________________________________________________\n"
 	"    [Menu]\n"
 	"    [1] Cargar Pago. [OK]\n"
@@ -94,24 +97,23 @@ int menuPagos() {
 
 int modifyCustomers() {
 	int optionChoosen;
-	printf("\n\n    [Message] OPCIONES:"
+	printf("\n\n    [Message] MODIFICAR CLIENTES:"
 			"\n    [1] Modificar Razon Social. [OK]"
 			"\n    [2] Modificar Contacto. [OK]"
 			"\n    [3] Modificar Ciudad. [OK]"
 			"\n    [4] Modificar Telefono. [OK]"
-			"\n    [5] Modificar Calle."
-			"\n    [6] Modificar Altura."
-			"\n    [7] Modificar"
-			"\n    [8] Cancelar y volver. [OK]"
+			"\n    [5] Modificar Calle. [OK]"
+			"\n    [6] Modificar Altura. [OK]"
+			"\n    [7] Cancelar y volver. [OK]"
 			"\n    Opcion:");
-	getNumberInt(&optionChoosen, " Opcion elegida [1-8]: ",
-	"Error, opcion incorrecta.", 1, 8, 5);
+	getNumberInt(&optionChoosen, " Opcion elegida [1-7]: ",
+	"Error, opcion incorrecta.", 1, 7, 5);
 	return optionChoosen;
 }
 
 int modifyRemitosOrPagos() {
 	int optionChoosen;
-	printf("\n\n    [Message] OPCIONES:"
+	printf("\n\n    [Message] MODIFICAR:"
 			"\n    [1] Modificar Monto."
 			"\n    [2] Cancelar."
 			"\n    Opcion:");

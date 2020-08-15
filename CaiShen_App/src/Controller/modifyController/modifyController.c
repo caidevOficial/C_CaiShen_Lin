@@ -180,6 +180,7 @@ int controller_editCustomer(LinkedList *this) {
 	eCliente *pCustomer;
 	int sucess = 0;
 	int idCustomer;
+	int numeroDireccion;
 	int maxID;
 	int index;
 
@@ -222,7 +223,7 @@ int controller_editCustomer(LinkedList *this) {
 						system("clear"); // linux
 						Entity_Customer_Show(pCustomer);
 						if (getName(razonSocial, 128,
-								"    [Message]: Ingresa una nueva Constelacion: ",
+								"    [Message]: Ingresa una nueva Razon Social: ",
 								"    [ERROR]: Constelacion incorrecta, reingresala.\n",	5)) {
 							uppercaselInitial(razonSocial);
 							Entity_Customer_setRazonSocial(pCustomer, razonSocial);
@@ -274,7 +275,34 @@ int controller_editCustomer(LinkedList *this) {
 							sucess = 1;
 						}
 						break;
-					case 8: /* SALIR */
+					case 5: /* CALLE */
+						//system("cls"); // windows
+						system("clear"); // linux
+						Entity_Customer_Show(pCustomer);
+						if (getName(calle, 128,
+							"    [Message]: Ingresa una nueva calle: ",
+							"    [ERROR]: Constelacion incorrecta, reingresala.\n",	5)) {
+							uppercaselInitial(calle);
+							Entity_Customer_setCalle(pCustomer, calle);
+							printf("    [SUCCESS]: Calle actualizada con exito!\n");
+							Entity_Customer_Show(pCustomer);
+							sucess = 1;
+						}
+						break;
+					case 6: /* Altura */
+						//system("cls"); // windows
+						system("clear"); // linux
+						Entity_Customer_Show(pCustomer);
+						if(getNumberInt(&numeroDireccion,
+							"    [Messagge]: Ingresa en nuevo numero: ",
+							"    [ERROR]: Numero incorrecto, reingresalo.\n", 1, 20000, 7)){
+							Entity_Customer_setNumeroDireccion(pCustomer, numeroDireccion);
+							printf("    [SUCCESS]: Altura actualizada con exito!\n");
+							Entity_Customer_Show(pCustomer);
+							sucess = 1;
+						}
+						break;
+					case 7: /* SALIR */
 						printf("\n    [Warning!]: Cancelando operacion.\n");
 						selectedOption = 'n';
 						sucess = 0;
