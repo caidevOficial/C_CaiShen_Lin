@@ -134,7 +134,6 @@ int controller_removePago(LinkedList *this) {
 	int sucess = 0;
 	int index;
 	int idPago;
-	int confirmOption;
 	int maxID;
 
 	obtainID(&maxID, "Pagos_LastID.txt");
