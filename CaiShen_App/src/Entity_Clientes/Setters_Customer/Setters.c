@@ -24,7 +24,6 @@
 
 #include "../Entity_Customers.h"
 
-/* Setters: [ID] */
 int Entity_Customer_setID(eCliente *this, int *id) {
 	int success = 0;
 
@@ -37,7 +36,6 @@ int Entity_Customer_setID(eCliente *this, int *id) {
 	return success;
 }
 
-/* Setters: [RAZON SOCIAL] */
 int Entity_Customer_setRazonSocial(eCliente *this, char *razonSocial) {
 	int success = 0;
 
@@ -48,7 +46,6 @@ int Entity_Customer_setRazonSocial(eCliente *this, char *razonSocial) {
 	return success;
 }
 
-/* Setters: [DUENHO] */
 int Entity_Customer_setDuenho(eCliente *this, char *duenho) {
 	int success = 0;
 
@@ -59,7 +56,6 @@ int Entity_Customer_setDuenho(eCliente *this, char *duenho) {
 	return success;
 }
 
-/* Setters: [LOCALIDAD] */
 int Entity_Customer_setLocalidad(eCliente *this, char *localidad) {
 	int success = 0;
 
@@ -70,7 +66,6 @@ int Entity_Customer_setLocalidad(eCliente *this, char *localidad) {
 	return success;
 }
 
-/* Setters: [CALLE] */
 int Entity_Customer_setCalle(eCliente *this, char *calle) {
 	int success = 0;
 
@@ -81,7 +76,6 @@ int Entity_Customer_setCalle(eCliente *this, char *calle) {
 	return success;
 }
 
-/* Setters: [DIRECCION] */
 int Entity_Customer_setNumeroDireccion(eCliente *this, int numeroDireccion) {
 	int success = 0;
 
@@ -94,7 +88,6 @@ int Entity_Customer_setNumeroDireccion(eCliente *this, int numeroDireccion) {
 	return success;
 }
 
-/* Setters: [TELEFONO] */
 int Entity_Customer_setTelefono(eCliente *this, char *telefono) {
 	int success = 0;
 
@@ -107,7 +100,6 @@ int Entity_Customer_setTelefono(eCliente *this, char *telefono) {
 	return success;
 }
 
-/* Setters: [ID CUENTA] */
 int Entity_Customer_setIdCuenta(eCliente *this, int idCuenta) {
 	int success = 0;
 

@@ -34,7 +34,6 @@ int Entity_Customer_getID(eCliente *this, int *id) {
 	return success;
 }
 
-/* Getter: [Pais] */
 int Entity_Customer_getRazonSocial(eCliente *this, char *razonSocial) {
 	int success = 0;
 
@@ -45,7 +44,6 @@ int Entity_Customer_getRazonSocial(eCliente *this, char *razonSocial) {
 	return success;
 }
 
-/* Getter: [Pais] */
 int Entity_Customer_getDuenho(eCliente *this, char *duenho) {
 	int success = 0;
 
@@ -56,7 +54,6 @@ int Entity_Customer_getDuenho(eCliente *this, char *duenho) {
 	return success;
 }
 
-/* Getter: [Pais] */
 int Entity_Customer_getLocalidad(eCliente *this, char *localidad) {
 	int success = 0;
 
@@ -67,7 +64,6 @@ int Entity_Customer_getLocalidad(eCliente *this, char *localidad) {
 	return success;
 }
 
-/* Getter: [Pais] */
 int Entity_Customer_getCalle(eCliente *this, char *calle) {
 	int success = 0;
 

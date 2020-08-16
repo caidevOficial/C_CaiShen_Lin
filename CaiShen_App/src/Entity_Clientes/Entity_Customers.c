@@ -102,7 +102,7 @@ int Entity_Customer_SearchForId(LinkedList *this, int id) {
 
 	for (int index = 0; index < ll_len(this); index++) {
 		pCliente = ll_get(this, index);
-		if (Entity_Customer_getID(pCliente, &idAux) == 1 && idAux == id){
+		if (Entity_Customer_getID(pCliente, &idAux) && idAux == id){
             retorno = index;
         }
     }
@@ -117,22 +117,3 @@ void Entity_Customer_delete(eCliente *this) {
 		this = NULL;
 	}
 }
-
-/* Function/SortBy: [Infectados] */
-/*
-int Entity_sortInfectados(void *infect1, void *infect2) {
-int infect_1;
-int infect_2;
-int success = 0; // si los tiempos son iguales, devuelve 0
-
-Entity_getInfected(infect1, &infect_1);
-Entity_getInfected(infect2, &infect_2);
-
-if (infect_1 > infect_2) {
-	success = 1;
-} else if (infect_1 < infect_2) {
-	success = -1;
-	}
-	return success;
-}
-*/
