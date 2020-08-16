@@ -27,17 +27,36 @@
  */
 int menu();
 
+/**
+ * @brief  Prints on the screen all the options of the customer section.
+ * @return Return the selected option.
+ */
 int menuClientes();
 
+/**
+ * @brief  Prints on the screen all the options of the remitos section.
+ * @return Return the selected option.
+ */
 int menuRemitos();
 
+/**
+ * @brief  Prints on the screen all the options of the payments section.
+ * @return Return the selected option.
+ */
 int menuPagos();
 
 // Menus modificaciones.
 
+/**
+ * @brief  Prints on the screen all the options of the modify customer section.
+ * @return Return the selected option.
+ */
 int modifyCustomers();
 
+/**
+ * @brief  Prints on the screen all the options of the modify [remito/payments] section.
+ * @return Return the selected option.
+ */
 int modifyRemitosOrPagos();
-
 
 #endif /* MENU_MAINMENU_H_ */

@@ -43,10 +43,13 @@
 void pFunctionLoadBinCsv(char* messageError1,char* messageError2,char* messageSuccess,int* flag,int flagValue,
 		int NewflagValue,char*path,LinkedList* array,int(*pFunction)(char*,LinkedList*));
 
+/**
+ * @brief  Simulate the system("pause").
+ */
 void simulatePause();
 
 /**
- * @brief 	Executes all the functions of the ABM.
+ * @brief 	Executes all the functions of the AccountManager.
  */
 int Control_De_Cuentas();
 

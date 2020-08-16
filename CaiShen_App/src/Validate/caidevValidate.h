@@ -22,16 +22,8 @@
 #define CAIDEV_VALIDATE_H_
 
 /**
- * @fn unsigned int verifica(void)
- * @brief	Funcion usada para verificar el ingreso de caracteres.Chequea para que
- *			solo sean admitidas las letras s o n.
- * @return	0 si se ingresa n y 1 si se ingresa s.
- */
-unsigned int verifica(void);
-
-/**
 * @brief	Lee de stdin hasta que encuentra un '\n' o hasta que haya copiado en cadena
-* 			un m�ximo de ' longitud - 1' caracteres (Solucion al fgets()).
+* 			un maximo de ' longitud - 1' caracteres (Solucion al fgets()).
 * @param	pResultado Puntero al espacio de memoria donde se copiara la cadena obtenida
 * @param	longitud Define el tama�o de cadena
 * @return	Retorna 0 (EXITO) si se obtiene una cadena y -1 (ERROR) si no
@@ -94,7 +86,7 @@ int getNumberFloat(float* pResultado, char* mensaje, char* mensajeError, float m
 
 /**
  * @brief 	Lee de stdin hasta que encuentra un '\n' o hasta que haya copiado en cadena
- * 			un m�ximo de 'longitud - 1' caracteres.
+ * 			un maximo de 'longitud - 1' caracteres.
  * @param	pResultado Puntero al espacio de memoria donde se copiara la cadena obtenida
  * @param	longitud Define el tama�o de cadena
  * @return	Retorna 0 (EXITO) si se obtiene una cadena y -1 (ERROR) si no
@@ -125,8 +117,7 @@ int esNombre(char *string, int longitud);
  * @param	mensaje Es el mensaje a ser mostrado
  * @param	mensajeError Es el mensaje de Error a ser mostrado
  * @param	reintentos Cantidad de reintentos
- * @return	Retorna 0 si se obtuvo el array y -1 si no
- *
+ * @return	Retorna 0 si se obtuvo el array y -1 si no.
  */
 int getName(char* pResultado, int longitud,char* mensaje, char* mensajeError, int reintentos);
 
@@ -151,9 +142,26 @@ void strMinuscula(char string[]);
  */
 void uppercaselInitial(char string[]);
 
-
+/**
+ * @brief	Solicita un cuil al usuario, luego de verificarlo devuelve el resultado
+ * @param	pResultado Puntero al espacio de memoria donde se dejara el resultado de la funcion
+ * @param	longitud Es la longitud del array resultado
+ * @param	mensaje Es el mensaje a ser mostrado
+ * @param	mensajeError Es el mensaje de Error a ser mostrado
+ * @param	reintentos Cantidad de reintentos
+ * @return	Retorna 0 si se obtuvo el array y -1 si no.
+ */
 int cai_getCuil(char* pResultado, int longitud,char* mensaje, char* mensajeError, int reintentos);
 
+/**
+ * @brief	Solicita un telefono al usuario, luego de verificarlo devuelve el resultado
+ * @param	pResultado Puntero al espacio de memoria donde se dejara el resultado de la funcion
+ * @param	longitud Es la longitud del array resultado
+ * @param	mensaje Es el mensaje a ser mostrado
+ * @param	mensajeError Es el mensaje de Error a ser mostrado
+ * @param	reintentos Cantidad de reintentos
+ * @return	Retorna 0 si se obtuvo el array y -1 si no.
+ */
 int getPhoneNumber(char* pResultado, int longitud,char* mensaje, char* mensajeError, int reintentos);
 
 #endif /* CAIDEV_VALIDATE_H_ */

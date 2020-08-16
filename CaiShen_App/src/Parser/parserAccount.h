@@ -21,6 +21,12 @@
 #ifndef PARSER_H_
 #define PARSER_H_
 
+/**
+ * @brief  Parser the file to get all the data.
+ * @param  pFile file to get the data.
+ * @param  this listo to save the data.
+ * @return 1 for success, 0 for error.
+ */
 int parser_ObjectFromTextCuenta(FILE *pFile, LinkedList *this);
 
 #endif /* PARSER_H_ */

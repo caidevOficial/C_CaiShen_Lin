@@ -239,11 +239,60 @@ int gestionPagos(LinkedList *this, LinkedList *thisCustomer){
 	return success;
 }
 
+static int initLists(LinkedList *Rem, LinkedList *payments, LinkedList *customers, LinkedList *accounts,
+						char *pathRem, char *pathPay, char *pathCustomer, char *pathAccounts){
+	int success = 0;
+	int remOK = 0;
+	int payOK = 0;
+	int customerOK = 0;
+	int accountOK = 0;
+	//---------- Control de inicializaciones.
+	if(ll_isEmpty(Rem)){ //chequeo que la lista no este vacia.
+		printf("    [Message]: Lista Remitos inicializada con exito!\n");
+		if(controller_loadFromTextRemitos(pathRem, Rem)){
+			printf("    [Message]: Datos Remitos Cargados con exito!\n");
+			remOK = 1;
+		}
+	}
+
+	if(ll_isEmpty(payments)){ //chequeo que la lista no este vacia.
+		printf("    [Message]: Lista Pagos inicializada con exito!\n");
+		if(controller_loadFromTextPagos(pathPay, payments)){
+			printf("    [Message]: Datos Pagos Cargados con exito!\n");
+			payOK = 1;
+		}
+	}
+
+	if(ll_isEmpty(customers)){ //chequeo que la lista no este vacia.
+		printf("    [Message]: Lista Clientes inicializada con exito!\n");
+		if(controller_loadFromTextClientes(pathCustomer, customers)){
+			printf("    [Message]: Datos Clientes Cargados con exito!\n");
+			customerOK = 1;
+		}
+	}
+
+	if(ll_isEmpty(accounts)){ //chequeo que la lista no este vacia.
+		printf("    [Message]: Lista Cuenta_Clientes inicializada con exito!\n");
+		if(controller_loadFromTextCuentas(pathAccounts, accounts)){
+			printf("    [Message]: Datos Cuentas Cargados con exito!\n"
+			"    __________________________________________________________\n");
+			accountOK = 1;
+		}
+	}
+
+	if(remOK && accountOK && customerOK && payOK){
+		success = 1;
+	}
+
+	return success;
+}
+
 int Control_De_Cuentas() {
 
 	char confirm;
 	char answer = 's';
 	char guardarAntesDeSalir = 's';
+	//--------------- PATHS
 	char pathClientes[128] = "Docs/registro_Clientes.csv";
 	char pathCuentas[128] = "Docs/registro_Cuentas.csv";
 	char pathRemitos[128] = "Docs/registro_Remitos.csv";
@@ -260,35 +309,7 @@ int Control_De_Cuentas() {
 	LinkedList* Cuenta_Clientes = ll_newLinkedList();
 	LinkedList* Pagos = ll_newLinkedList();
 
-	//---------- Control de inicializaciones.
-	if(ll_isEmpty(Remitos)){ //chequeo que la lista no este vacia.
-		printf("    [Message]: Lista Remitos inicializada con exito!\n");
-		if(controller_loadFromTextRemitos(pathRemitos, Remitos)){
-			printf("    [Message]: Datos Remitos Cargados con exito!\n");
-		}
-	}
-
-	if(ll_isEmpty(Pagos)){ //chequeo que la lista no este vacia.
-		printf("    [Message]: Lista Pagos inicializada con exito!\n");
-		if(controller_loadFromTextPagos(pathPagos, Pagos)){
-			printf("    [Message]: Datos Pagos Cargados con exito!\n");
-		}
-	}
-
-	if(ll_isEmpty(Clientes)){ //chequeo que la lista no este vacia.
-		printf("    [Message]: Lista Clientes inicializada con exito!\n");
-		if(controller_loadFromTextClientes(pathClientes, Clientes)){
-			printf("    [Message]: Datos Clientes Cargados con exito!\n");
-		}
-	}
-
-	if(ll_isEmpty(Cuenta_Clientes)){ //chequeo que la lista no este vacia.
-		printf("    [Message]: Lista Cuenta_Clientes inicializada con exito!\n");
-		if(controller_loadFromTextCuentas(pathCuentas, Cuenta_Clientes)){
-			printf("    [Message]: Datos Cuentas Cargados con exito!\n"
-			"    __________________________________________________________\n");
-		}
-	}
+	initLists(Remitos, Pagos, Clientes, Cuenta_Clientes,pathRemitos, pathPagos, pathClientes, pathCuentas);
 
 	do {
 		switch (menu()) {
