@@ -25,6 +25,7 @@
 #include <ctype.h>
 
 #include "../Controller.h"
+#include "../modifyController/modifyController.h"
 #include "../registerController/registerController.h"
 
 #include "../../Entity_Remitos/Entity_Remito.h"
@@ -39,58 +40,93 @@
 #include "../../LinkedList.h"
 #include "../../Validate/caidevValidate.h"
 
+/**
+ * @brief  Shows and remove the entity remito from the list.
+ * @param  this List of the entities.
+ * @param  thisRem Entity to be deleted.
+ * @param  index index of the entity.
+ * @return 1 for success, 0 for error.
+ */
+static int showAndDeleteRemito(LinkedList *this, Remitos *thisRem, int index){
+	int success = 0;
+	int confirm;
+	Entity_Remito_Show(thisRem);
+	getNumberInt(&confirm,
+	"\n\n    [Message]: Dar de baja el remito [no se podra recuperar]?"
+	"\n    [1] Dar de baja Remito."
+	"\n    [2] Cancelar."
+	"\n    [Message]: Ingrese opcion: ",
+	"    [Message]: Error, escoja opciones [1-2]: ", 1, 2, 3);
+
+	switch (confirm) {
+		case 1:
+			ll_remove(this, index); // borro el empleado
+			Entity_Remito_delete(thisRem);// borro el auxiliar de la funcion
+			success = 1;
+			break;
+		case 2:
+			success = 0;
+			break;
+		default:
+			break;
+	}
+
+	return success;
+}
+
 int controller_removeRemito(LinkedList *this) {
 	Remitos *pRemito;
 
 	int sucess = 0;
 	int index;
 	int idRemito;
-	int obtainedID;
-	int confirmOption;
 	int maxID;
 
 	obtainID(&maxID, "Remitos_LastID.txt");
 	if (this != NULL) {
-		//controller_ListKnightZodiac(this); // imprimo lista
-		controller_ListObjectRemitos(this);
-		getNumberInt(&idRemito,
-		"    [Message]: Ingrese ID a dar de baja\n    [De la Lista]: ", //pido el ID a borrar
-		"    [Message]: ID incorrecto, reingrese. ", 1,(maxID - 1), 5);
 
-		index = Entity_Remito_SearchForId(this, idRemito);// busco el indice de la ID
-
-		pRemito = ll_get(this, index); // obtengo el elemento del indice
-		Entity_Remitos_getID(pRemito, &obtainedID);// obtengo la id del indice
-		//KnightZodiac_getID(pRemito, &obtainedID);
-
-		if (obtainedID == idRemito) {
-			//showKnightZodiac(pRemito); // muestro al Remito seleccionado
-			Entity_Remito_Show(pRemito);
-			//controller_ListObjectRemitos(pRemito);
-			getNumberInt(&confirmOption,
-			"\n\n    [Message]: Dar de baja el remito [no se podra recuperar]?"
-			"\n    [1] Dar de baja Remito."
-			"\n    [2] Cancelar."
-			"\n    [Message]: Ingrese opcion: ",
-			"    [Message]: Error, escoja opciones [1-2]: ", 1, 2, 3);
-
-			switch (confirmOption) {
-			case 1:
-				ll_remove(this, index); // borro el empleado
-				Entity_Remito_delete(pRemito);// borro el auxiliar de la funcion
-				sucess = 1;
-				break;
-			case 2:
-				sucess = 0;
-				break;
-			default:
-				break;
-			}
+		lookForIndexRem(this, &index, &idRemito, &maxID);
+		if (index != -1) {
+			pRemito = ll_get(this, index); // obtengo el elemento del indice.
+			showAndDeleteRemito(this, pRemito, index); // Muestro el remito y lo borro o no.
 		}
 	}
 	return sucess;
 }
 
+/**
+ * @brief  Shows and remove the entity pagos from the list.
+ * @param  this List of the entities.
+ * @param  thisPayment Entity to be deleted.
+ * @param  index index of the entity.
+ * @return 1 for success, 0 for error.
+ */
+static int showAndDeletePayment(LinkedList *this, Pagos *thisPayment, int index){
+	int success = 0;
+	int confirm;
+	Entity_Pago_Show(thisPayment);
+	getNumberInt(&confirm,
+	"\n\n    [Message]: Dar de baja el Pago [no se podra recuperar]?"
+	"\n    [1] Dar de baja Pago."
+	"\n    [2] Cancelar."
+	"\n    [Message]: Ingrese opcion: ",
+	"    [Message]: Error, escoja opciones [1-2]: ", 1, 2, 3);
+
+	switch (confirm) {
+		case 1:
+			ll_remove(this, index); // borro el empleado
+			Entity_Pago_delete(thisPayment);// borro el auxiliar de la funcion
+			success = 1;
+			break;
+		case 2:
+			success = 0;
+			break;
+		default:
+			break;
+		}
+
+	return success;
+}
 
 int controller_removePago(LinkedList *this) {
 	Pagos *pPago;
@@ -98,50 +134,54 @@ int controller_removePago(LinkedList *this) {
 	int sucess = 0;
 	int index;
 	int idPago;
-	int obtainedID;
 	int confirmOption;
 	int maxID;
 
 	obtainID(&maxID, "Pagos_LastID.txt");
 	if (this != NULL) {
-		//controller_ListKnightZodiac(this); // imprimo lista
-		controller_ListObjectPagos(this);
-		getNumberInt(&idPago,
-		"    [Message]: Ingrese ID a dar de baja\n    [De la Lista]: ", //pido el ID a borrar
-		"    [Message]: ID incorrecto, reingrese. ", 1,(maxID - 1), 5);
+		lookForIndexPayment(this, &index, &idPago, &maxID);
 
-		index = Entity_Pago_SearchForId(this, idPago);// busco el indice de la ID
-
-		pPago = ll_get(this, index); // obtengo el elemento del indice
-		Entity_Pagos_getID(pPago, &obtainedID);// obtengo la id del indice
-		//KnightZodiac_getID(pPago, &obtainedID);
-
-		if (obtainedID == idPago) {
-			//showKnightZodiac(pPago); // muestro al Pago seleccionado
-			Entity_Pago_Show(pPago);
-			//controller_ListObjectPagos(pPago);
-			getNumberInt(&confirmOption,
-			"\n\n    [Message]: Dar de baja el Pago [no se podra recuperar]?"
-			"\n    [1] Dar de baja Pago."
-			"\n    [2] Cancelar."
-			"\n    [Message]: Ingrese opcion: ",
-			"    [Message]: Error, escoja opciones [1-2]: ", 1, 2, 3);
-
-			switch (confirmOption) {
-			case 1:
-				ll_remove(this, index); // borro el empleado
-				Entity_Pago_delete(pPago);// borro el auxiliar de la funcion
-				sucess = 1;
-				break;
-			case 2:
-				sucess = 0;
-				break;
-			default:
-				break;
-			}
+		if (index != -1) {
+			pPago = ll_get(this, index); // obtengo el elemento del indice
+			showAndDeletePayment(this, pPago,index);
 		}
 	}
 	return sucess;
+}
+
+/**
+ * @brief  Shows and remove the entity customer from the list.
+ * @param  this List of the entities.
+ * @param  thisCustomer Entity to be deleted.
+ * @param  index index of the entity.
+ * @return 1 for success, 0 for error.
+ */
+static int showAndDeleteCustomer(LinkedList *this, eCliente *thisCustomer, int index){
+	int success = 0;
+	int confirmOption;
+
+	Entity_Customer_Show(thisCustomer);
+	getNumberInt(&confirmOption,
+	"\n\n    [Message]: Dar de baja el cliente? [no se podra recuperar]"
+	"\n    [1] Dar de baja Remito."
+	"\n    [2] Cancelar."
+	"\n    [Message]: Ingrese opcion: ",
+	"    [Message]: Error, escoja opciones [1-2]: ", 1, 2, 3);
+
+	switch (confirmOption) {
+		case 1: /* Confirma baja */
+			ll_remove(this, index); // borro el empleado
+			Entity_Customer_delete(thisCustomer);// borro el auxiliar de la funcion
+			success = 1;
+			break;
+		case 2: /* Cancela baja */
+			success = 0;
+			break;
+		default:
+			break;
+		}
+
+	return success;
 }
 
 int controller_removeCliente(LinkedList *this) {
@@ -150,43 +190,15 @@ int controller_removeCliente(LinkedList *this) {
 	int sucess = 0;
 	int index;
 	int idCliente;
-	int obtainedID;
-	int confirmOption;
 	int maxID;
 
 	obtainID(&maxID, "Clientes_LastID.txt");
 	if (this != NULL) {
-		controller_ListObjectClientes(this);
-		getNumberInt(&idCliente,
-		"    [Message]: Ingrese ID a dar de baja\n    [De la Lista]: ", //pido el ID a borrar
-		"    [Message]: ID incorrecto, reingrese. ", 1,(maxID - 1), 5);
+		lookForIndexCustomer(this, &index, &idCliente, &maxID);
 
-		index = Entity_Customer_SearchForId(this, idCliente);// busco el indice de la ID
-
-		pCliente = ll_get(this, index); // obtengo el elemento del indice
-		Entity_Customer_getID(pCliente, &obtainedID);// obtengo la id del indice
-
-		if (obtainedID == idCliente) {
-			Entity_Customer_Show(pCliente);
-			getNumberInt(&confirmOption,
-			"\n\n    [Message]: Dar de baja el cliente? [no se podra recuperar]"
-			"\n    [1] Dar de baja Remito."
-			"\n    [2] Cancelar."
-			"\n    [Message]: Ingrese opcion: ",
-			"    [Message]: Error, escoja opciones [1-2]: ", 1, 2, 3);
-
-			switch (confirmOption) {
-			case 1: /* Confirma baja */
-				ll_remove(this, index); // borro el empleado
-				Entity_Customer_delete(pCliente);// borro el auxiliar de la funcion
-				sucess = 1;
-				break;
-			case 2: /* Cancela baja */
-				sucess = 0;
-				break;
-			default:
-				break;
-			}
+		if (index != -1) {
+			pCliente = ll_get(this, index); // obtengo el elemento del indice
+			showAndDeleteCustomer(this, pCliente, index);
 		}
 	}
 	return sucess;

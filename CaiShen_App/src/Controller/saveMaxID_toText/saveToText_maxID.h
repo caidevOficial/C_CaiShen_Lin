@@ -23,7 +23,14 @@
 #ifndef CONTROLLER_SAVEMAXID_TOTEXT_SAVETOTEXT_MAXID_H_
 #define CONTROLLER_SAVEMAXID_TOTEXT_SAVETOTEXT_MAXID_H_
 
-
+/**
+ * @brief  saves in a file the next id of the entities.
+ * @param  pFile file to save the number.
+ * @param  path path where the file is.
+ * @param  this list of entities to be traversed.
+ * @param  tipo type of entity.
+ * @return 1 for success, 0 for error.
+ */
 int controller_saveAsTextMaxID(FILE *pFile, char *path,	LinkedList *this, int tipo);
 
 #endif /* CONTROLLER_SAVEMAXID_TOTEXT_SAVETOTEXT_MAXID_H_ */

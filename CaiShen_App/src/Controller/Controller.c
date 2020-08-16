@@ -231,7 +231,7 @@ int controller_ListObjectClientes(LinkedList *this) {
 		printf("\n    No se puede listar objetos ya que la lista es NULL.\n");
 	} else {
 		printf("   _________________________________________________________________________________\n"
-				"    ID  RazonSocia   Contacto   Telefono      Localidad     Calle    Altura Cuenta\n"
+				"    ID   RazonSocia      Contacto    Telefono    Localidad      Calle     Altura Cuenta\n"
 				"   _________________________________________________________________________________\n");
 		sucess = 1;
 
@@ -246,14 +246,14 @@ int controller_ListObjectClientes(LinkedList *this) {
 			Entity_Customer_getTelefono(pObject, telefono);
 			Entity_Customer_getNumeroDireccion(pObject, &numeroDireccion);
 			Entity_Customer_getIdCuenta(pObject, &idCuenta);
-			printf("   [%2d] [%8s]  [%8s] [%11s] [%10s] [%10s] [%4d]  [%2d]\n",
+			printf("   [%2d] [%-10s] [%-10s] [%11s] [%-10s] [%-10s] [%4d]  [%2d]\n",
 			id, razonSocial, nombreDuenho, telefono, localidad, calle, numeroDireccion, idCuenta);
 		}
 	}
 	return sucess;
 }
 
-int obtainIDRemito(void* pElement){
+static int obtainIDRemito(void* pElement){
 	int monto = -1;
 	Remitos* an_Object;
 	if(pElement!=NULL){
@@ -265,7 +265,7 @@ int obtainIDRemito(void* pElement){
 	return monto;
 }
 
-int obtainIDPago(void* pElement){
+static int obtainIDPago(void* pElement){
 	int monto = -1;
 	Pagos *an_Object;
 	if(pElement!=NULL){
@@ -277,7 +277,7 @@ int obtainIDPago(void* pElement){
 	return monto;
 }
 
-int controller_UpgradeAccountsStatus(LinkedList *this, LinkedList *thisRemitos, LinkedList *thisPagos){
+static int controller_UpgradeAccountsStatus(LinkedList *this, LinkedList *thisRemitos, LinkedList *thisPagos){
 	Accounts *pAccount;
 	int success = 0;
 	int accountLenght;
@@ -352,7 +352,7 @@ int controller_ListObjectCuentas(LinkedList *this, LinkedList *thisCustomer, Lin
 
 //-----------------------------------------------------------------------------
 
-int saveAsTextCustomer(FILE *pFile, LinkedList *this) {
+static int saveAsTextCustomer(FILE *pFile, LinkedList *this) {
 	eCliente *pObject; //entidad para guardar como texto
 
 	char nombreCliente[128];
@@ -411,7 +411,7 @@ int controller_saveAsTextCustomer(char *path, LinkedList *this) {
 
 //-----------------------------------------------------------------------------
 
-int saveAsTextAccount(FILE *pFile, LinkedList *this) {
+static int saveAsTextAccount(FILE *pFile, LinkedList *this) {
 	Accounts *pObject; //entidad para guardar como texto
 
 	char razonSocial[128];
@@ -470,7 +470,7 @@ int controller_saveAsTextAccount(char *path, LinkedList *this) {
 
 //-----------------------------------------------------------------------------
 
-int saveAsTextRemito(FILE *pFile, LinkedList *this) {
+static int saveAsTextRemito(FILE *pFile, LinkedList *this) {
 	Remitos *pObject; //entidad para guardar como texto
 
 	char cliente[128];
@@ -523,7 +523,7 @@ int controller_saveAsTextRemito(char *path, LinkedList *this) {
 
 //-----------------------------------------------------------------------------
 
-int saveAsTextPago(FILE *pFile, LinkedList *this) {
+static int saveAsTextPago(FILE *pFile, LinkedList *this) {
 	Pagos *pObject; //entidad para guardar como texto
 
 	char cliente[128];
@@ -543,7 +543,6 @@ int saveAsTextPago(FILE *pFile, LinkedList *this) {
 		for (int i = 0; i < len_LL; i++) {	// recorro el array.
 			pObject = ll_get(this, i);
 			//getters aca
-
 			Entity_Pagos_getDate(pObject, date);
 			Entity_Pagos_getID(pObject, &idPago);
 			Entity_Pagos_getCliente(pObject, cliente);

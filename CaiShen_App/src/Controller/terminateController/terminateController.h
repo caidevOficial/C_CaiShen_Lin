@@ -29,14 +29,24 @@
 #define LIBRARY_CONTROLLER_TERMINATECONTROLLER_TERMINATECONTROLLER_H_
 
 /**
- * @brief  Delete a Knight from the LL.
- * @param  pArrayListKnightZodiac
- * @return Return 1 if can, else 0.
+ * @brief  Delete an Entity from the LL.
+ * @param  this List of remitos.
+ * @return 1 for success, 0 for error.
  */
 int controller_removeRemito(LinkedList *this);
 
+/**
+ * @brief  Delete an Entity from the LL.
+ * @param  this List of pagos.
+ * @return 1 for success, 0 for error.
+ */
 int controller_removePago(LinkedList *this);
 
+/**
+ * @brief  Delete an Entity from the LL.
+ * @param  this List of clientes.
+ * @return 1 for success, 0 for error.
+ */
 int controller_removeCliente(LinkedList *this);
 
 #endif /* LIBRARY_CONTROLLER_TERMINATECONTROLLER_TERMINATECONTROLLER_H_ */

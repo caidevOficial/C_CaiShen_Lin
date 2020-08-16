@@ -20,14 +20,8 @@
 
 #include "../../LinkedList.h"
 
-#ifndef LIBRARY_KnightZodiac_REGISTERKnightZodiac_REGISTERKnightZodiac_H_
-#define LIBRARY_KnightZodiac_REGISTERKnightZodiac_REGISTERKnightZodiac_H_
-
-int controller_addRemito(LinkedList *this, LinkedList *thisCustomer);
-
-int controller_addPago(LinkedList *this, LinkedList *thisCustomer);
-
-int controller_addCliente(LinkedList *this, LinkedList *thisAccount);
+#ifndef CONTROLLER_REGISTERCONTROLLER_REGISTERCONTROLLER_H
+#define CONTROLLER_REGISTERCONTROLLER_REGISTERCONTROLLER_H
 
 /**
  * @brief	Read an ID from a text file.
@@ -43,4 +37,28 @@ int obtainID(int* id,char* path);
  */
 int upgradeID(int id,char* path);
 
-#endif /* LIBRARY_KnightZodiac_REGISTERKnightZodiac_REGISTERKnightZodiac_H_ */
+/**
+ * @brief  Adds a new entity in the list 'this'.
+ * @param  this List of entities remitos.
+ * @param  thisCustomer List of entities type customer.
+ * @return 1 for success, 0 for error.
+ */
+int controller_addRemito(LinkedList *this, LinkedList *thisCustomer);
+
+/**
+ * @brief  Adds a new entity in the list 'this'.
+ * @param  this List of entities pagos.
+ * @param  thisCustomer List of entities type customer.
+ * @return 1 for success, 0 for error.
+ */
+int controller_addPago(LinkedList *this, LinkedList *thisCustomer);
+
+/**
+ * @brief  Adds a new entity in the list 'this'.
+ * @param  this List of entities customer.
+ * @param  thisAccount List of entities type account.
+ * @return 1 for success, 0 for error.
+ */
+int controller_addCliente(LinkedList *this, LinkedList *thisAccount);
+
+#endif /* CONTROLLER_REGISTERCONTROLLER_REGISTERCONTROLLER_H */

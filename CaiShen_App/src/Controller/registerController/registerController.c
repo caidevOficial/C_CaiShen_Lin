@@ -76,33 +76,24 @@ int upgradeID(int id,char* path){
 }
 
 /**
- * @brief lee la ultima id del bin y la actualiza con la nueva.
+ * @brief  Checks if the tntity customer exist.
+ * @param thisCustomer list of entities to be checked.
+ * @param this Entity to be checked.
+ * @param customerId id of the entity to find its index.
+ * @param lastIDCustomer id of the last entity of the list.
+ * @param customerIndex index number of the entity.
+ * @param customerName name of the field nombre of the entity.
  */
-/*
-void controllerAlta(){
-	int id;
-	obtainID(&id); //obtiene la proxima id
-	printf("ID: %d",id); // la muestro por si acaso
-	upgradeID(id); //actualizo con la nueva id que obtuve
-}*/
+static void checkCustomerExistence(LinkedList *thisCustomer, eCliente *this, int *customerId, int *lastIDCustomer, int *customerIndex, char *customerName){
+	//------------------- Pido Id de cliente para asociar al remito
+	controller_ListObjectClientes(thisCustomer);
+	getNumberInt(customerId, "   [Message] Seleccione un cliente: ", "   [ERROR] Cliente incorrecto.\n", 1, (*lastIDCustomer-1), 5);
+	//customerIndex = ll_indexOf(thisCustomer, &customerId);
+	*customerIndex = Entity_Customer_SearchForId(thisCustomer, *customerId);
+	this = ll_get(thisCustomer,*customerIndex);
+	Entity_Customer_getRazonSocial(this, customerName);
 
-/*
-// Searchers
-int Entity_Customer_SearchForId(LinkedList *this, int id) {
-    int retorno = -1;
-    int idAux;
-	eCliente *pCustomer;
-
-	for (int index = 0; index < ll_len(this); index++) {
-		pCustomer = ll_get(this, index);
-		if (Entity_Customer_getID(pCustomer, &idAux) == 1 &&
-           idAux == id){
-            retorno = index;
-        }
-    }
-    return retorno;
 }
-*/
 
 int controller_addRemito(LinkedList *this, LinkedList *thisCustomer) {
 	Remitos *pRemito;
@@ -132,19 +123,8 @@ int controller_addRemito(LinkedList *this, LinkedList *thisCustomer) {
 		obtainID(&ultimoIdRemito,"Remitos_LastID.txt"); // Obtengo el ID al leerlo desde el archivo "ultimoIdRemito.txt" .
 		printf("    [Message]: El alta se asignara con el ID: %d\n",ultimoIdRemito);
 		printf("    [FECHA]  %s \n",date);
-
-		//------------------- Pido Id de cliente para asociar al remito
-		controller_ListObjectClientes(thisCustomer);
-
-		getNumberInt(&customerId, "   [Message] Seleccione un cliente: ", "   [ERROR] Cliente incorrecto.\n", 1, (ultimoIdCliente-1), 5);
-
-		//customerIndex = ll_indexOf(thisCustomer, &customerId);
-		customerIndex = Entity_Customer_SearchForId(thisCustomer, customerId);
-		pCliente = ll_get(thisCustomer,customerIndex);
-		Entity_Customer_getRazonSocial(pCliente, customerName);
-
-		printf("   [Message] Se agregara un remito para: %s\n",customerName);
-
+		checkCustomerExistence(thisCustomer, pCliente, &customerId, &ultimoIdCliente, &customerIndex, customerName);
+		printf("   [Message] Se agregara un Remito para: %s\n",customerName);
 		//------------------- Pido Monto del remito
 		getNumberFloat(&remitoAmount, "   [Message] Ingrese el monto del remito: ", "   [ERROR] Monto incorrecto, no puede superar los 20k\n", 0, 20000, 5);
 
@@ -165,7 +145,6 @@ int controller_addRemito(LinkedList *this, LinkedList *thisCustomer) {
 	}
 	return sucess;
 }
-
 
 int controller_addPago(LinkedList *this, LinkedList *thisCustomer) {
 	Pagos *pPago;
@@ -196,23 +175,12 @@ int controller_addPago(LinkedList *this, LinkedList *thisCustomer) {
 		printf("    [Message]: El alta se asignara con el ID: %d\n",ultimoIdPago);
 		printf("    [FECHA]  %s \n",date);
 
-		//------------------- Pido Id de cliente para asociar al Pago
-		controller_ListObjectClientes(thisCustomer);
-
-		getNumberInt(&customerId, "   [Message] Seleccione un cliente: ", "   [ERROR] Cliente incorrecto.\n", 1, (ultimoIdCliente-1), 5);
-
-		//customerIndex = ll_indexOf(thisCustomer, &customerId);
-		customerIndex = Entity_Customer_SearchForId(thisCustomer, customerId);
-		pCliente = ll_get(thisCustomer,customerIndex);
-		Entity_Customer_getRazonSocial(pCliente, customerName);
-
+		checkCustomerExistence(thisCustomer, pCliente, &customerId, &ultimoIdCliente, &customerIndex, customerName);
 		printf("   [Message] Se agregara un Pago para: %s\n",customerName);
-
 		//------------------- Pido Monto del Pago
 		getNumberFloat(&PagoAmount, "   [Message] Ingrese el monto del Pago: ", "   [ERROR] Monto incorrecto, no puede superar los 20k\n", 0, 20000, 5);
 
 		if (pPago != NULL) {
-
 			Entity_Pagos_setDate(pPago, date);
 			Entity_Pagos_setID(pPago, &ultimoIdPago);
 			Entity_Pagos_setCliente(pPago, customerName);
@@ -229,6 +197,29 @@ int controller_addPago(LinkedList *this, LinkedList *thisCustomer) {
 	return sucess;
 }
 
+/**
+ * @brief  gets all the data of the new entity.
+ * @param  customerName name of the customer bussiness.
+ * @param  name name of the customer.
+ * @param  city city where the customer is.
+ * @param  street address of the customer.
+ * @param  phone phone number of the entity.
+ * @param  streetNumber number of the address.
+ */
+static void getCustomerData(char *customerName, char *name, char *city, char *street, char *phone, int *streetNumber){
+	//------------------- Pido datos de cliente
+	int textLength = 128;
+	getName(customerName, textLength, "   [Message] Ingrese razon social sin espacios: ", "   [ERROR] Razon social Erronea.\n", 5);
+	uppercaselInitial(customerName);
+	getName(name, textLength, "   [Message] Ingrese nombre de contacto sin espacios: ", "   [ERROR] Nombre incorrecto.\n", 5);
+	uppercaselInitial(name);
+	getName(city, textLength, "   [Message] Ingrese localidad sin espacios: ", "   [ERROR] Localidad incorrecta.\n", 7);
+	uppercaselInitial(city);
+	getName(street, textLength, "   [Message] Ingrese nombre de calle [sin espacios]: ", "   [ERROR] Calle incorrecta.\n", 7);
+	uppercaselInitial(street);
+	getNumberInt(streetNumber, "   [Message] Ingrese altura: ", "   [ERROR] Incorrecto, excede el limite de 15k.\n", 0, 15000, 7);
+	getPhoneNumber(phone, 12, "   [Message] Ingrese telefono de contacto [solo numeros]: ", "   [ERROR] Telefono incorrecto.\n", 7);
+}
 
 int controller_addCliente(LinkedList *this, LinkedList *thisAccount){
 	eCliente *pCliente;
@@ -238,33 +229,19 @@ int controller_addCliente(LinkedList *this, LinkedList *thisAccount){
 
 	int sucess = 0;
 	int ultimoIdCliente;
-	int textLength = 128;
+	int numeroDireccion;
 
-	char customerName[128];
-	//char customerNameFinal[8];
-	char nombreDuenho[128];
-	char localidad[128];
 	char calle[128];
 	char telefono[12];
-
-	int numeroDireccion;
+	char localidad[128];
+	char customerName[128];
+	char nombreDuenho[128];
 
 	if (this != NULL) {
 
 		obtainID(&ultimoIdCliente,"Clientes_LastID.txt"); // Obtengo el ID al leerlo desde el archivo "ultimoIdCliente.txt" .
 		printf("    [Message]: El alta se asignara con el ID: %d\n",ultimoIdCliente);
-
-		//------------------- Pido datos de cliente
-		getName(customerName, textLength, "   [Message] Ingrese razon social sin espacios: ", "   [ERROR] Razon social Erronea.\n", 5);
-		uppercaselInitial(customerName);
-		getName(nombreDuenho, textLength, "   [Message] Ingrese nombre de contacto sin espacios: ", "   [ERROR] Nombre incorrecto.\n", 5);
-		uppercaselInitial(nombreDuenho);
-		getName(localidad, textLength, "   [Message] Ingrese localidad sin espacios: ", "   [ERROR] Localidad incorrecta.\n", 7);
-		uppercaselInitial(localidad);
-		getName(calle, textLength, "   [Message] Ingrese nombre de calle [sin espacios]: ", "   [ERROR] Calle incorrecta.\n", 7);
-		uppercaselInitial(calle);
-		getNumberInt(&numeroDireccion, "   [Message] Ingrese altura: ", "   [ERROR] Incorrecto, excede el limite de 15k.\n", 0, 15000, 7);
-		getPhoneNumber(telefono, 12, "   [Message] Ingrese telefono de contacto [solo numeros]: ", "   [ERROR] Telefono incorrecto.\n", 7);
+		getCustomerData(customerName, nombreDuenho, localidad, calle, telefono, &numeroDireccion);
 
 		if (pCliente != NULL && pAccount != NULL) {
 

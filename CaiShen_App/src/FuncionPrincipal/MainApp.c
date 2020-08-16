@@ -84,13 +84,13 @@ int log_Out(char *confirm, char *answer) {
 	int success = 0;
 	printf(
 			"    _______________________________________________________________\n"
-			"    [Message]: Menu de ABM\n"
+			"    [Message]: Gestor De Cuentas CAISHEN.\n"
 			"    _______________________________________________________________\n"
-			"    [Message]: Confirma Salir? Y/N: ");
+			"    [Message]: Confirma Salir? S/N: ");
 	__fpurge(stdin); //linux
 	getString(confirm, sizeof(*confirm));
 	*confirm = tolower(*confirm);
-	if (*confirm == 'y') {
+	if (*confirm == 's') {
 		printf("    __________________________________________________________\n"
 				"    [Message]: Gracias, Esperamos volverte a ver!\n");
 		*answer = 'n';
@@ -242,7 +242,7 @@ int gestionPagos(LinkedList *this, LinkedList *thisCustomer){
 int Control_De_Cuentas() {
 
 	char confirm;
-	char answer = 'y';
+	char answer = 's';
 	char guardarAntesDeSalir = 's';
 	char pathClientes[128] = "Docs/registro_Clientes.csv";
 	char pathCuentas[128] = "Docs/registro_Cuentas.csv";

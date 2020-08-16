@@ -23,43 +23,99 @@
 #ifndef CONTROLLER_CONTROLLER_H_
 #define CONTROLLER_CONTROLLER_H_
 
+/**
+ * @brief  Loads all the data from text.
+ * @param  path directory where the file is.
+ * @param  this List to save all the data loaded.
+ * @return 1 for success, 0 for error.
+ */
 int controller_loadFromTextRemitos(char *path, LinkedList *this);
 
+/**
+ * @brief  Loads all the data from text.
+ * @param  path directory where the file is.
+ * @param  this List to save all the data loaded.
+ * @return 1 for success, 0 for error.
+ */
 int controller_loadFromTextPagos(char *path, LinkedList *this);
 
+/**
+ * @brief  Loads all the data from text.
+ * @param  path directory where the file is.
+ * @param  this List to save all the data loaded.
+ * @return 1 for success, 0 for error.
+ */
 int controller_loadFromTextClientes(char *path, LinkedList *this);
 
+/**
+ * @brief  Loads all the data from text.
+ * @param  path directory where the file is.
+ * @param  this List to save all the data loaded.
+ * @return 1 for success, 0 for error.
+ */
 int controller_loadFromTextCuentas(char *path, LinkedList *this);
 
-
+/**
+ * @brief  Prints on screen the entire list of entities.
+ * @param  this List with all the entities.
+ * @return 1 for success, 0 for error.
+ */
 int controller_ListObjectRemitos(LinkedList *this);
 
+/**
+ * @brief  Prints on screen the entire list of entities.
+ * @param  this List with all the entities.
+ * @return 1 for success, 0 for error.
+ */
 int controller_ListObjectPagos(LinkedList *this);
 
+/**
+ * @brief  Prints on screen the entire list of entities.
+ * @param  this List with all the entities.
+ * @return 1 for success, 0 for error.
+ */
 int controller_ListObjectClientes(LinkedList *this);
 
+/**
+ * @brief  Prints on screen the entire list of entities.
+ * @param  this List with all the entities.
+ * @param  thisCustomer List of customers to take theirs ids.
+ * @param  thisRemitos List of remitos to take its ids and amount.
+ * @param  thisPagos List of pagos to take its ids and amount.
+ * @return 1 for success, 0 for error.
+ */
 int controller_ListObjectCuentas(LinkedList *this, LinkedList *thisCustomer, LinkedList *thisRemitos, LinkedList *thisPagos);
-/**
- * @brief 	Sort all the knights by name, id, constellation, armor Type and cosmos.
- * @param 	this
- * @return 	Return 1 if can, else 0.
- */
-int controller_sortObject(LinkedList *this);
 
 /**
- * @brief	Save the data of the LL in the path [Text Mode]
- * @param 	path
- * @param 	this
- * @return	Return 1 if can, else 0.
+ * @brief  Save the data on text.
+ * @param  path directory of the file to save the entire data.
+ * @param  this List that contain the data to be saved.
+ * @return 1 for success, 0 for error.
  */
-int controller_saveAsText(char *path, LinkedList *this);
-
 int controller_saveAsTextAccount(char *path, LinkedList *this);
 
+/**
+ * @brief  Save the data on text.
+ * @param  path directory of the file to save the entire data.
+ * @param  this List that contain the data to be saved.
+ * @return 1 for success, 0 for error.
+ */
 int controller_saveAsTextCustomer(char *path, LinkedList *this);
 
+/**
+ * @brief  Save the data on text.
+ * @param  path directory of the file to save the entire data.
+ * @param  this List that contain the data to be saved.
+ * @return 1 for success, 0 for error.
+ */
 int controller_saveAsTextRemito(char *path, LinkedList *this);
 
+/**
+ * @brief  Save the data on text.
+ * @param  path directory of the file to save the entire data.
+ * @param  this List that contain the data to be saved.
+ * @return 1 for success, 0 for error.
+ */
 int controller_saveAsTextPago(char *path, LinkedList *this);
 
 #endif /* CONTROLLER_CONTROLLER_H_ */
