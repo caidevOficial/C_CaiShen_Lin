@@ -23,16 +23,52 @@
 #ifndef ENTITY_CUENTAS_GETTERS_ACCOUNT_GETTERS_H_
 #define ENTITY_CUENTAS_GETTERS_ACCOUNT_GETTERS_H_
 
+/**
+ * @brief  Get the data of the field id.
+ * @param  this Entity.
+ * @param  id value getted.
+ * @return 1 for success, 0 for error
+ */
 int Entity_Account_getID(Accounts *this, int *id);
 
+/**
+ * @brief  Get the data of the field id.
+ * @param  this Entity.
+ * @param  idCliente value getted.
+ * @return 1 for success, 0 for error
+ */
 int Entity_Account_getIdCliente(Accounts *this, int *idCliente);
 
+/**
+ * @brief  Get the data of the field id.
+ * @param  this Entity.
+ * @param  customer value getted.
+ * @return 1 for success, 0 for error
+ */
 int Entity_Account_getCliente(Accounts *this, char *customer);
 
+/**
+ * @brief  Get the data of the field id.
+ * @param  this Entity.
+ * @param  debe value getted.
+ * @return 1 for success, 0 for error
+ */
 int Entity_Account_getDebe(Accounts *this, float *debe);
 
+/**
+ * @brief  Get the data of the field id.
+ * @param  this Entity.
+ * @param  haber value getted.
+ * @return 1 for success, 0 for error
+ */
 int Entity_Account_getHaber(Accounts *this, float *haber);
 
+/**
+ * @brief  Get the data of the field id.
+ * @param  this Entity.
+ * @param  deuda value getted.
+ * @return 1 for success, 0 for error
+ */
 int Entity_Account_getDeuda(Accounts *this, float *deuda);
 
 #endif /* ENTITY_CUENTAS_GETTERS_ACCOUNT_GETTERS_H_ */

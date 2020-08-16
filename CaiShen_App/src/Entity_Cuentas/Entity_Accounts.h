@@ -25,20 +25,36 @@
 typedef struct {
     int id;
     int idCliente;
-	char cliente[128]; //
-	float debe; //
+	char cliente[128];
+	float debe;
 	float haber;
-	float deuda_Actual;//
-	//Remitos remitos;
+	float deuda_Actual;
 } Accounts;
 
-
+/**
+ * @brief  Reserve memory space for the entity.
+ * @return the entity.
+ */
 Accounts* Entity_newAccount();
 
-
+/**
+ * @brief  Creates the new entity.
+ * @param  id value to be putted in the field id.
+ * @param  idCliente value to be putted in the field idCliente.
+ * @param  cliente value to be putted in the field cliente.
+ * @param  debe value to be putted in the field debe.
+ * @param  haber value to be putted in the field haber.
+ * @param  deuda_Actual value to be putted in the field deuda_Actual.
+ * @return The entity created.
+ */
 Accounts* Entity_newParamAccounts(char *id, char *idCliente, char *cliente, char *debe,char *haber, char *deuda_Actual);
 
-
+/**
+ * @brief  sort by debt.
+ * @param  deudor1 entity.
+ * @param  deudor2 entity.
+ * @return -1 if the second entity is higher, 0 if both are equal, 1 if the first entity is higher.
+ */
 int Entity_sortDeudaActual(void *deudor1, void *deudor2);
 
 #endif // ENTITY_ACCOUNTS_H_INCLUDED
