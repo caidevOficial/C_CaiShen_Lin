@@ -42,23 +42,44 @@ typedef struct {
 	char cliente[128]; //
 	int idCliente;
 	float monto;
-	//Producto productos;
 }Remitos;
 
-
+/**
+ * @brief  Reserve memory space for the entity.
+ * @return the entity.
+ */
 Remitos* Entity_newRemito();
 
-
-//Remitos* Entity_newParamRemito(char *id, char *idCliente, char *cliente,char *monto, char *dia, char *mes, char *anho);
-
+/**
+ * @brief  Creates the new entity.
+ * @param  id value to be putted in the field id.
+ * @param  idCliente value to be putted in the field idCliente.
+ * @param  cliente value to be putted in the field cliente.
+ * @param  monto value to be putted in the field monto.
+ * @param  date value to be putted in the field date.
+ * @return The entity created.
+ */
 Remitos* Entity_newParamRemito(char *id, char *idCliente, char *cliente,char *monto, char *date);
 
-int sumaDebe(void* pElement);
-
+/**
+ * @brief  Search the index of an entity by its id.
+ * @param  this list of entities.
+ * @param  id id of the entity to be founded.
+ * @return the index if success, -1 if error.
+ */
 int Entity_Remito_SearchForId(LinkedList *this, int id);
 
+/**
+ * @brief Delete the entity.
+ * @param this Entity to be deleted.
+ */
 void Entity_Remito_delete(Remitos *this);
 
+/**
+ * @brief  Prints in screen one entity.
+ * @param  this the entity to be printed.
+ * @return 1 for success, 0 for error.
+ */
 int Entity_Remito_Show(Remitos *this);
 
 #endif // ENTITY_REMITO_H_INCLUDED_

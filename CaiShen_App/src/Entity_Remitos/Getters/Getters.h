@@ -23,16 +23,44 @@
 #ifndef ENTITY_REMITOS_GETTERS_GETTERS_H_
 #define ENTITY_REMITOS_GETTERS_GETTERS_H_
 
+/**
+ * @brief  Get the data of the field id.
+ * @param  this Entity.
+ * @param  id value getted.
+ * @return 1 for success, 0 for error
+ */
 int Entity_Remitos_getID(Remitos *this, int *id);
 
+/**
+ * @brief  Get the data of the field id.
+ * @param  this Entity.
+ * @param  customerName value getted.
+ * @return 1 for success, 0 for error
+ */
 int Entity_Remitos_getCliente(Remitos *this, char *customerName);
 
+/**
+ * @brief  Get the data of the field id.
+ * @param  this Entity.
+ * @param  customerId value getted.
+ * @return 1 for success, 0 for error
+ */
 int Entity_Remitos_getIdCliente(Remitos *this, int *customerId);
 
+/**
+ * @brief  Get the data of the field id.
+ * @param  this Entity.
+ * @param  monto value getted.
+ * @return 1 for success, 0 for error
+ */
 int Entity_Remitos_getMontoRemito(Remitos *this, float *monto);
 
-//int Entity_Remitos_getFecha(Remitos *this, int *dia, int *mes, int *anho);
-
+/**
+ * @brief  Get the data of the field id.
+ * @param  this Entity.
+ * @param  date value getted.
+ * @return 1 for success, 0 for error
+ */
 int Entity_Remitos_getDate(Remitos *this, char *date);
 
 #endif /* ENTITY_REMITOS_GETTERS_GETTERS_H_ */

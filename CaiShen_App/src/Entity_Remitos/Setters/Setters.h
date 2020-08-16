@@ -21,15 +21,44 @@
 #ifndef ENTITY_REMITOS_SETTERS_REMITOS_SETTERS_H_
 #define ENTITY_REMITOS_SETTERS_REMITOS_SETTERS_H_
 
+/**
+ * @brief  Set the data in the field id.
+ * @param  this Entity to be modified.
+ * @param  id value to be modified or added.
+ * @return 1 for success, 0 for error.
+ */
 int Entity_Remitos_setID(Remitos *this, int *id);
 
+/**
+ * @brief  Set the data in the field id.
+ * @param  this Entity to be modified.
+ * @param  customerName value to be modified or added.
+ * @return 1 for success, 0 for error.
+ */
 int Entity_Remitos_setCliente(Remitos *this, char *customerName);
 
+/**
+ * @brief  Set the data in the field id.
+ * @param  this Entity to be modified.
+ * @param  idCustomer value to be modified or added.
+ * @return 1 for success, 0 for error.
+ */
 int Entity_Remitos_setIdCliente(Remitos *this, int idCustomer);
 
+/**
+ * @brief  Set the data in the field id.
+ * @param  this Entity to be modified.
+ * @param  price value to be modified or added.
+ * @return 1 for success, 0 for error.
+ */
 int Entity_Remitos_setMontoRemito(Remitos *this, float price);
 
-//int Entity_Remitos_setFecha(Remitos *this, int dia, int mes, int anho);
+/**
+ * @brief  Set the data in the field id.
+ * @param  this Entity to be modified.
+ * @param  date value to be modified or added.
+ * @return 1 for success, 0 for error.
+ */
 int Entity_Remitos_setDate(Remitos *this, char *date);
 
 #endif /* ENTITY_REMITOS_SETTERS_REMITOS_SETTERS_H_ */

@@ -57,37 +57,6 @@ Remitos* Entity_newParamRemito(char *id, char *idCliente, char *cliente, char *m
 	return newObject;
 }
 
-//***************************************
-// funcion para ll_count
-//***************************************
-int sumaHaber(void* pElement){
-	float haber = -1;
-	Remitos* an_Object;
-	if(pElement!=NULL){
-		an_Object = (Remitos*)pElement;
-		if(an_Object!=NULL){
-			Entity_Remitos_getMontoRemito(an_Object, &haber);
-		}
-	}
-	return haber;
-}
-
-//***************************************
-// funcion para ll_count
-//***************************************
-int sumaDebe(void* pElement){
-	float debe = -1;
-	Remitos* an_Object;
-	if(pElement!=NULL){
-		an_Object = (Remitos*)pElement;
-		if(an_Object!=NULL){
-			Entity_Remitos_getMontoRemito(an_Object, &debe);
-		}
-	}
-
-	return debe;
-}
-
 int Entity_Remito_SearchForId(LinkedList *this, int id) {
     int retorno = -1;
     int idAux;
@@ -136,26 +105,3 @@ void Entity_Remito_delete(Remitos *this) {
 		this = NULL;
 	}
 }
-
-
-
-
-
-/* Function/SortBy: [Infectados] */
-/*
-int Entity_sortInfectados(void *infect1, void *infect2) {
-int infect_1;
-int infect_2;
-int success = 0; // si los tiempos son iguales, devuelve 0
-
-Entity_getInfected(infect1, &infect_1);
-Entity_getInfected(infect2, &infect_2);
-
-if (infect_1 > infect_2) {
-	success = 1;
-} else if (infect_1 < infect_2) {
-	success = -1;
-	}
-	return success;
-}
-*/
