@@ -24,7 +24,6 @@
 
 #include "../Entity_Pago.h"
 
-/* Setters: [ID] */
 int Entity_Pagos_setID(Pagos *this, int *id) {
 	int success = 0;
 
@@ -37,7 +36,6 @@ int Entity_Pagos_setID(Pagos *this, int *id) {
 	return success;
 }
 
-/* Setters: [NOMBRE CLIENTE] */
 int Entity_Pagos_setCliente(Pagos *this, char *customerName) {
 	int success = 0;
 
@@ -48,7 +46,6 @@ int Entity_Pagos_setCliente(Pagos *this, char *customerName) {
 	return success;
 }
 
-/* Setters: [ID CLIENTE] */
 int Entity_Pagos_setIdCliente(Pagos *this, int idCustomer) {
 	int success = 0;
 
@@ -61,7 +58,6 @@ int Entity_Pagos_setIdCliente(Pagos *this, int idCustomer) {
 	return success;
 }
 
-/* Setters: [PRECIO Pago] */
 int Entity_Pagos_setMontoPago(Pagos *this, float price) {
 	int success = 0;
 
@@ -83,57 +79,3 @@ int Entity_Pagos_setDate(Pagos *this, char *date) {
 	}
 	return success;
 }
-
-
-/*
-int Entity_Remitos_setDia(Remitos *this, int dia) {
-	int success = 0;
-
-	if (this != NULL) {
-		if (dia > 0 && dia < 32) {
-			this->fecha.dia = dia;
-			success = 1;
-		}
-	}
-	return success;
-}
-
-int Entity_Remitos_setMes(Remitos *this, int mes) {
-	int success = 0;
-
-	if (this != NULL) {
-		if (mes > 0 && mes < 13) {
-			this->fecha.mes = mes;
-			success = 1;
-		}
-	}
-	return success;
-}
-
-
-int Entity_Remitos_setAnho(Remitos *this, int anho) {
-	int success = 0;
-
-	if (this != NULL) {
-		if (anho >= 2020) {
-			this->fecha.anho = anho;
-			success = 1;
-		}
-	}
-	return success;
-}
-
-int Entity_Remitos_setFecha(Remitos *this, int dia, int mes, int anho){
-	int success = 0;
-	if (this != NULL) {
-		if (anho >= 2020 && (mes > 0 && mes < 13) && (dia > 0 && dia < 32)) {
-			if(Entity_Remitos_setDia(this, dia) &&
-			Entity_Remitos_setMes(this, mes) &&
-			Entity_Remitos_setAnho(this, anho)){
-				success = 1;
-			}
-		}
-	}
-	return success;
-}
-*/

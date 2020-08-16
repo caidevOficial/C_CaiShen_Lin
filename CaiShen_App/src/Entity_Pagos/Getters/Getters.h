@@ -23,14 +23,44 @@
 #ifndef ENTITY_PAGOS_GETTERS_GETTERS_H_
 #define ENTITY_PAGOS_GETTERS_GETTERS_H_
 
+/**
+ * @brief  Get the data of the field id.
+ * @param  this Entity.
+ * @param  id value getted.
+ * @return 1 for success, 0 for error
+ */
 int Entity_Pagos_getID(Pagos *this, int *id);
 
+/**
+ * @brief  Get the data of the field id.
+ * @param  this Entity.
+ * @param  customerName value getted.
+ * @return 1 for success, 0 for error
+ */
 int Entity_Pagos_getCliente(Pagos *this, char *customerName);
 
+/**
+ * @brief  Get the data of the field id.
+ * @param  this Entity.
+ * @param  customerId value getted.
+ * @return 1 for success, 0 for error
+ */
 int Entity_Pagos_getIdCliente(Pagos *this, int *customerId);
 
+/**
+ * @brief  Get the data of the field id.
+ * @param  this Entity.
+ * @param  monto value getted.
+ * @return 1 for success, 0 for error
+ */
 int Entity_Pagos_getMontoPago(Pagos *this, float *monto);
 
+/**
+ * @brief  Get the data of the field id.
+ * @param  this Entity.
+ * @param  date value getted.
+ * @return 1 for success, 0 for error
+ */
 int Entity_Pagos_getDate(Pagos *this, char *date);
 
 #endif /* ENTITY_PAGOS_GETTERS_GETTERS_H_ */

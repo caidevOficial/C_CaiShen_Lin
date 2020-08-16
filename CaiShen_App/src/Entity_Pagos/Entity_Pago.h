@@ -32,16 +32,42 @@ typedef struct {
 	//Producto productos;
 }Pagos;
 
+/**
+ * @brief  Reserve memory space for the entity.
+ * @return the entity.
+ */
 Pagos* Entity_newPago();
 
+/**
+ * @brief  Creates the new entity.
+ * @param  id value to be putted in the field id.
+ * @param  idCliente value to be putted in the field idCliente.
+ * @param  cliente value to be putted in the field cliente.
+ * @param  monto value to be putted in the field monto.
+ * @param  date value to be putted in the field date.
+ * @return The entity created.
+ */
 Pagos* Entity_newParamPago(char *id, char *idCliente, char *cliente,char *monto, char *date);
 
-int sumaDebe(void* pElement);
-
+/**
+ * @brief  Search the index of an entity by its id.
+ * @param  this list of entities.
+ * @param  id id of the entity to be founded.
+ * @return the index if success, -1 if error.
+ */
 int Entity_Pago_SearchForId(LinkedList *this, int id);
 
+/**
+ * @brief Delete the entity.
+ * @param this Entity to be deleted.
+ */
 void Entity_Pago_delete(Pagos *this);
 
+/**
+ * @brief  Prints in screen one entity.
+ * @param  this the entity to be printed.
+ * @return 1 for success, 0 for error.
+ */
 int Entity_Pago_Show(Pagos *this);
 
 #endif // ENTITY_PAGOS_H_INCLUDED_

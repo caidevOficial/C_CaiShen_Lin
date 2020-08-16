@@ -22,7 +22,6 @@
 #include "Getters.h"
 #include "../Entity_Pago.h"
 
-/* Getter: [ID Pago] */
 int Entity_Pagos_getID(Pagos *this, int *id) {
 	int success = 0;
 
@@ -33,7 +32,6 @@ int Entity_Pagos_getID(Pagos *this, int *id) {
 	return success;
 }
 
-/* Getter: [NOMBRE CLIENTE] */
 int Entity_Pagos_getCliente(Pagos *this, char *customerName) {
 	int success = 0;
 
@@ -44,7 +42,6 @@ int Entity_Pagos_getCliente(Pagos *this, char *customerName) {
 	return success;
 }
 
-/* Getter: [ID CLIENTE] */
 int Entity_Pagos_getIdCliente(Pagos *this, int *customerId) {
 	int success = 0;
 
@@ -55,7 +52,6 @@ int Entity_Pagos_getIdCliente(Pagos *this, int *customerId) {
 	return success;
 }
 
-/* Getter: [PRECIO Pago] */
 int Entity_Pagos_getMontoPago(Pagos *this, float *monto) {
 	int success = 0;
 
@@ -66,7 +62,6 @@ int Entity_Pagos_getMontoPago(Pagos *this, float *monto) {
 	return success;
 }
 
-
 int Entity_Pagos_getDate(Pagos *this, char *date) {
 	int success = 0;
 
@@ -76,52 +71,3 @@ int Entity_Pagos_getDate(Pagos *this, char *date) {
 	}
 	return success;
 }
-
-
-/*
-int Entity_Remitos_getFechaDia(Remitos *this, int *dia) {
-	int success = 0;
-
-	if (this != NULL && dia != NULL) {
-		*dia = this->fecha.dia;
-		success = 1;
-	}
-	return success;
-}
-
-
-int Entity_Remitos_getFechaMes(Remitos *this, int *mes) {
-	int success = 0;
-
-	if (this != NULL && mes != NULL) {
-		*mes = this->fecha.mes;
-		success = 1;
-	}
-	return success;
-}
-
-
-int Entity_Remitos_getFechaAnho(Remitos *this, int *anho) {
-	int success = 0;
-
-	if (this != NULL && anho != NULL) {
-		*anho = this->fecha.anho;
-		success = 1;
-	}
-	return success;
-}
-
-int Entity_Remitos_getFecha(Remitos *this, int *dia, int *mes, int *anho){
-	int success = 0;
-	if (this != NULL && dia != NULL && mes != NULL && anho != NULL) {
-		if(Entity_Remitos_getFechaDia(this, dia) &&
-		Entity_Remitos_getFechaMes(this, mes) &&
-		Entity_Remitos_getFechaAnho(this, anho)){
-			success = 1;
-		}
-	}
-	return success;
-}*/
-
-
-
