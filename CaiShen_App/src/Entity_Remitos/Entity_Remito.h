@@ -13,8 +13,10 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  * ============================================================================
- * Type: Recuperatorio segundo parcial - Laboratorio 1.
- * Version     : Beta 1.1.2 [Beta v1.1.2] - FacuFalcone_ABM_Pandemia_[Linux]
+ * Author		: FacuFalcone.
+ * Type			: ACCOUNT_MANAGER_CAISHEN.
+ * SO			: [Linux]
+ * Version		: Beta 1.0.0 [Beta v1.0.0]
  * ============================================================================
  */
 

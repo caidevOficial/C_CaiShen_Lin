@@ -13,8 +13,10 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  * ============================================================================
- *
- * Version     : Beta 3.3.0 [Beta v3.3.0] - FacuFalcone_LinkedList_SaintSeiya_[Linux]
+ * Author		: FacuFalcone.
+ * Type			: ACCOUNT_MANAGER_CAISHEN.
+ * SO			: [Linux]
+ * Version		: Beta 1.0.0 [Beta v1.0.0]
  * ============================================================================
  */
 

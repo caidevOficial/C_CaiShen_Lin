@@ -13,8 +13,10 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  * ============================================================================
- * Type: Recuperatorio segundo parcial - Laboratorio 1.
- * Version     : Beta 1.1.2 [Beta v1.1.2] - FacuFalcone_ABM_Pandemia_[Linux]
+ * Author		: FacuFalcone.
+ * Type			: ACCOUNT_MANAGER_CAISHEN.
+ * SO			: [Linux]
+ * Version		: Beta 1.0.0 [Beta v1.0.0]
  * ============================================================================
  */
 
@@ -158,8 +160,8 @@ int controller_ListObjectRemitos(LinkedList *this) {
 	int id;
 	int idCliente;
 	float monto;
-	char cliente[128];
 	char date[128];
+	char cliente[128];
 
 	if (this == NULL) {
 		printf("\n    No se puede listar objetos ya que la lista es NULL.\n");
@@ -189,8 +191,8 @@ int controller_ListObjectPagos(LinkedList *this) {
 	int id;
 	int idCliente;
 	float monto;
-	char cliente[128];
 	char date[128];
+	char cliente[128];
 
 	if (this == NULL) {
 		printf("\n    No se puede listar objetos ya que la lista es NULL.\n");
@@ -216,16 +218,15 @@ int controller_ListObjectPagos(LinkedList *this) {
 int controller_ListObjectClientes(LinkedList *this) {
 	eCliente *pObject;
 	int sucess = 0;
+	int id;
+	int idCuenta;
+	int numeroDireccion;
 
-	char razonSocial[128];
-	char nombreDuenho[128];
-	char localidad[128];
 	char calle[128];
 	char telefono[128];
-
-	int id;
-	int numeroDireccion;
-	int idCuenta;
+	char localidad[128];
+	char razonSocial[128];
+	char nombreDuenho[128];
 
 	if (this == NULL) {
 		printf("\n    No se puede listar objetos ya que la lista es NULL.\n");
@@ -253,30 +254,48 @@ int controller_ListObjectClientes(LinkedList *this) {
 	return sucess;
 }
 
+/**
+ * @brief  Obtain the ID_Customer of the entity remito.
+ * @param  pElement entity.
+ * @return return the id.
+ */
 static int obtainIDRemito(void* pElement){
-	int monto = -1;
+	int idCustomer = -1;
 	Remitos* an_Object;
 	if(pElement!=NULL){
 		an_Object = (Remitos*)pElement;
 		if(an_Object!=NULL){
-			Entity_Remitos_getIdCliente(an_Object, &monto);
+			Entity_Remitos_getIdCliente(an_Object, &idCustomer);
 		}
 	}
-	return monto;
+	return idCustomer;
 }
 
+/**
+ * @brief  Obtain the ID_Customer of the entity payments.
+ * @param  pElement entity.
+ * @return return the id.
+ */
 static int obtainIDPago(void* pElement){
-	int monto = -1;
+	int idCustomer = -1;
 	Pagos *an_Object;
 	if(pElement!=NULL){
 		an_Object = (Pagos*)pElement;
 		if(an_Object!=NULL){
-			Entity_Pagos_getIdCliente(an_Object, &monto);
+			Entity_Pagos_getIdCliente(an_Object, &idCustomer);
 		}
 	}
-	return monto;
+	return idCustomer;
 }
 
+/**
+ * @brief  travel across the remitos and payments and upgrade the fields in accounts.
+ * @param  this list of accounts.
+ * @param  thisRemitos list of remitos.
+ * @param  thisPagos list of payments.
+ * @return 1 for success, 0 for error.
+ * @author FacuFalcone.
+ */
 static int controller_UpgradeAccountsStatus(LinkedList *this, LinkedList *thisRemitos, LinkedList *thisPagos){
 	Accounts *pAccount;
 	int success = 0;
@@ -352,21 +371,27 @@ int controller_ListObjectCuentas(LinkedList *this, LinkedList *thisCustomer, Lin
 
 //-----------------------------------------------------------------------------
 
+/**
+ * @brief  Save in text all the fields of the entity.
+ * @param  pFile file to be saved the data.
+ * @param  this list to be saved.
+ * @return 1 for success, 0 for error.
+ */
 static int saveAsTextCustomer(FILE *pFile, LinkedList *this) {
 	eCliente *pObject; //entidad para guardar como texto
 
-	char nombreCliente[128];
-	char telefono[128];
+	int sucess = 0;
+	int len_LL;
+	int idCliente;
+	int idCuenta;
+	int flagHeader = 1;
+	int numeroDireccion;
+
 	char calle[128];
 	char contacto[128];
+	char telefono[128];
 	char localidad[128];
-
-	int idCliente;
-	int numeroDireccion;
-	int idCuenta;
-	int len_LL;
-	int sucess = 0;
-	int flagHeader = 1;
+	char nombreCliente[128];
 
 	if (pFile != NULL && this != NULL) { //si el archivo y el array no son null..
 		len_LL = ll_len(this); // obtengo el tamanho del array.
@@ -411,21 +436,26 @@ int controller_saveAsTextCustomer(char *path, LinkedList *this) {
 
 //-----------------------------------------------------------------------------
 
+/**
+ * @brief  Save in text all the fields of the entity.
+ * @param  pFile file to be saved the data.
+ * @param  this list to be saved.
+ * @return 1 for success, 0 for error.
+ */
 static int saveAsTextAccount(FILE *pFile, LinkedList *this) {
 	Accounts *pObject; //entidad para guardar como texto
 
-	char razonSocial[128];
-
+	int sucess = 0;
+	int len_LL;
 	int idCuenta;
 	int idCliente;
+	int flagHeader = 1;
 
 	float debe;
 	float haber;
 	float deudaTotal;
 
-	int len_LL;
-	int sucess = 0;
-	int flagHeader = 1;
+	char razonSocial[128];
 
 	if (pFile != NULL && this != NULL) { //si el archivo y el array no son null..
 		len_LL = ll_len(this); // obtengo el tamanho del array.
@@ -470,19 +500,25 @@ int controller_saveAsTextAccount(char *path, LinkedList *this) {
 
 //-----------------------------------------------------------------------------
 
+/**
+ * @brief  Save in text all the fields of the entity.
+ * @param  pFile file to be saved the data.
+ * @param  this list to be saved.
+ * @return 1 for success, 0 for error.
+ */
 static int saveAsTextRemito(FILE *pFile, LinkedList *this) {
 	Remitos *pObject; //entidad para guardar como texto
 
-	char cliente[128];
-	char date[128];
-
+	int sucess = 0;
+	int len_LL;
 	int idRemito;
 	int idCliente;
+	int flagHeader = 1;
+
 	float monto;
 
-	int len_LL;
-	int sucess = 0;
-	int flagHeader = 1;
+	char cliente[128];
+	char date[128];
 
 	if (pFile != NULL && this != NULL) { //si el archivo y el array no son null..
 		len_LL = ll_len(this); // obtengo el tamanho del array.
@@ -523,19 +559,25 @@ int controller_saveAsTextRemito(char *path, LinkedList *this) {
 
 //-----------------------------------------------------------------------------
 
+/**
+ * @brief  Save in text all the fields of the entity.
+ * @param  pFile file to be saved the data.
+ * @param  this list to be saved.
+ * @return 1 for success, 0 for error.
+ */
 static int saveAsTextPago(FILE *pFile, LinkedList *this) {
 	Pagos *pObject; //entidad para guardar como texto
 
-	char cliente[128];
-	char date[128];
-
+	int sucess = 0;
 	int idPago;
+	int len_LL;
 	int idCliente;
+	int flagHeader = 1;
+
 	float monto;
 
-	int len_LL;
-	int sucess = 0;
-	int flagHeader = 1;
+	char date[128];
+	char cliente[128];
 
 	if (pFile != NULL && this != NULL) { //si el archivo y el array no son null..
 		len_LL = ll_len(this); // obtengo el tamanho del array.
