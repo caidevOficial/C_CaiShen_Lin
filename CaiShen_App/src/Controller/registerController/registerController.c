@@ -89,7 +89,7 @@ int upgradeID(int id,char* path){
 static void checkCustomerExistence(LinkedList *thisCustomer, eCliente *this, int *customerId, int *lastIDCustomer, int *customerIndex, char *customerName){
 	//------------------- Pido Id de cliente para asociar al remito
 	controller_ListObjectClientes(thisCustomer);
-	getNumberInt(customerId, "   [Message] Seleccione un cliente: ", "   [ERROR] Cliente incorrecto.\n", 1, (*lastIDCustomer-1), 5);
+	getNumberInt(customerId, "   [Message] Seleccione un cliente: ", "   [ERROR] Cliente incorrecto.\n", 1, (&lastIDCustomer-1), 5);
 	//customerIndex = ll_indexOf(thisCustomer, &customerId);
 	*customerIndex = Entity_Customer_SearchForId(thisCustomer, *customerId);
 	this = ll_get(thisCustomer,*customerIndex);

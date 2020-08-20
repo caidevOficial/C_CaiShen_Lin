@@ -46,7 +46,6 @@ int parser_ObjectFromTextPago(FILE *pFile, LinkedList *this) {
 				firstElement = 0;
 			}
 			fscanf(pFile, "%[^,],%[^,],%[^,],%[^,],%[^\n]\n", date, id, cliente, idCliente, montoPago);
-
 			pObject = Entity_newParamPago(id, idCliente, cliente, montoPago, date);
 
 			if (pObject != NULL) {

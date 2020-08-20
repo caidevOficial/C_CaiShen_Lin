@@ -116,20 +116,24 @@ int gestionClientes(LinkedList *this, LinkedList *thisAccount){
 				break;
 				//***************************************************************************
 			case 2: /* LISTAR CLIENTES */
-				if(ll_isEmpty(this)!=0){
-					printf(" [ERROR] No hay Clientes cargados!\n");
+				if(ll_isEmpty(this)){
+					printf("    [ERROR] No hay Clientes cargados!\n");
 				}else{
 					controller_ListObjectClientes(this);
 				}
 				break;
 				//***************************************************************************
 			case 3: /* MODIFICAR CLIENTE */
-				controller_editCustomer(this);
+				if(ll_isEmpty(this)){
+					printf("    [ERROR] No hay Clientes cargados!\n");
+				}else{
+					controller_editCustomer(this);
+				}
 				break;
 				//***************************************************************************
 			case 4: /* BAJA CLIENTES */
-				if(ll_isEmpty(this)!=0){
-					printf(" [ERROR] No hay Clientes cargados!\n");
+				if(ll_isEmpty(this)){
+					printf("    [ERROR] No hay Clientes cargados!\n");
 				}else{
 					if(controller_removeCliente(this)){
 						printf("    [SUCCESS] Cliente dado de baja con exito!\n");
@@ -155,27 +159,31 @@ int gestionRemitos(LinkedList *this, LinkedList *thisCustomer){
 	do{
 		switch(menuRemitos()){
 		case 1: /* CARGAR REMITOS */
-			if(ll_isEmpty(thisCustomer)!=0){
-				printf(" [ERROR] No hay Clientes cargados!\n");
+			if(ll_isEmpty(thisCustomer)){
+				printf("    [ERROR] No hay Clientes cargados!\n");
 			}else{
 				controller_addRemito(this, thisCustomer);
 			}
 			break;
 			//***************************************************************************
 		case 2: /* LISTAR REMITOS */
-			if(ll_isEmpty(this)!=0){
-				printf(" [ERROR] No hay Remitos cargados!\n");
+			if(ll_isEmpty(this)){
+				printf("    [ERROR] No hay Remitos cargados!\n");
 			}else{
 				controller_ListObjectRemitos(this);
 			}
 			break;
 			//***************************************************************************
 		case 3: /* MODIFICAR REMITO */
-			controller_editRemitos(this);
+			if(ll_isEmpty(this)){
+				printf("    [ERROR] No hay Remitos cargados!\n");
+			}else{
+				controller_editRemitos(this);
+			}
 			break;
 		case 4: /* BAJA REMITOS */
-			if(ll_isEmpty(this)!=0){
-				printf(" [ERROR] No hay Remitos cargados!\n");
+			if(ll_isEmpty(this)){
+				printf("    [ERROR] No hay Remitos cargados!\n");
 			}else{
 				if(controller_removeRemito(this)){
 					printf("    [SUCCESS] Ramito dado de baja con exito!\n");
@@ -201,7 +209,7 @@ int gestionPagos(LinkedList *this, LinkedList *thisCustomer){
 	do{
 		switch(menuPagos()){
 		case 1: /* CARGAR PAGOS */
-			if(ll_isEmpty(thisCustomer)!=0){
+			if(ll_isEmpty(thisCustomer)){
 				printf(" [ERROR] No hay Clientes cargados!\n");
 			}else{
 				controller_addPago(this, thisCustomer);
@@ -209,7 +217,7 @@ int gestionPagos(LinkedList *this, LinkedList *thisCustomer){
 			break;
 			//***************************************************************************
 		case 2: /* LISTAR PAGOS */
-			if(ll_isEmpty(this)!=0){
+			if(ll_isEmpty(this)){
 				printf(" [ERROR] No hay Pagos cargados!\n");
 			}else{
 				controller_ListObjectPagos(this);
@@ -217,10 +225,14 @@ int gestionPagos(LinkedList *this, LinkedList *thisCustomer){
 			break;
 			//***************************************************************************
 		case 3: /* MODIFICAR PAGOS */
-			controller_editPagos(this);
+			if(ll_isEmpty(this)){
+				printf("    [ERROR] No hay Pagos cargados!\n");
+			}else{
+				controller_editPagos(this);
+			}
 			break;
 		case 4: /* BAJA PAGOS */
-			if(ll_isEmpty(this)!=0){
+			if(ll_isEmpty(this)){
 				printf(" [ERROR] No hay Pagos cargados!\n");
 			}else{
 				if(controller_removePago(this)){
@@ -250,40 +262,42 @@ static int initLists(LinkedList *Rem, LinkedList *payments, LinkedList *customer
 	int accountOK = 0;
 	//---------- Control de inicializaciones.
 	if(ll_isEmpty(Rem)){ //chequeo que la lista no este vacia.
-		printf("    [Message]: Lista Remitos inicializada con exito!\n");
+		//printf("    [Message]: Lista Remitos inicializada con exito!\n");
 		if(controller_loadFromTextRemitos(pathRem, Rem)){
-			printf("    [Message]: Datos Remitos Cargados con exito!\n");
+			//printf("    [Message]: Datos Remitos Cargados con exito!\n");
 			remOK = 1;
 		}
 	}
 
 	if(ll_isEmpty(payments)){ //chequeo que la lista no este vacia.
-		printf("    [Message]: Lista Pagos inicializada con exito!\n");
+		//printf("    [Message]: Lista Pagos inicializada con exito!\n");
 		if(controller_loadFromTextPagos(pathPay, payments)){
-			printf("    [Message]: Datos Pagos Cargados con exito!\n");
+			//printf("    [Message]: Datos Pagos Cargados con exito!\n");
 			payOK = 1;
 		}
 	}
 
 	if(ll_isEmpty(customers)){ //chequeo que la lista no este vacia.
-		printf("    [Message]: Lista Clientes inicializada con exito!\n");
+		//printf("    [Message]: Lista Clientes inicializada con exito!\n");
 		if(controller_loadFromTextClientes(pathCustomer, customers)){
-			printf("    [Message]: Datos Clientes Cargados con exito!\n");
+			//printf("    [Message]: Datos Clientes Cargados con exito!\n");
 			customerOK = 1;
 		}
 	}
 
 	if(ll_isEmpty(accounts)){ //chequeo que la lista no este vacia.
-		printf("    [Message]: Lista Cuenta_Clientes inicializada con exito!\n");
+		//printf("    [Message]: Lista Cuenta_Clientes inicializada con exito!\n");
 		if(controller_loadFromTextCuentas(pathAccounts, accounts)){
-			printf("    [Message]: Datos Cuentas Cargados con exito!\n"
-			"    __________________________________________________________\n");
+			//printf("    [Message]: Datos Cuentas Cargados con exito!\n"
+			//"    __________________________________________________________\n");
 			accountOK = 1;
 		}
 	}
 
 	if(remOK && accountOK && customerOK && payOK){
 		success = 1;
+		printf("    [SUCCESS]: Listas y Datos Cargados con exito!\n"
+		"    __________________________________________________________\n");
 	}
 
 	return success;

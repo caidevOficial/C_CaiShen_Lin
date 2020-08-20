@@ -46,7 +46,6 @@ int parser_ObjectFromTextRemito(FILE *pFile, LinkedList *this) {
 				firstElement = 0;
 			}
 			fscanf(pFile, "%[^,],%[^,],%[^,],%[^,],%[^\n]\n", date, id, cliente, idCliente, montoRemito);
-
 			pObject = Entity_newParamRemito(id, idCliente, cliente, montoRemito, date);
 
 			if (pObject != NULL) {

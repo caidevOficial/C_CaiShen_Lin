@@ -64,7 +64,7 @@ int controller_loadFromTextRemitos(char *path, LinkedList *this) {
 			sucess = 1;
 		}
 		else{
-			printf("    ERROR: No se pudo parsear Texto.");
+			printf("    ERROR: No se pudo parsear Remito.\n");
 		}
 
 	}else{
@@ -92,7 +92,7 @@ int controller_loadFromTextPagos(char *path, LinkedList *this) {
 			sucess = 1;
 		}
 		else{
-			printf("    ERROR: No se pudo parsear Texto.");
+			printf("    ERROR: No se pudo parsear Pagos.\n");
 		}
 
 	}else{
@@ -119,7 +119,7 @@ int controller_loadFromTextClientes(char *path, LinkedList *this) {
 			sucess = 1;
 		}
 		else{
-			printf("    ERROR: No se pudo parsear Texto.");
+			printf("    ERROR: No se pudo parsear Clientes.\n");
 		}
 
 	}else{
@@ -144,7 +144,7 @@ int controller_loadFromTextCuentas(char *path, LinkedList *this) {
 			sucess = 1;
 		}
 		else{
-			printf("    ERROR: No se pudo parsear Texto.");
+			printf("    ERROR: No se pudo parsear Cuentas.\n");
 		}
 
 	}else{
