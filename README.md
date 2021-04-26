@@ -1,9 +1,8 @@
-<!--[](https://github.com/caidevOficial/Logos/blob/master/PoseidonDevs.png)-->
-<img align="center" src="https://github.com/caidevOficial/Logos/blob/master/PoseidonDevs.png" width=600/><br>
+<p align="left"> <img src="https://komarev.com/ghpvc/?username=caidevoficial&label=Profile%20views&color=0e75b6&style=flat" alt="caidevoficial" /> </p>
 
-<a href="https://github.com/caidevOficial/CaiShen_App">
-  <img align="center" src="https://github-readme-stats.vercel.app/api?username=caidevOficial&show_icons=true&theme=tokyonight" />
-</a>
+<p align="left"> <a href="https://github.com/CaidevOficial"><img src="https://github-profile-trophy.vercel.app/?username=caidevoficial&theme=nord&column=7" alt="caidevoficial" /></a> </p>
+
+---
 
 # CaiShen_App! [Linux version]
 
